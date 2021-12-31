@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ResourcesManager
+public static class ResourcesCenter
 {
     public static Sprite GetItemSprite(int index, int level = -1)
     {

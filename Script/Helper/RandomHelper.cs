@@ -57,35 +57,55 @@ public static class RandomHelper
     }
 
     /// <summary>
-    /// 随机返回一个重量，，越接近max，概率越低
+    /// 随机返回一个重量，越接近max，概率越低
     /// 保留2位小数点
     /// </summary>
-    public static float GetRandomWeight(float min, float max)
+    public static float GetRandomWeight(float min, float max, int seed)
     {
         float step = (max - min) / 10;        
-        float r = Random.Range(0, 1.0f);
+        seed = Next(seed);
         float result = min;
-        //90%概率在0~40%之间
-        if (r < 0.8f)
+        //70%概率在0~30%之间，无牌
+        if (seed < 700000)
         {
-            result = Random.Range(min, min + step * 4);
+            result = Clamp(min, min + step * 3, Next(seed));
         }
-        //15%概率在40~70%之间
-        else if (r < 0.95f)
+        //25%概率在30~60%之间，铜牌
+        else if (seed < 950000)
         {
-            result = Random.Range(min + step * 4, min + step * 7);
+            result = Clamp(min + step * 3, min + step * 6, Next(seed));
         }
-        //4%概率在70~90%之间
-        else if (r < 0.99f)
+        //4.5%概率在60~80%之间，银牌
+        else if (seed < 995000)
         {
-            result = Random.Range(min + step * 7, min + step * 9);
+            result = Clamp(min + step * 6, min + step * 8, Next(seed));
         }
-        //1%概率在90~100%之间
-        else if (r < 0.95f)
+        //0.5%概率在80~100%之间，金牌
+        else
         {
-            result = Random.Range(min + step * 9, max);
+            result = Clamp(min + step * 8, max, Next(seed));
         }
         return ((int)(result * 100)) / 100.0f;
+    }
+
+    //根据种子返回一个伪随机数，范围0~999999
+    const int MAXSEED = 1000000;
+    public static int Next(int seed)
+    {
+        if (seed % 2 == 0)
+            return (seed * 1877 + 132707) % MAXSEED;
+        else
+            return (seed * 1471 + 329717) % MAXSEED;
+    }
+
+    public static float Clamp(float a, float b, int seed)
+    {
+        return a + (b - a) * seed / MAXSEED;
+    }
+
+    public static int CreateSeed()
+    {
+        return Random.Range(0, MAXSEED);
     }
 
 }

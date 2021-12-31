@@ -4,12 +4,43 @@ using UnityEngine;
 
 public static class PlayerData
 {
+    public static int Gold
+    {
+        set{ SetItemData(GameData.MONEY, value);}
+        get{ return GetItemData(GameData.MONEY);}
+    }
+    public static int Clover
+    {
+        set { SetItemData(GameData.DIAMOND, value); }
+        get { return GetItemData(GameData.DIAMOND); }
+    }
+    public static int Exp
+    {
+        set { SetItemData(GameData.EXP, value); }
+        get { return GetItemData(GameData.EXP); }
+    }
+    public static int Power
+    {
+        set { SetItemData(GameData.POWER, value); }
+        get { return GetItemData(GameData.POWER); }
+    }
+    public static int Solict
+    {
+        set { SetItemData(GameData.SOLICT, value); }
+        get { return GetItemData(GameData.SOLICT); }
+    }
+
+    public static void AddItemData(int id, int value)
+    {
+        SetItemData(id, GetItemData(id) + value);
+    }
+
     public static void SetItemData(int id, int value)
     {
-        if(id < 1000)
-            PlayerPrefs.SetString(id.ToString(), EncriptInt(value));
+        if (id < 1000)
+            SetValue(id.ToString(), EncriptInt(value));
         else
-            PlayerPrefs.SetInt(id.ToString(), value);
+            SetValue(id.ToString(), value);
     }
 
     public static int GetItemData(int id)
@@ -20,9 +51,45 @@ public static class PlayerData
             return PlayerPrefs.GetInt(id.ToString(), 0);
     }
 
-    /// <summary>
-    /// 加解密
-    /// </summary>
+
+    private static void SetValue(string key, object value)
+    {
+        if (value.GetType() == typeof(int))
+        {
+            if (!intKeys.Contains(key))
+                intKeys.Add(key);
+            PlayerPrefs.SetInt(key, (int)value);
+        }
+        else
+        {
+            if(!stringKeys.Contains(key))
+                stringKeys.Add(key);
+            PlayerPrefs.SetString(key, value.ToString());
+        }
+    }
+
+    #region Pack
+    public static string PackPlayerData()
+    {
+        string result = "";
+        for (int i = 0; i < intKeys.Count; i++)
+            result += intKeys[i] + "_" + PlayerPrefs.GetInt(intKeys[i], 0) + "&";
+        result += "$";
+        for (int i = 0; i < stringKeys.Count; i++)
+            result += stringKeys[i] + "_" + PlayerPrefs.GetString(stringKeys[i], "0") + "&";
+        return result;
+    }
+
+    public static void UnPackPlayerData()
+    {
+
+    }
+    #endregion
+
+    #region Encript
+    static List<string> intKeys;//保存所有int型的key
+    static List<string> stringKeys;//保存所有string型的key
+
     static int[] box = new int[] {17, -13, 401, -349, 49681, -38923, 7612589, -6198747};
     private static string EncriptInt(int value)
     {
@@ -66,6 +133,7 @@ public static class PlayerData
             if (a % 997 != b)
             {
                 //TODO 提示数据异常
+                Debug.Log("Warning：解密时校验失败 " + value);
                 return 0;
             }
             result += int.Parse(value.Substring(box.Length + 3));
@@ -78,4 +146,17 @@ public static class PlayerData
             return 0;
         }
     }
+
+
+
+    private static string EncriptString(string str)
+    {
+        return "";
+    }
+
+    private static string DecriptString(string str)
+    {
+        return "";
+    }
+    #endregion
 }

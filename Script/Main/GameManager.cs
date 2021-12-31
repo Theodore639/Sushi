@@ -22,18 +22,23 @@ public class GameManager : MonoBehaviour
     public int frame;
     public float gameTime;
 
+    private void Awake()
+    {
+        StartCoroutine(Prepare());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         frame = 0;
         gameTime = 0;
-        for(int i = 0; i < 100; i++)
-        {
-            PlayerData.SetItemData(0, i);
-            PlayerData.GetItemData(0);
-            PlayerData.SetItemData(0, Random.Range(0, 99999999));
-            PlayerData.GetItemData(0);
-        }
+        //for(int i = 0; i < 100; i++)
+        //{
+        //    PlayerData.SetItemData(0, i);
+        //    PlayerData.GetItemData(0);
+        //    PlayerData.SetItemData(0, Random.Range(0, 99999999));
+        //    PlayerData.GetItemData(0);
+        //}
     }
 
     // Update is called once per frame
@@ -43,8 +48,14 @@ public class GameManager : MonoBehaviour
         gameTime += Time.deltaTime;
     }
 
-    private void Prepare()
+    IEnumerator Prepare()
     {
+        gameObject.AddComponent<StoreManager>();
+       
+        yield return 0;
+        UIPanelManager.Instance.InitAllPanel();
+        UIPanelManager.Instance.PushPanel(typeof(MainPanel));
+        yield return 0;
 
     }
 

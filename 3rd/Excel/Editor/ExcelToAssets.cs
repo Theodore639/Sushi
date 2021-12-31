@@ -60,32 +60,17 @@ namespace Excel.Editor
                         //yield return LoadGlobalData(result.Tables[i], gameAsset.global,
                         //    (data) => { gameAsset.global = (GlobalAsset)data; });
                         break;
-                    case "Dish":
-                        yield return LoadData(result.Tables[i], gameAsset.dishes);
-                        break;
                     case "Equip":
                         yield return LoadData(result.Tables[i], gameAsset.equips);
                         break;
-                    case "Seafood":
-                        yield return LoadData(result.Tables[i], gameAsset.seafoods);
+                    case "Item":
+                        yield return LoadData(result.Tables[i], gameAsset.items);
                         break;
                     //case "Customer":
                     //    yield return LoadData(result.Tables[i], gameAsset.customer);
                     //    break;
                     // case "Task":
                     //    yield return LoadData(result.Tables[i], gameAsset.task);
-                    //    break;
-                    //case "Achievement":
-                    //    yield return LoadData(result.Tables[i], gameAsset.achievement);
-                    //    break;
-                    //case "NewGuide":
-                    //    yield return LoadData(result.Tables[i], gameAsset.guideInfo);
-                    //    break;
-                    //case "Dialog":
-                    //    yield return LoadData(result.Tables[i], gameAsset.dialog);
-                    //    break;
-                    //case "Collection":
-                    //    yield return LoadData(result.Tables[i], gameAsset.collection);
                     //    break;
                 }
             }
