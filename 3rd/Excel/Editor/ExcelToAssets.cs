@@ -64,7 +64,7 @@ namespace Excel.Editor
                         yield return LoadData(result.Tables[i], gameAsset.equips);
                         break;
                     case "Item":
-                        yield return LoadData(result.Tables[i], gameAsset.items);
+                        yield return LoadData(result.Tables[i], gameAsset.dishes);
                         break;
                     //case "Customer":
                     //    yield return LoadData(result.Tables[i], gameAsset.customer);

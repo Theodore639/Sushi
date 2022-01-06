@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameAsset : ScriptableObject
-{
-    public List<GameItemData> items;
-    public List<GameEquipData> equips;
-    public List<GameBoxData> boxes;
-}
-
 public static class GameData
 {
     #region GlobalData
-    public struct GolobData
+    public struct GlobalData
     {
         public Dish dish;
         public Power power;
@@ -36,24 +29,24 @@ public static class GameData
 
     private static void InitGlobalData()
     {
-        globalData = new GolobData();
-        globalData.dish = new GolobData.Dish();
+        globalData = new GlobalData();
+        globalData.dish = new GlobalData.Dish();
         globalData.dish.upgradeCount = new List<int>() { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };//每升一级需要多少张卡牌
         globalData.dish.maxLevel = new List<int>() { 12, 10, 9, 8, 7 };//不同颜色的卡牌最高等级
         globalData.dish.upgradePrice = 100;//每消耗一张卡牌需要的金币
         globalData.dish.priceInc = 20;//每次升级提升的价格比例
 
-        globalData.power = new GolobData.Power();
+        globalData.power = new GlobalData.Power();
         globalData.power.solictCount = 20;//招揽顾客技能招揽的个数
         globalData.power.addMood = 5;//全场顾客增加心情
         globalData.power.doubleMoney = 10;//双倍金币持续时间（分钟）
         globalData.power.maxPower = 200;//触发技能需要的能量
     }
     #endregion
-    public static GolobData globalData;
+    public static GlobalData globalData;
     public const int EXP = 0, MONEY = 1, DIAMOND = 2, POWER = 3, SOLICT = 4;  
 
-    public static List<GameItemData> items;
+    public static List<GameDishData> items;
     public static List<GameEquipData> equips;
     public static List<GameBoxData> boxes;
 
@@ -61,17 +54,6 @@ public static class GameData
     {
         InitGlobalData();
     }
-}
-
-public struct GameItemData
-{
-    public int id;
-    public string name;
-    public string des;
-    public ItemColor color;
-    public int price;
-    public float minWeight, maxWeight;//重量区间
-    public int rareValue;//稀有度
 }
 
 public struct GameEquipData
@@ -95,6 +77,25 @@ public struct GameBoxData
     public int money;
     public int white, green, blue, purple, gold;
     public int dishIndex, dishCount;//限定卡牌的id和数量
+}
+
+public struct GameDishData
+{
+    public int id;
+    public string name;
+    public string des;
+    public ItemColor color;
+    public DishType type;
+    public int price;
+    public float time;
+    public int food, water, mood;
+    public List<int> skillList;
+    public int rareValue;    
+}
+
+public enum DishType
+{
+
 }
 
 public enum ItemColor

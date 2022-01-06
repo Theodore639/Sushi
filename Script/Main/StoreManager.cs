@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class StoreManager : MonoBehaviour
 {
+    private static StoreManager instance;
+    public static StoreManager Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType(typeof(StoreManager)) as StoreManager;
+            }
+
+            return instance;
+        }
+    }
     public enum StoreSkill
     {       
         AddCustomer = 0,    //招揽一定数量顾客
@@ -12,16 +25,19 @@ public class StoreManager : MonoBehaviour
         SpeedUpCooking = 3, //全场增加制作速度一定值
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public List<EquipShelf> shelfList;
+
+    public void Init()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StoreUpdate()
     {
-        
+        foreach(EquipShelf shelf in shelfList)
+        {
+            shelf.ShelfUpdate();
+        }
     }
 
     public void AddPower(int count = 1)

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class BaseDish : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //初始化，从PlayerData获取参数
+    public void Init()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DishUpdate()
     {
-        
+
     }
 }

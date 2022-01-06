@@ -43,9 +43,9 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
     [SerializeField] private AnimationCurve m_animCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
 
-    private int m_texCount = 0;
+    //private int m_texCount = 0;
     private bool m_isTransition = false;
-    private bool m_isFlash = false;
+    //private bool m_isFlash = false;
 
 
     // private CanvasScaler m_baseCanvasScaler;

@@ -51,7 +51,7 @@ public static class PlayerData
             return PlayerPrefs.GetInt(id.ToString(), 0);
     }
 
-
+    //设置某一个具体的值，必须通过此函数设置值
     private static void SetValue(string key, object value)
     {
         if (value.GetType() == typeof(int))

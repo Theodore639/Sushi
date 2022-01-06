@@ -207,11 +207,11 @@ public class UIPanelManager
     public void BackToMainPanel()
     {
         int maxTimes = 10;
-        //while (GetTopPanel().GetType() != typeof(MainPanel) && maxTimes > 0)
-        //{
-        //    PopPanel();
-        //    maxTimes--;
-        //}
+        while (GetTopPanel().GetType() != typeof(MainPanel) && maxTimes > 0)
+        {
+            PopPanel();
+            maxTimes--;
+        }
     }
 
     /// <summary>

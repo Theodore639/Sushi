@@ -69,6 +69,7 @@ public class Timer
         catch (Exception e)
         {
             _currentDateTime = DateTime.Now;
+            Debug.Log(e.ToString());
             // Console.WriteLine(e);
             // throw;
         }

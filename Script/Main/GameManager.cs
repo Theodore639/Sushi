@@ -21,10 +21,11 @@ public class GameManager : MonoBehaviour
 
     public int frame;
     public float gameTime;
+    public bool isGamePause = false;
 
     private void Awake()
     {
-        StartCoroutine(Prepare());
+        
     }
 
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         //    PlayerData.SetItemData(0, Random.Range(0, 99999999));
         //    PlayerData.GetItemData(0);
         //}
+        StartCoroutine(Prepare());
     }
 
     // Update is called once per frame
@@ -46,12 +48,22 @@ public class GameManager : MonoBehaviour
     {
         frame++;
         gameTime += Time.deltaTime;
+        if(!isGamePause)
+        {
+            StoreManager.Instance.StoreUpdate();
+        }
+
     }
 
     IEnumerator Prepare()
     {
+        GameData.InitGameData();
+        yield return 0;
+
         gameObject.AddComponent<StoreManager>();
-       
+        
+        yield return 0;
+        StoreManager.Instance.Init();
         yield return 0;
         UIPanelManager.Instance.InitAllPanel();
         UIPanelManager.Instance.PushPanel(typeof(MainPanel));

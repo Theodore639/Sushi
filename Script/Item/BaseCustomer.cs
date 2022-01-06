@@ -14,6 +14,7 @@ public class BaseCustomer : MonoBehaviour
     private int maxWater;//水分上限
     private const int maxMood = 10;//心情上限
     public CustomerState state;
+    public float buyRate;//购买菜品的概率
 
     public enum CustomerState
     {
@@ -27,8 +28,9 @@ public class BaseCustomer : MonoBehaviour
     public void OnInitCustomer(int _seed)
     {
         seed = _seed;
+        buyRate = 1.0f;
         //通过seed从计算index，
-        
+
         //通过index计算GameData获取食物和水分上限，赋值
 
         //通过现有成就数值初始化mood
@@ -43,5 +45,9 @@ public class BaseCustomer : MonoBehaviour
         Destroy(this);
     }
 
+    public void BuyDish()
+    {
+
+    }
     
 }
