@@ -39,6 +39,9 @@ public class MainPanel : BasePanel
             case GameData.POWER:
 
                 break;
+            case GameData.SOLICT:
+
+                break;
         }
     }
     IEnumerator ISetValue(Text text, int value)

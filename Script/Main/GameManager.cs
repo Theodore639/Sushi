@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-
     public static GameManager Instance
     {
         get
@@ -18,10 +17,12 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    [HideInInspector] public int frame;
+    [HideInInspector] public float gameTime;
+    [HideInInspector] public bool isGamePause = false, isPrepareDone = false;
 
-    public int frame;
-    public float gameTime;
-    public bool isGamePause = false;
+    private float logicTime, animationTime;
+    public const float LOGIC_FRAME_TIME = 0.1f, ANIMATION_FRAME_TIME = 0.33f;
 
     private void Awake()
     {
@@ -33,13 +34,9 @@ public class GameManager : MonoBehaviour
     {
         frame = 0;
         gameTime = 0;
-        //for(int i = 0; i < 100; i++)
-        //{
-        //    PlayerData.SetItemData(0, i);
-        //    PlayerData.GetItemData(0);
-        //    PlayerData.SetItemData(0, Random.Range(0, 99999999));
-        //    PlayerData.GetItemData(0);
-        //}
+        logicTime = 0;
+        animationTime = 0;
+
         StartCoroutine(Prepare());
     }
 
@@ -47,10 +44,26 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         frame++;
-        gameTime += Time.deltaTime;
-        if(!isGamePause)
+        if (isPrepareDone)
         {
-            StoreManager.Instance.StoreUpdate();
+            gameTime += Time.deltaTime;
+            logicTime += Time.deltaTime;
+            animationTime += Time.deltaTime;
+            if (!isGamePause)
+            {
+                //逻辑帧
+                if (logicTime >= LOGIC_FRAME_TIME)
+                {
+                    logicTime -= LOGIC_FRAME_TIME;
+                    StoreManager.Instance.LogicUpdate();
+                }
+                //表现帧
+                if (animationTime >= ANIMATION_FRAME_TIME)
+                {
+                    animationTime -= ANIMATION_FRAME_TIME;
+                    //StoreManager.Instance.StoreUpdate();
+                }
+            }
         }
 
     }
@@ -66,8 +79,9 @@ public class GameManager : MonoBehaviour
         StoreManager.Instance.Init();
         yield return 0;
         UIPanelManager.Instance.InitAllPanel();
-        UIPanelManager.Instance.PushPanel(typeof(MainPanel));
+        //UIPanelManager.Instance.PushPanel(typeof(MainPanel));
         yield return 0;
+        isPrepareDone = true;
 
     }
 

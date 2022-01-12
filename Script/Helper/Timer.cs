@@ -11,6 +11,7 @@ public class Timer
     private static MonoBehaviour _behaviour;
     private static DateTime _currentDateTime;
     public delegate void Task();
+    private static DateTime GlobalStartTime = new DateTime(1970, 1, 1);
 
     /// <summary>
     /// 延时调用代码逻辑
@@ -84,26 +85,6 @@ public class Timer
     //    //服务器时间世界标准时区的当前时间（比北京时间少8小时），为了兼容老版本数据，服务器时间要加上8小时时间
     //    return GameManager.Instance.curStartServerTime == 0 ? GetCurUtcTimeInSeconds() : GameManager.Instance.curStartServerTime + Time.realtimeSinceStartup;
     //}
-
-    public static double GetCurUtcTimeInSeconds () {
-        TimeSpan span = DateTime.UtcNow.Subtract (new DateTime (1970, 1, 1, 0, 0, 0));
-        return span.TotalSeconds;
-    }
-    
-    public static double GetCurrentTimeInSeconds () {
-        TimeSpan span = DateTime.Now.Subtract (new DateTime (1970, 1, 1, 0, 0, 0));
-        return span.TotalSeconds;
-    }
-
-    public static double GetCurrentTimeInDays () {
-        TimeSpan span = DateTime.Now.Subtract (new DateTime (1970, 1, 1, 0, 0, 0));
-        return span.TotalDays;
-    }
-
-    public static double GetCurrentTimeInMills () {
-        TimeSpan span = DateTime.Now.Subtract (new DateTime (1970, 1, 1, 0, 0, 0));
-        return span.TotalMilliseconds;
-    }
     
     public static string getNowToNextDay6AM ()
     {
@@ -130,17 +111,18 @@ public class Timer
         return span.TotalMinutes;
     }
 
-    public static System.DateTime ConvertLongToDateTime(long timeStamp)
+    public static DateTime ConvertLongToDateTime(long timeStamp)
     {
-        System.DateTime dtStart = System.TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+        //DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(GlobalStartTime);
+        DateTime dtStart = TimeZoneInfo.ConvertTime(GlobalStartTime, TimeZoneInfo.Local);
         long lTime = long.Parse(timeStamp + "0000000");
-        System.TimeSpan toNow = new System.TimeSpan(lTime);
+        TimeSpan toNow = new TimeSpan(lTime);
         return dtStart.Add(toNow);
     }
 
-    public static long ConvertDateTimeToLong(System.DateTime time)
+    public static long ConvertDateTimeToLong(DateTime time)
     {
-        System.DateTime startTime = System.TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+        DateTime startTime = TimeZoneInfo.ConvertTime(GlobalStartTime, TimeZoneInfo.Local);
         return (long)(time - startTime).TotalSeconds;
     }
     

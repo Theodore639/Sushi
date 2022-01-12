@@ -20,11 +20,12 @@ namespace Excel.Editor
             "Equip",
             "Dish",
             "Customer",
-            "Seafood",
+            "Skill",
             "Task",
             "Achievement",
             "NewGuide",
-            "Collection",
+            "Level",
+            "Box",
         };
 
         public const string SourceFile = "/Doc/GameData.xlsx";
@@ -57,8 +58,8 @@ namespace Excel.Editor
                 switch (tableName)
                 {
                     case "Global":
-                        //yield return LoadGlobalData(result.Tables[i], gameAsset.global,
-                        //    (data) => { gameAsset.global = (GlobalAsset)data; });
+                        yield return LoadGlobalData(result.Tables[i], gameAsset.global,
+                            (data) => { gameAsset.global = (GameData.GlobalData)data; });
                         break;
                     case "Equip":
                         yield return LoadData(result.Tables[i], gameAsset.equips);
@@ -79,115 +80,115 @@ namespace Excel.Editor
             AssetDatabase.SaveAssets();
         }
 
-        ///// <summary>
-        ///// 反射加载Global数据
-        ///// </summary>
-        ///// <param name="table"></param>
-        ///// <param name="gameAssets"></param>
-        //private static IEnumerator LoadGlobalData<T>(DataTable table, T gameAssets, Action<object> action)
-        //{
-        //    const int dataStartRow = 1; //除过标题，所在的行号
-        //    var type = typeof(T);
-        //    var fields = type.GetFields();
-        //    gameAssets = (T) Activator.CreateInstance(type);
-        //    var objects = new Dictionary<string, dynamic>();
+        /// <summary>
+        /// 反射加载Global数据
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="gameAssets"></param>
+        private static IEnumerator LoadGlobalData<T>(DataTable table, T gameAssets, Action<object> action)
+        {
+            const int dataStartRow = 1; //除过标题，所在的行号
+            var type = typeof(T);
+            var fields = type.GetFields();
+            gameAssets = (T)Activator.CreateInstance(type);
+            var objects = new Dictionary<string, dynamic>();
 
-        //    var objectsFields = new Dictionary<string, Dictionary<string, FieldInfo>>();
-        //    foreach (var field in fields)
-        //    {
-        //        yield return field;
-        //        dynamic fieldObj = Activator.CreateInstance(field.FieldType);
-        //        objects[field.Name] = fieldObj;
-        //        var objectsField = field.FieldType.GetFields();
-        //        var infos = new Dictionary<string, FieldInfo>();
-        //        foreach (var fieldInfo in objectsField)
-        //        {
-        //            infos[fieldInfo.Name] = fieldInfo;
-        //        }
+            var objectsFields = new Dictionary<string, Dictionary<string, FieldInfo>>();
+            foreach (var field in fields)
+            {
+                yield return field;
+                dynamic fieldObj = Activator.CreateInstance(field.FieldType);
+                objects[field.Name] = fieldObj;
+                var objectsField = field.FieldType.GetFields();
+                var infos = new Dictionary<string, FieldInfo>();
+                foreach (var fieldInfo in objectsField)
+                {
+                    infos[fieldInfo.Name] = fieldInfo;
+                }
 
-        //        objectsFields[field.Name] = infos;
-        //    }
+                objectsFields[field.Name] = infos;
+            }
 
-        //    var columns = new Dictionary<string, int>();
-        //    for (var i = 0;
-        //        i < table.Columns.Count;
-        //        i++)
-        //    {
-        //        var data = table.Rows[dataStartRow][i];
-        //        if (data != DBNull.Value)
-        //            columns[(string) data] = i;
-        //    }
+            var columns = new Dictionary<string, int>();
+            for (var i = 0;
+                i < table.Columns.Count;
+                i++)
+            {
+                var data = table.Rows[dataStartRow][i];
+                if (data != DBNull.Value)
+                    columns[(string)data] = i;
+            }
 
-        //    for (var i = dataStartRow + 1;
-        //        i < table.Rows.Count;
-        //        i++)
-        //    {
-        //        EditorParseExcel.UpdateDescribe("解析" + type.Name + "(" + i + "/" + table.Rows.Count + ")");
-        //        EditorParseExcel.UpdateRate(i / (float) table.Rows.Count);
-        //        yield return i;
+            for (var i = dataStartRow + 1;
+                i < table.Rows.Count;
+                i++)
+            {
+                EditorParseExcel.UpdateDescribe("解析" + type.Name + "(" + i + "/" + table.Rows.Count + ")");
+                EditorParseExcel.UpdateRate(i / (float)table.Rows.Count);
+                yield return i;
 
 
-        //        var groupName = table.Rows[i][columns["group"]].ToString();
-        //        var paramName = table.Rows[i][columns["param"]].ToString();
-        //        var value = table.Rows[i][columns["value"]].ToString();
+                var groupName = table.Rows[i][columns["group"]].ToString();
+                var paramName = table.Rows[i][columns["param"]].ToString();
+                var value = table.Rows[i][columns["value"]].ToString();
 
-        //        if (groupName == string.Empty)
-        //        {
-        //            continue;
-        //        }
+                if (groupName == string.Empty)
+                {
+                    continue;
+                }
 
-        //        if (paramName == string.Empty)
-        //        {
-        //            continue;
-        //        }
+                if (paramName == string.Empty)
+                {
+                    continue;
+                }
 
-        //        try
-        //        {
-        //            var field = objectsFields[groupName][paramName];
-        //            var data = objects[groupName];
-        //            if (field.FieldType == typeof(int))
-        //            {
-        //                data = SetModelValue(field.Name, int.Parse(value), data, data.GetType());
-        //            }
-        //            else if (field.FieldType == typeof(float))
-        //            {
-        //                data = SetModelValue(field.Name, float.Parse(value), data, data.GetType());
-        //            }
-        //            else if (field.FieldType == typeof(string))
-        //            {
-        //                data = SetModelValue(field.Name, value, data, data.GetType());
-        //            }
-        //            else if (field.FieldType == typeof(List<int>))
-        //            {
-        //                data = SetModelValue(field.Name, GetList(value),
-        //                    data, data.GetType());
-        //            }
-        //            else if (field.FieldType == typeof(List<float>))
-        //            {
-        //                data = SetModelValue(field.Name, GetListFloat(value),
-        //                    data, data.GetType());
-        //            }
-        //            else
-        //            {
-        //                Debug.LogError(field.FieldType + " 需要添加解析方式");
-        //            }
+                try
+                {
+                    var field = objectsFields[groupName][paramName];
+                    var data = objects[groupName];
+                    if (field.FieldType == typeof(int))
+                    {
+                        data = SetModelValue(field.Name, int.Parse(value), data, data.GetType());
+                    }
+                    else if (field.FieldType == typeof(float))
+                    {
+                        data = SetModelValue(field.Name, float.Parse(value), data, data.GetType());
+                    }
+                    else if (field.FieldType == typeof(string))
+                    {
+                        data = SetModelValue(field.Name, value, data, data.GetType());
+                    }
+                    else if (field.FieldType == typeof(List<int>))
+                    {
+                        data = SetModelValue(field.Name, GetList(value),
+                            data, data.GetType());
+                    }
+                    else if (field.FieldType == typeof(List<float>))
+                    {
+                        data = SetModelValue(field.Name, GetListFloat(value),
+                            data, data.GetType());
+                    }
+                    else
+                    {
+                        Debug.LogError(field.FieldType + " 需要添加解析方式");
+                    }
 
-        //            objects[groupName] = data;
-        //        }
-        //        catch (Exception)
-        //        {
-        //            Debug.LogError("类中找不到对应属性：groupName: " + groupName + "  paramName: " + paramName);
-        //        }
-        //    }
+                    objects[groupName] = data;
+                }
+                catch (Exception)
+                {
+                    Debug.LogError("类中找不到对应属性：groupName: " + groupName + "  paramName: " + paramName);
+                }
+            }
 
-        //    foreach (var field in fields)
-        //    {
-        //        yield return field;
-        //        gameAssets = SetModelValue(field.Name, objects[field.Name], gameAssets, type);
-        //    }
+            foreach (var field in fields)
+            {
+                yield return field;
+                gameAssets = SetModelValue(field.Name, objects[field.Name], gameAssets, type);
+            }
 
-        //    action.Invoke(gameAssets);
-        //}
+            action.Invoke(gameAssets);
+        }
 
         /// <summary>
         /// 反射加载数据，处理一行为一项数据

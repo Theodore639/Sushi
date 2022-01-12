@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameAsset : ScriptableObject
 {
-    public GameData.GlobalData globalData;
+    public GameData.GlobalData global;
     public List<GameDishData> dishes;
     public List<GameEquipData> equips;
     public List<GameBoxData> boxes;

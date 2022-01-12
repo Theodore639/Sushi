@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class PlayerData
 {
-    public static int Gold
+    public static int Money
     {
-        set{ SetItemData(GameData.MONEY, value);}
-        get{ return GetItemData(GameData.MONEY);}
+        set
+        {
+            SetItemData(GameData.MONEY, value);
+            MainPanel.Instance.SetValue(GameData.MONEY, GetItemData(GameData.MONEY));
+        }
+        get { return GetItemData(GameData.MONEY);}
     }
-    public static int Clover
+    public static int Diamond
     {
-        set { SetItemData(GameData.DIAMOND, value); }
+        set
+        {
+            SetItemData(GameData.DIAMOND, value);
+            MainPanel.Instance.SetValue(GameData.DIAMOND, GetItemData(GameData.DIAMOND));
+        }
         get { return GetItemData(GameData.DIAMOND); }
     }
     public static int Exp
@@ -21,12 +30,20 @@ public static class PlayerData
     }
     public static int Power
     {
-        set { SetItemData(GameData.POWER, value); }
+        set 
+        { 
+            SetItemData(GameData.POWER, value); 
+            MainPanel.Instance.SetValue(GameData.POWER, GetItemData(GameData.POWER)); 
+        }
         get { return GetItemData(GameData.POWER); }
     }
     public static int Solict
     {
-        set { SetItemData(GameData.SOLICT, value); }
+        set
+        {
+            SetItemData(GameData.SOLICT, value);
+            MainPanel.Instance.SetValue(GameData.SOLICT, GetItemData(GameData.SOLICT));
+        }
         get { return GetItemData(GameData.SOLICT); }
     }
 
@@ -62,13 +79,59 @@ public static class PlayerData
         }
         else
         {
-            if(!stringKeys.Contains(key))
+            if (!stringKeys.Contains(key))
                 stringKeys.Add(key);
             PlayerPrefs.SetString(key, value.ToString());
         }
     }
 
-    #region Pack
+    #region Dish 各种菜品相关数据
+
+    public static void AddDishCard(int index, int count)
+    {
+        SetValue("DishCount" + index.ToString(), count + GetDishCardCount(index));
+    }
+
+    public static void DishUpgrade(int index)
+    {
+        int oldLevel = GetDishCardLevel(index);
+        SetValue("DishLevel" + index.ToString(), oldLevel + 1);
+        SetValue("DishCount" + index.ToString(), GetDishCardCount(index) - GameData.globalData.dish.upgradeCount[oldLevel]);
+    }
+
+    public static int GetDishCardCount(int index)
+    {
+        return PlayerPrefs.GetInt("DishCount" + index.ToString(), 0);
+    }
+
+    public static int GetDishCardLevel(int index)
+    {
+        return PlayerPrefs.GetInt("DishLevel" + index.ToString(), 0);
+    }
+
+    public static void SetDishTime(int index, DateTime time)
+    {
+        SetValue("DishTime" + index.ToString(), Timer.ConvertDateTimeToLong(time));
+    }
+
+    public static DateTime GetDishTime(int index)
+    {
+        return Timer.ConvertLongToDateTime(PlayerPrefs.GetInt("DishTime" + index.ToString()));
+    }
+    #endregion
+
+    #region Equip 各种设备相关数据
+    #endregion
+
+    #region Customer 各种顾客相关数据，存放临时顾客信息
+
+    #endregion
+
+    #region Box 各种宝箱相关数据
+
+    #endregion
+
+    #region Function 基础功能，打包/加密等
     public static string PackPlayerData()
     {
         string result = "";
@@ -84,9 +147,7 @@ public static class PlayerData
     {
 
     }
-    #endregion
 
-    #region Encript
     static List<string> intKeys;//保存所有int型的key
     static List<string> stringKeys;//保存所有string型的key
 
@@ -99,7 +160,7 @@ public static class PlayerData
             int a = 0;
             for (int i = 0; i < box.Length; i++)
             {
-                int r = Random.Range(0, 10);
+                int r = UnityEngine.Random.Range(0, 10);
                 a += r * box[i];
                 result += r.ToString();
             }
@@ -146,8 +207,6 @@ public static class PlayerData
             return 0;
         }
     }
-
-
 
     private static string EncriptString(string str)
     {

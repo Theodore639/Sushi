@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoreManager : MonoBehaviour
+public class StoreManager : MonoBehaviour, IBase
 {
     private static StoreManager instance;
     public static StoreManager Instance
@@ -17,6 +17,7 @@ public class StoreManager : MonoBehaviour
             return instance;
         }
     }
+
     public enum StoreSkill
     {       
         AddCustomer = 0,    //招揽一定数量顾客
@@ -26,24 +27,31 @@ public class StoreManager : MonoBehaviour
     }
 
     public List<EquipShelf> shelfList;
+    public int curentLevel;
 
-    public void Init()
+    public void Init(params object[] list)
     {
-        
+        shelfList = new List<EquipShelf>();
     }
 
-    public void StoreUpdate()
+    public void LogicUpdate()
     {
         foreach(EquipShelf shelf in shelfList)
         {
-            shelf.ShelfUpdate();
+            shelf.LogicUpdate();
         }
+    }
+
+    public void AnimationUpdate()
+    {
+
     }
 
     public void AddPower(int count = 1)
     {
+        if (PlayerData.Power + count > GameData.globalData.power.maxPower)
+            count = GameData.globalData.power.maxPower - PlayerData.Power;
         PlayerData.Power += count;
-
     }
 
     //使用商店技能
@@ -60,6 +68,7 @@ public class StoreManager : MonoBehaviour
             case StoreSkill.SpeedUpCooking:
                 break;
         }
+        PlayerData.Power -= GameData.globalData.power.maxPower;
     }
 
     //一个顾客进店

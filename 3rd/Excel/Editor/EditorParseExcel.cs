@@ -56,7 +56,7 @@ namespace Excel.Editor
             var filePath = Application.dataPath + ExcelToAssets.SourceFile;
             stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
             excelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-            yield return AsDataSet(excelDataReader, tables, null);//ExcelToAssets.CreatAsset);
+            yield return AsDataSet(excelDataReader, tables, ExcelToAssets.CreatAsset);
             _rate = 1.1f;
             excelDataReader.Close();
         }
@@ -68,9 +68,7 @@ namespace Excel.Editor
         /// <param name="tables"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        private static IEnumerator AsDataSet(IExcelDataReader self,
-            List<string> tables,
-            Func<DataSet, List<string>, IEnumerator> action)
+        private static IEnumerator AsDataSet(IExcelDataReader self, List<string> tables, Func<DataSet, List<string>, IEnumerator> action)
         {
             self.Reset();
             int num = -1;
@@ -127,13 +125,10 @@ namespace Excel.Editor
                     {
                         if (configuration.FilterColumn == null || configuration.FilterColumn(self, i))
                         {
-                            var name = configuration.UseHeaderRow
-                                ? Convert.ToString(self.GetValue(i))
-                                : null;
+                            var name = configuration.UseHeaderRow ? Convert.ToString(self.GetValue(i)) : null;
                             if (string.IsNullOrEmpty(name))
                                 name = configuration.EmptyColumnNamePrefix + i;
-                            var column = new DataColumn(GetUniqueColumnName(table, name),
-                                typeof(object))
+                            var column = new DataColumn(GetUniqueColumnName(table, name), typeof(object))
                             {
                                 Caption = name
                             };
@@ -164,10 +159,8 @@ namespace Excel.Editor
                         {
                             foreach (var selfMergeCell in selfMergeCells)
                             {
-                                if (i >= selfMergeCell.FromColumn
-                                    && rowIndex - 1 >= selfMergeCell.FromRow
-                                    && i <= selfMergeCell.ToColumn
-                                    && rowIndex - 1 <= selfMergeCell.ToRow)
+                                if (i >= selfMergeCell.FromColumn && rowIndex - 1 >= selfMergeCell.FromRow
+                                    && i <= selfMergeCell.ToColumn  && rowIndex - 1 <= selfMergeCell.ToRow)
                                 {
                                     var offset = rowIndex - table.Rows.Count;
                                     obj = table.Rows[selfMergeCell.FromRow - offset][selfMergeCell.FromColumn];
@@ -175,16 +168,13 @@ namespace Excel.Editor
                                 }
                             }
                         }
-
                         row[index] = obj;
                         yield return i;
                     }
                 }
-
                 _rate = rowIndex / (float) self.RowCount;
                 _describe = table.TableName + "(" + rowIndex + "/" + self.RowCount + ")";
             }
-
             table.EndLoadData();
             action.Invoke(table);
         }

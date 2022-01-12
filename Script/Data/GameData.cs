@@ -1,29 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class GameData
 {
     #region GlobalData
+    [Serializable]
     public struct GlobalData
     {
         public Dish dish;
         public Power power;
-
+        [Serializable]
         public struct Dish
         {
-            public List<int> upgradeCount;
-            public List<int> maxLevel;
-            public int upgradePrice;
-            public int priceInc;
+            public List<int> upgradeCount;//每升一级需要的卡牌数量
+            public List<int> maxLevel;//不同颜色菜品的最高等级
+            public int upgradePrice; //升级消耗（金币)，每张卡牌
+            public int priceInc;//升级提升的售价比例
+            public List<int> stackCount;//每一级对应的堆叠数量
         }
-        
+        [Serializable]
         public struct Power
         {
-            public int solictCount;
-            public int addMood;
-            public int doubleMoney;
-            public int maxPower;
+            public int solictCount;//招揽顾客技能招揽的个数
+            public int addMood;//全场顾客增加心情
+            public int doubleMoney;//双倍金币持续时间（分钟）
+            public int maxPower;//触发技能需要的能量
         }
     }
 
@@ -55,7 +58,7 @@ public static class GameData
         InitGlobalData();
     }
 }
-
+[Serializable]
 public struct GameEquipData
 {
     public int id;
@@ -67,7 +70,7 @@ public struct GameEquipData
     public List<int> params0, params1;//参数
     public List<int> priceIndex, priceCount;//购买的货币种类和数量
 }
-
+[Serializable]
 public struct GameBoxData
 {
     public int id;
@@ -78,7 +81,7 @@ public struct GameBoxData
     public int white, green, blue, purple, gold;
     public int dishIndex, dishCount;//限定卡牌的id和数量
 }
-
+[Serializable]
 public struct GameDishData
 {
     public int id;
@@ -93,11 +96,17 @@ public struct GameDishData
     public int rareValue;    
 }
 
+//菜品类型
 public enum DishType
 {
-
+    Cake = 0,
+    Juice = 1,
+    Sushi = 2,
+    Icecream = 3,
+    Speacial = 999,
 }
 
+//颜色等级
 public enum ItemColor
 {
     white = 0,

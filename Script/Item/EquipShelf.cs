@@ -6,25 +6,30 @@ using UnityEngine;
 /// 货架
 /// 自动制作菜品，提供菜品供顾客选择
 /// </summary>
-public class EquipShelf : MonoBehaviour
+public class EquipShelf : MonoBehaviour, IBase
 {
     public const int MAX_GRID_COUNT = 6;
     public int index;
-    public List<BaseDish> dishes;//上架的菜品列表
-    public float priceInc = 1.0f;//全货架提价百分比
+    [HideInInspector] public List<BaseDish> dishes;//上架的菜品列表
+    [HideInInspector] public float priceInc = 1.0f;//全货架提价百分比
 
     //初始化
-    public void OnInit()
+    public void Init(params object[] list)
     {
-        
+        dishes = new List<BaseDish>();
     }
 
-    public void ShelfUpdate()
+    public void LogicUpdate()
     {
         foreach(BaseDish dish in dishes)
         {
-            dish.DishUpdate();
+            dish.LogicUpdate();
         }
+    }
+
+    public void AnimationUpdate()
+    {
+
     }
 
 
