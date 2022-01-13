@@ -59,20 +59,29 @@ namespace Excel.Editor
                 {
                     case "Global":
                         yield return LoadGlobalData(result.Tables[i], gameAsset.global,
-                            (data) => { gameAsset.global = (GameData.GlobalData)data; });
+                            (data) => { gameAsset.global = (GlobalData)data; });
                         break;
                     case "Equip":
                         yield return LoadData(result.Tables[i], gameAsset.equips);
                         break;
-                    case "Item":
+                    case "Dish":
                         yield return LoadData(result.Tables[i], gameAsset.dishes);
                         break;
-                    //case "Customer":
-                    //    yield return LoadData(result.Tables[i], gameAsset.customer);
-                    //    break;
-                    // case "Task":
-                    //    yield return LoadData(result.Tables[i], gameAsset.task);
-                    //    break;
+                    case "Customer":
+                        yield return LoadData(result.Tables[i], gameAsset.customers);
+                        break;
+                    case "Level":
+                        yield return LoadData(result.Tables[i], gameAsset.levels);
+                        break;
+                    case "Boxes":
+                        yield return LoadData(result.Tables[i], gameAsset.boxes);
+                        break;
+                    case "Skill":
+                        yield return LoadData(result.Tables[i], gameAsset.skills);
+                        break;
+                    case "Box":
+                        yield return LoadData(result.Tables[i], gameAsset.boxes);
+                        break;
                 }
             }
 
@@ -110,37 +119,24 @@ namespace Excel.Editor
             }
 
             var columns = new Dictionary<string, int>();
-            for (var i = 0;
-                i < table.Columns.Count;
-                i++)
+            for (var i = 0; i < table.Columns.Count; i++)
             {
                 var data = table.Rows[dataStartRow][i];
                 if (data != DBNull.Value)
                     columns[(string)data] = i;
             }
 
-            for (var i = dataStartRow + 1;
-                i < table.Rows.Count;
-                i++)
+            for (var i = dataStartRow + 1; i < table.Rows.Count; i++)
             {
                 EditorParseExcel.UpdateDescribe("解析" + type.Name + "(" + i + "/" + table.Rows.Count + ")");
                 EditorParseExcel.UpdateRate(i / (float)table.Rows.Count);
                 yield return i;
-
-
                 var groupName = table.Rows[i][columns["group"]].ToString();
                 var paramName = table.Rows[i][columns["param"]].ToString();
                 var value = table.Rows[i][columns["value"]].ToString();
 
-                if (groupName == string.Empty)
-                {
+                if (groupName == string.Empty || paramName == string.Empty)              
                     continue;
-                }
-
-                if (paramName == string.Empty)
-                {
-                    continue;
-                }
 
                 try
                 {
@@ -160,13 +156,11 @@ namespace Excel.Editor
                     }
                     else if (field.FieldType == typeof(List<int>))
                     {
-                        data = SetModelValue(field.Name, GetList(value),
-                            data, data.GetType());
+                        data = SetModelValue(field.Name, GetList(value), data, data.GetType());
                     }
                     else if (field.FieldType == typeof(List<float>))
                     {
-                        data = SetModelValue(field.Name, GetListFloat(value),
-                            data, data.GetType());
+                        data = SetModelValue(field.Name, GetListFloat(value), data, data.GetType());
                     }
                     else
                     {
@@ -210,11 +204,9 @@ namespace Excel.Editor
             }
 
             var dataStartRow = 3; //除过标题，所在的行号
-            for (var i = 0;
-                i < table.Rows.Count;
-                i++)
+            for (var i = 0; i < table.Rows.Count; i++)
             {
-                if (table.Rows[i].ItemArray[0].ToString().Equals("index"))
+                if (table.Rows[i].ItemArray[0].ToString().Equals("id"))
                 {
                     dataStartRow = i;
                     break;
@@ -252,6 +244,16 @@ namespace Excel.Editor
                 return int.Parse(s);
             }
 
+            float GetFloat(int i, int value)
+            {
+                var s = table.Rows[i][value].ToString();
+                if (s == String.Empty)
+                {
+                    return 0;
+                }
+                return float.Parse(s);
+            }
+
             string GetString(int i, int value)
             {
                 return table.Rows[i][value].ToString();
@@ -280,22 +282,32 @@ namespace Excel.Editor
                         {
                             data = SetModelValue(field.Name, GetInt(i, list[0]), data, type);
                         }
+                        else if (field.FieldType == typeof(float))
+                        {
+                            data = SetModelValue(field.Name, GetFloat(i, list[0]), data, type);
+                        }
                         else if (field.FieldType == typeof(string))
                         {
                             data = SetModelValue(field.Name, GetString(i, list[0]), data, type);
                         }
                         else if (field.FieldType == typeof(List<int>))
                         {
-                            data = SetModelValue(field.Name, GetList(GetString(i, list[0])),
-                                data, type);
-                        } 
-                        //else if (field.FieldType == typeof(LocationType))
-                        //{
-                        //    data = SetModelValue(field.Name, (LocationType)GetInt(i, list[0]), data, type);
-                        //}
+                            data = SetModelValue(field.Name, GetList(GetString(i, list[0])), data, type);
+                        }
+                        else if (field.FieldType == typeof(CustomerType))
+                        {
+                            CustomerType ctype = (CustomerType)Enum.Parse(typeof(CustomerType), GetString(i, list[0]));
+                            data = SetModelValue(field.Name, ctype, data, type);
+                        }
+                        else if (field.FieldType == typeof(DishType))
+                        {
+                            DishType cType = (DishType)Enum.Parse(typeof(DishType), GetString(i, list[0]));
+                            data = SetModelValue(field.Name, cType, data, type);
+                        }
                         else if (field.FieldType == typeof(ItemColor))
                         {
-                            data = SetModelValue(field.Name, GetItemColor(GetString(i, list[0])), data, type);
+                            ItemColor cType = (ItemColor)Enum.Parse(typeof(ItemColor), GetString(i, list[0]));
+                            data = SetModelValue(field.Name, cType, data, type);
                         }
                         else
                         {
@@ -313,9 +325,7 @@ namespace Excel.Editor
             }
         }
 
-        /// 
-        /// 设置类中的属性值
-        /// 
+        // 设置类中的属性值
         public static object SetModelValue(string fieldName, object value, object obj, Type type)
         {
             if (value == null) return obj;
@@ -332,40 +342,12 @@ namespace Excel.Editor
             }
         }
 
-        ///// <summary>
-        ///// 通过文字转换为EquipmentType
-        ///// </summary>
-        ///// <param name="typeName"></param>
-        ///// <returns></returns>
-        //private static EquipmentType GetEquipmentType(String typeName)
-        //{
-        //    switch (typeName)
-        //    {
-        //        case "设备":
-        //            return EquipmentType.Equipment;
-        //        case "装饰":
-        //            return EquipmentType.Decorate;
-        //        default:
-        //            return EquipmentType.Special;
-        //    }
-        //}
-
-        /// <summary>
-        /// 通过文本转换为ItemColor
-        /// </summary>
-        /// <param name="typeName"></param>
-        /// <returns></returns>
-        private static ItemColor GetItemColor(String typeName)
-        {
-            return (ItemColor)Enum.Parse(typeof(ItemColor), typeName);
-        }
-
         /// <summary>
         /// 根据空格从字符串中提取List<int>
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        private static List<int> GetList(String s)
+        private static List<int> GetList(string s)
         {
             List<int> result = new List<int>();
             if (s == String.Empty)

@@ -106,10 +106,6 @@ public class Timer
             return "0" + value.ToString();
     }
     
-    public static double GetCurrentTimeInMinutes () {
-        TimeSpan span = DateTime.Now.Subtract (new DateTime (1970, 1, 1, 0, 0, 0));
-        return span.TotalMinutes;
-    }
 
     public static DateTime ConvertLongToDateTime(long timeStamp)
     {

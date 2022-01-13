@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa462f4e37a6384d8060ccb7ff1fbaa, type: 3}
+  m_Script: {fileID: 0}
   m_Name: GameData
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameAsset
   global:
     dish:
       upgradeCount: 010000000200000004000000080000001000000020000000400000008000000000010000000200000004000000080000
@@ -24,6 +24,917 @@ MonoBehaviour:
       addMood: 5
       doubleMoney: 10
       maxPower: 200
-  dishes: []
+  dishes:
+  - id: 101
+    name: DishName_101
+    des: DishDes_101
+    color: 0
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 102
+    name: DishName_102
+    des: DishDes_102
+    color: 1
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 103
+    name: DishName_103
+    des: DishDes_103
+    color: 1
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 104
+    name: DishName_104
+    des: DishDes_104
+    color: 1
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 105
+    name: DishName_105
+    des: DishDes_105
+    color: 2
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 106
+    name: DishName_106
+    des: DishDes_106
+    color: 2
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 107
+    name: DishName_107
+    des: DishDes_107
+    color: 2
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 108
+    name: DishName_108
+    des: DishDes_108
+    color: 3
+    type: 0
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 109
+    name: DishName_109
+    des: DishDes_109
+    color: 2
+    type: 1
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 110
+    name: DishName_110
+    des: DishDes_110
+    color: 1
+    type: 1
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 111
+    name: DishName_111
+    des: DishDes_111
+    color: 0
+    type: 1
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 112
+    name: DishName_112
+    des: DishDes_112
+    color: 2
+    type: 1
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 113
+    name: DishName_113
+    des: DishDes_113
+    color: 1
+    type: 1
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 114
+    name: DishName_114
+    des: DishDes_114
+    color: 1
+    type: 1
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 115
+    name: DishName_115
+    des: DishDes_115
+    color: 0
+    type: 1
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 116
+    name: DishName_116
+    des: DishDes_116
+    color: 0
+    type: 2
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 117
+    name: DishName_117
+    des: DishDes_117
+    color: 1
+    type: 2
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 118
+    name: DishName_118
+    des: DishDes_118
+    color: 1
+    type: 2
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 119
+    name: DishName_119
+    des: DishDes_119
+    color: 1
+    type: 2
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 120
+    name: DishName_120
+    des: DishDes_120
+    color: 1
+    type: 2
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 121
+    name: DishName_121
+    des: DishDes_121
+    color: 3
+    type: 2
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 122
+    name: DishName_122
+    des: DishDes_122
+    color: 2
+    type: 3
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 123
+    name: DishName_123
+    des: DishDes_123
+    color: 1
+    type: 3
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 124
+    name: DishName_124
+    des: DishDes_124
+    color: 0
+    type: 3
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 125
+    name: DishName_125
+    des: DishDes_125
+    color: 0
+    type: 3
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
+  - id: 126
+    name: DishName_126
+    des: DishDes_126
+    color: 2
+    type: 3
+    price: 0
+    time: 0
+    requireLevel: 0
+    food: 0
+    water: 0
+    mood: 0
+    skillList: 
+    rareValue: 0
   equips: []
-  boxes: []
+  boxes:
+  - id: 1
+    name: BoxName_001
+    time: 1
+    rate: 0
+    money: 100
+    white: 5
+    green: 0
+    blue: 0
+    purple: 0
+    goldIndex: 0
+    goldCount: 0
+  - id: 2
+    name: BoxName_002
+    time: 30
+    rate: 5
+    money: 200
+    white: 8
+    green: 1
+    blue: 0
+    purple: 0
+    goldIndex: 0
+    goldCount: 0
+  - id: 3
+    name: BoxName_003
+    time: 120
+    rate: 40
+    money: 500
+    white: 25
+    green: 4
+    blue: 0
+    purple: 0
+    goldIndex: 0
+    goldCount: 0
+  - id: 4
+    name: BoxName_004
+    time: 480
+    rate: 40
+    money: 1200
+    white: 50
+    green: 10
+    blue: 1
+    purple: 0
+    goldIndex: 0
+    goldCount: 0
+  - id: 5
+    name: BoxName_005
+    time: 720
+    rate: 20
+    money: 2400
+    white: 100
+    green: 20
+    blue: 4
+    purple: 1
+    goldIndex: 0
+    goldCount: 0
+  - id: 6
+    name: BoxName_006
+    time: 1440
+    rate: 1
+    money: 5000
+    white: 180
+    green: 45
+    blue: 10
+    purple: 3
+    goldIndex: 0
+    goldCount: 0
+  - id: 7
+    name: BoxName_007
+    time: 2880
+    rate: 0
+    money: 10000
+    white: 300
+    green: 80
+    blue: 24
+    purple: 10
+    goldIndex: 0
+    goldCount: 0
+  levels:
+  - id: 1
+    exp: 100
+    diamond: 0
+    solict: 0
+    dish: 0
+    maxCustomer: 6
+    maxVIP: 0
+  - id: 2
+    exp: 200
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 7
+    maxVIP: 0
+  - id: 3
+    exp: 400
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 8
+    maxVIP: 5
+  - id: 4
+    exp: 800
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 9
+    maxVIP: 10
+  - id: 5
+    exp: 1600
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 10
+    maxVIP: 15
+  - id: 6
+    exp: 3000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 11
+    maxVIP: 20
+  - id: 7
+    exp: 5500
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 12
+    maxVIP: 30
+  - id: 8
+    exp: 10000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 13
+    maxVIP: 40
+  - id: 9
+    exp: 16000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 14
+    maxVIP: 50
+  - id: 10
+    exp: 26000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 15
+    maxVIP: 60
+  - id: 11
+    exp: 41000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 16
+    maxVIP: 70
+  - id: 12
+    exp: 61000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 17
+    maxVIP: 80
+  - id: 13
+    exp: 87000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 18
+    maxVIP: 90
+  - id: 14
+    exp: 119000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 19
+    maxVIP: 100
+  - id: 15
+    exp: 156000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 20
+    maxVIP: 120
+  - id: 16
+    exp: 197000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 21
+    maxVIP: 140
+  - id: 17
+    exp: 239000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 22
+    maxVIP: 160
+  - id: 18
+    exp: 287000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 23
+    maxVIP: 180
+  - id: 19
+    exp: 340000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 24
+    maxVIP: 200
+  - id: 20
+    exp: 410000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 25
+    maxVIP: 220
+  - id: 21
+    exp: 500000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 26
+    maxVIP: 240
+  - id: 22
+    exp: 600000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 27
+    maxVIP: 260
+  - id: 23
+    exp: 710000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 28
+    maxVIP: 280
+  - id: 24
+    exp: 860000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 29
+    maxVIP: 300
+  - id: 25
+    exp: 1030000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 350
+  - id: 26
+    exp: 1240000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 400
+  - id: 27
+    exp: 1480000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 450
+  - id: 28
+    exp: 1780000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 500
+  - id: 29
+    exp: 2130000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 550
+  - id: 30
+    exp: 2560000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 600
+  - id: 31
+    exp: 3070000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 700
+  - id: 32
+    exp: 3690000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 800
+  - id: 33
+    exp: 4430000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 900
+  - id: 34
+    exp: 5310000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 1000
+  - id: 35
+    exp: 6370000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 1200
+  - id: 36
+    exp: 7650000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 1400
+  - id: 37
+    exp: 9180000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 1600
+  - id: 38
+    exp: 11010000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 1800
+  - id: 39
+    exp: 13210000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 2000
+  - id: 40
+    exp: 15860000
+    diamond: 20
+    solict: 10
+    dish: 0
+    maxCustomer: 30
+    maxVIP: 2500
+  customers:
+  - id: 1
+    name: CustomerName_001
+    requireLevel: 0
+    rate: 120
+    type: 0
+    baseMood: 10
+    maxFood: 20
+    maxWater: 25
+  - id: 2
+    name: CustomerName_002
+    requireLevel: 0
+    rate: 120
+    type: 1
+    baseMood: 10
+    maxFood: 25
+    maxWater: 20
+  - id: 3
+    name: CustomerName_003
+    requireLevel: 0
+    rate: 100
+    type: 2
+    baseMood: 5
+    maxFood: 25
+    maxWater: 30
+  - id: 4
+    name: CustomerName_004
+    requireLevel: 0
+    rate: 100
+    type: 3
+    baseMood: 5
+    maxFood: 30
+    maxWater: 25
+  - id: 5
+    name: CustomerName_005
+    requireLevel: 0
+    rate: 5
+    type: 4
+    baseMood: 40
+    maxFood: 25
+    maxWater: 25
+  - id: 6
+    name: CustomerName_006
+    requireLevel: 0
+    rate: 5
+    type: 4
+    baseMood: 5
+    maxFood: 40
+    maxWater: 40
+  skills:
+  - id: 1
+    name: SkillName_001
+    des: SkillDes_001
+    baseParam: 0
+    levelParams: 0c0000000f0000001200000015000000180000001b0000001e000000210000002400000027000000
+  - id: 2
+    name: SkillName_002
+    des: SkillDes_002
+    baseParam: 0
+    levelParams: 1000000014000000180000001c0000002000000024000000280000002c00000030000000
+  - id: 3
+    name: SkillName_003
+    des: SkillDes_003
+    baseParam: 0
+    levelParams: 14000000190000001e00000023000000280000002d0000003200000037000000
+  - id: 4
+    name: SkillName_004
+    des: SkillDes_004
+    baseParam: 0
+    levelParams: 240000002a00000030000000360000003c0000004200000048000000
+  - id: 5
+    name: SkillName_005
+    des: SkillDes_005
+    baseParam: 2
+    levelParams: 1400000016000000180000001a0000001c0000001e00000020000000220000002400000026000000
+  - id: 6
+    name: SkillName_006
+    des: SkillDes_006
+    baseParam: 2
+    levelParams: 15000000180000001b0000001e0000002100000024000000270000002a0000002d000000
+  - id: 7
+    name: SkillName_007
+    des: SkillDes_007
+    baseParam: 2
+    levelParams: 180000001c0000002000000024000000280000002c0000003000000034000000
+  - id: 8
+    name: SkillName_008
+    des: SkillDes_008
+    baseParam: 3
+    levelParams: 190000001e00000023000000280000002d0000003200000037000000
+  - id: 9
+    name: SkillName_009
+    des: SkillDes_009
+    baseParam: 2
+    levelParams: 
+  - id: 10
+    name: SkillName_010
+    des: SkillDes_010
+    baseParam: 3
+    levelParams: 
+  - id: 11
+    name: SkillName_011
+    des: SkillDes_011
+    baseParam: 4
+    levelParams: 
+  - id: 12
+    name: SkillName_012
+    des: SkillDes_012
+    baseParam: 5
+    levelParams: 
+  - id: 17
+    name: SkillName_017
+    des: SkillDes_017
+    baseParam: 1
+    levelParams: 
+  - id: 18
+    name: SkillName_018
+    des: SkillDes_018
+    baseParam: 2
+    levelParams: 
+  - id: 19
+    name: SkillName_019
+    des: SkillDes_019
+    baseParam: 3
+    levelParams: 
+  - id: 20
+    name: SkillName_020
+    des: SkillDes_020
+    baseParam: 0
+    levelParams: 0a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c000000
+  - id: 21
+    name: SkillName_021
+    des: SkillDes_021
+    baseParam: 0
+    levelParams: 0c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
+  - id: 22
+    name: SkillName_022
+    des: SkillDes_022
+    baseParam: 0
+    levelParams: 1000000014000000180000001c0000002000000024000000280000002c000000
+  - id: 23
+    name: SkillName_023
+    des: SkillDes_023
+    baseParam: 0
+    levelParams: 14000000190000001e00000023000000280000002d00000032000000
+  - id: 24
+    name: SkillName_024
+    des: SkillDes_024
+    baseParam: 0
+    levelParams: 0c0000000f0000001200000015000000180000001b0000001e000000
+  - id: 26
+    name: SkillName_026
+    des: SkillDes_026
+    baseParam: 1
+    levelParams: 6400000096000000c8000000fa0000002c0100005e01000090010000f4010000
+  - id: 27
+    name: SkillName_027
+    des: SkillDes_027
+    baseParam: 2
+    levelParams: c80000002c01000090010000f40100005802000020030000e8030000
+  - id: 28
+    name: SkillName_028
+    des: SkillDes_028
+    baseParam: 1
+    levelParams: 
+  - id: 28
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 29
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 30
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 31
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 32
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 33
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 34
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 35
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 36
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 
+  - id: 37
+    name: 
+    des: 
+    baseParam: 0
+    levelParams: 

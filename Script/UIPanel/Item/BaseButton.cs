@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public RedPoint redPoint;
-
     Vector3 scale = new Vector3(0.9f, 0.9f, 0);//µã»÷Ëõ·Å±ÈÀý
 
     public bool isScale = true;

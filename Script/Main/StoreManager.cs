@@ -49,8 +49,8 @@ public class StoreManager : MonoBehaviour, IBase
 
     public void AddPower(int count = 1)
     {
-        if (PlayerData.Power + count > GameData.globalData.power.maxPower)
-            count = GameData.globalData.power.maxPower - PlayerData.Power;
+        if (PlayerData.Power + count > GameData.global.power.maxPower)
+            count = GameData.global.power.maxPower - PlayerData.Power;
         PlayerData.Power += count;
     }
 
@@ -68,7 +68,7 @@ public class StoreManager : MonoBehaviour, IBase
             case StoreSkill.SpeedUpCooking:
                 break;
         }
-        PlayerData.Power -= GameData.globalData.power.maxPower;
+        PlayerData.Power -= GameData.global.power.maxPower;
     }
 
     //一个顾客进店

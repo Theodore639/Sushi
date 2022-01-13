@@ -96,7 +96,7 @@ public static class PlayerData
     {
         int oldLevel = GetDishCardLevel(index);
         SetValue("DishLevel" + index.ToString(), oldLevel + 1);
-        SetValue("DishCount" + index.ToString(), GetDishCardCount(index) - GameData.globalData.dish.upgradeCount[oldLevel]);
+        SetValue("DishCount" + index.ToString(), GetDishCardCount(index) - GameData.global.dish.upgradeCount[oldLevel]);
     }
 
     public static int GetDishCardCount(int index)
