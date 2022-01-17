@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,12 +20,29 @@ public class MainPanel : BasePanel
         }
     }
 
-    public Button warehouse, shop;
-    public Text expText, goldText, cloverText, powerText;
+    public Text levelText, expText, moneyText, diamondText, solictText;
+    public Scrollbar power;
+    public MainSubPanel subPanel;
+
+    public enum MainSubPanel
+    {
+        Store = 0,//主界面
+        Shop = 1,//商城界面
+        Dish = 2,//菜品界面
+        Box = 3,//宝箱界面
+        Setting = 4,//设置界面
+    }
+
+    public override void OnEnter(params object[] list)
+    {
+        base.OnEnter(list);
+        subPanel = MainSubPanel.Store;
+
+    }
 
     public void SetValue(int index, int value)
     {
-        switch(index)
+        switch (index)
         {
             case GameData.EXP:
 
@@ -59,17 +76,33 @@ public class MainPanel : BasePanel
 
     public void OnButtonClick(string name)
     {
-        switch(name)
+        switch (name)
         {
-            case "shop":
-                UIPanelManager.Instance.PushPanel(typeof(ShopPanel));
+            case "Shop":
+            case "Dish":
+            case "Store":
+            case "Box":
+            case "Setting":
+                ChangeSubPanel((MainSubPanel)Enum.Parse(typeof(MainSubPanel), name));
                 break;
         }
     }
 
-    private void ChangeScene()
+    private void ChangeSubPanel(MainSubPanel _subPanel)
     {
+        subPanel = _subPanel;
+        switch (subPanel)
+        {
+            case MainSubPanel.Store:
+                UIPanelManager.Instance.BackToMainPanel();
+
+                break;
+            case MainSubPanel.Shop:
+                UIPanelManager.Instance.PushPanel(typeof(ShopPanel));
+                break;
+
+        }
 
     }
-
 }
+
