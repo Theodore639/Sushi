@@ -37,11 +37,12 @@ public class UIPanelManager
         panelList = new List<BasePanel>();
         panelPathDict = new Dictionary<Type, string>()
         {
+            { typeof(MainPanel), "PrefabPanel/MainPanel" },
             
         };
         tempPanelPathDict = new Dictionary<Type, string>()
         {
-           
+           { typeof(LoadingPanel), "PrefabPanel/LoadingPanel" },
         };
         try
         {
@@ -87,7 +88,7 @@ public class UIPanelManager
     /// <summary>
     /// 初始化实例化所有Panel
     /// </summary>
-    public IEnumerable<float> InitAllPanel()
+    public void InitAllPanel()
     {
         float i = 0;
         foreach (KeyValuePair<Type, string> kv in panelPathDict)
@@ -96,7 +97,6 @@ public class UIPanelManager
             GameObject panel = GameObject.Instantiate(Resources.Load<GameObject>(kv.Value), canvasTransform);
             panel.GetComponent<BasePanel>().OnInit();
             panelList.Add(panel.GetComponent<BasePanel>());
-            yield return i / panelPathDict.Count;
         }
     }
 

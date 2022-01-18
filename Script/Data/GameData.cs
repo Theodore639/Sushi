@@ -27,19 +27,6 @@ public static class GameData
     }
 }
 
-//读取Asset的临时容器
-public class GameAsset : ScriptableObject
-{
-    public GlobalData global;
-    public List<GameDishData> dishes;
-    public List<GameEquipData> equips;
-    public List<GameBoxData> boxes;
-    public List<GameLevelData> levels;
-    public List<GameCustomerData> customers;
-    public List<GameSkillData> skills;
-}
-
-
 #region Struct
 [Serializable]//全局数据
 public struct GlobalData

@@ -15,25 +15,52 @@ MonoBehaviour:
   mSource:
     UserAgreesToHaveItOnTheScene: 0
     UserAgreesToHaveItInsideThePluginsFolder: 0
-    GoogleLiveSyncIsUptoDate: 1
-    mTerms: []
+    GoogleLiveSyncIsUptoDate: 0
+    mTerms:
+    - Term: C_Loading_01
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u6B63\u5728\u6253\u626B\u536B\u751F"
+      - "\u6B63\u5728\u6253\u6383\u885B\u751F"
+      - Cleaning
+      - "\u30AF\u30EA\u30FC\u30CB\u30F3\u30B0"
+      - "\uCCAD\uC18C"
+      Flags: 0000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
-    mLanguages: []
+    mLanguages:
+    - Name: Chinese (Simplified)
+      Code: zh-CN
+      Flags: 0
+    - Name: Chinese (Traditional)
+      Code: zh-TW
+      Flags: 0
+    - Name: English (United States)
+      Code: en-US
+      Flags: 0
+    - Name: Japanese
+      Code: ja
+      Flags: 0
+    - Name: Korean
+      Code: ko
+      Flags: 0
     IgnoreDeviceLanguage: 0
     _AllowUnloadingLanguages: 0
-    Google_WebServiceURL: 
-    Google_SpreadsheetKey: 
-    Google_SpreadsheetName: 
+    Google_WebServiceURL: https://script.google.com/macros/s/AKfycbyNhPo2SCfJEGJpkb8SCv96fOnJO4vv3oi2S8cMio1o-cZmIXOOE8Dm81aIkHrQnWbi/exec
+    Google_SpreadsheetKey: 1rx8KY83OmuHaIhoAubv4nOpA1LNGjyAnAO_-W5Q3PUM
+    Google_SpreadsheetName: I2Loc Sushi Localization
     Google_LastUpdatedVersion: 
     Google_Password: change_this
     GoogleUpdateFrequency: 3
     GoogleInEditorCheckFrequency: 2
     GoogleUpdateSynchronization: 1
     GoogleUpdateDelay: 0
-    Assets: []
-    Spreadsheet_LocalFileName: 
+    Assets:
+    - {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    Spreadsheet_LocalFileName: Doc/Localization.csv
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8
     Spreadsheet_SpecializationAsRows: 1
