@@ -18,27 +18,39 @@ public class StoreManager : MonoBehaviour, IBase
         }
     }
 
+    public Transform dishParent, customerParen, other;
+    [HideInInspector] public BaseDish[,] dishArray;
+    [HideInInspector] public int curentLevel;
+    public const int MaxX = 5, MaxY = 5;
     public enum StoreSkill
-    {       
+    {
         AddCustomer = 0,    //招揽一定数量顾客
         DoubleMoney = 1,    //双倍金币持续一定时间
         AddMood = 2,        //全场加心情一定值
         SpeedUpCooking = 3, //全场增加制作速度一定值
     }
 
-    public List<EquipShelf> shelfList;
-    public int curentLevel;
-
     public void Init(params object[] list)
     {
-        shelfList = new List<EquipShelf>();
+        dishArray = new BaseDish[MaxX, MaxY];
+        int[,] dishLocation = PlayerData.GetDishLocation();
+        for(int i = 0; i < MaxX; i++)
+            for(int j = 0; j < MaxX; j++)
+            {
+                if(dishLocation[i, j] >= 0)
+                {
+                    dishArray[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Dish")).GetComponent<BaseDish>();
+                    dishArray[i, j].Init(dishLocation[i, j]);
+                }
+            }
     }
 
     public void LogicUpdate()
     {
-        foreach(EquipShelf shelf in shelfList)
+        foreach(BaseDish dish in dishArray)
         {
-            shelf.LogicUpdate();
+            if(dish != null)
+                dish.LogicUpdate();
         }
     }
 

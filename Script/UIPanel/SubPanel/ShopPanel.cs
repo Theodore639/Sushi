@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// ил╣Й
 /// </summary>
-public class ShopPanel : MonoBehaviour
+public class ShopPanel : SubPanel
 {
     public void CreateGoods()
     {
@@ -38,5 +38,17 @@ public class ShopPanel : MonoBehaviour
                 break;
         }
         PlayerData.AddItemData(GameData.DIAMOND, count);
+    }
+
+    public override void Deactive()
+    {
+        base.Deactive();
+        bg.transform.localPosition = new Vector3(-3000, 0, 0);
+    }
+
+    public override void Active()
+    {
+        base.Active();
+        bg.transform.localPosition = Vector3.zero;
     }
 }

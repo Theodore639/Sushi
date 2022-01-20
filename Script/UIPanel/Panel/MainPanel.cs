@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MainPanel : BasePanel
 {
@@ -22,7 +23,10 @@ public class MainPanel : BasePanel
 
     public Text levelText, expText, moneyText, diamondText, solictText;
     public Scrollbar power;
+    public Transform subPanelParent;
+    [HideInInspector]
     public MainSubPanel subPanel;
+    public Dictionary<MainSubPanel, SubPanel> subPanels;
 
     public enum MainSubPanel
     {
@@ -36,8 +40,25 @@ public class MainPanel : BasePanel
     public override void OnEnter(params object[] list)
     {
         base.OnEnter(list);
+        subPanels = new Dictionary<MainSubPanel, SubPanel>();
         subPanel = MainSubPanel.Store;
+        //初始化所有子界面
+        foreach(Transform child in subPanelParent)
+        {
+            SubPanel sp = child.GetComponent<SubPanel>();
+            if(sp != null)
+                subPanels.Add(sp.subPanelType, sp);
+            if (sp.subPanelType != subPanel)
+                sp.Deactive();
+        }
+    }
 
+    public void Tick()
+    {
+        foreach (KeyValuePair<MainSubPanel, SubPanel> kv in subPanels)
+        {
+            kv.Value.Tick();
+        }
     }
 
     public void SetValue(int index, int value)
@@ -45,25 +66,25 @@ public class MainPanel : BasePanel
         switch (index)
         {
             case GameData.EXP:
-
+                StartCoroutine(ISetValue(expText, value, 6));
                 break;
             case GameData.MONEY:
-
+                StartCoroutine(ISetValue(moneyText, value, 10));
                 break;
             case GameData.DIAMOND:
-
+                StartCoroutine(ISetValue(diamondText, value, 5));
                 break;
             case GameData.POWER:
-
+                power.size = value * 1.0f / GameData.global.power.maxPower;
                 break;
             case GameData.SOLICT:
-
+                StartCoroutine(ISetValue(diamondText, value, 1));
                 break;
         }
     }
-    IEnumerator ISetValue(Text text, int value)
+    //协程设置参数值
+    IEnumerator ISetValue(Text text, int value, int steps = 1)
     {
-        int steps = 6;
         int cValue = int.Parse(text.text);
         int step = (value - cValue) / steps;
         for (int i = 1; i <= steps; i++)
@@ -91,18 +112,13 @@ public class MainPanel : BasePanel
     private void ChangeSubPanel(MainSubPanel _subPanel)
     {
         subPanel = _subPanel;
-        switch (subPanel)
+        foreach(KeyValuePair<MainSubPanel, SubPanel> kv in subPanels)
         {
-            case MainSubPanel.Store:
-                UIPanelManager.Instance.BackToMainPanel();
-
-                break;
-            case MainSubPanel.Shop:
-                UIPanelManager.Instance.PushPanel(typeof(ShopPanel));
-                break;
-
+            kv.Value.Deactive();
         }
-
+        if(subPanel != MainSubPanel.Store)
+            subPanels[subPanel].Active();
+        
     }
 }
 

@@ -309,6 +309,11 @@ namespace Excel.Editor
                             ItemColor cType = (ItemColor)Enum.Parse(typeof(ItemColor), GetString(i, list[0]));
                             data = SetModelValue(field.Name, cType, data, type);
                         }
+                        else if (field.FieldType == typeof(DishSkillType))
+                        {
+                            DishSkillType cType = (DishSkillType)Enum.Parse(typeof(DishSkillType), GetString(i, list[0]));
+                            data = SetModelValue(field.Name, cType, data, type);
+                        }
                         else
                         {
                             Debug.LogError(field.FieldType + " 需要添加解析方式");

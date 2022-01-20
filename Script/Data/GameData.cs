@@ -5,7 +5,7 @@ using System;
 
 public static class GameData
 {
-    public const int EXP = 0, MONEY = 1, DIAMOND = 2, POWER = 3, SOLICT = 4;
+    public const int Level = 0, EXP = 1, MONEY = 2, DIAMOND = 3, POWER = 4, SOLICT = 5, SOLICTEXTRA = 6, VIP = 7, TIPS = 8;
     static public GlobalData global;
     static public List<GameDishData> dishes;
     static public List<GameEquipData> equips;
@@ -119,8 +119,8 @@ public struct GameSkillData
 {
     public int id;
     public string name, des;
-    public int baseParam;
-    public List<int> levelParams;
+    public DishSkillType type;
+    public List<int> paramList;
 }
 
 #endregion
@@ -135,6 +135,7 @@ public enum DishType
     Sushi = 2,
     Icecream = 3,
     Speacial = 999,
+    All = 1000,
 }
 
 //动物类型  
@@ -157,4 +158,29 @@ public enum ItemColor
     Gold = 4,
 }
 
+//菜品技能作用范围
+public enum DishSkillType
+{
+    BuyCake,
+    BuyJuice,
+    BuySushi,
+    BuyIcecream,
+    RowInc,//整排涨价
+    ColoumInc,//整列涨价
+    GridInc,//3*3格子涨价
+    AllInc,//全部涨价
+    AllSpeedUp,//全部加速
+    CakeInc,//所有蛋糕涨价
+    JuiceInc,//所有果汁涨价
+    SushiInc,//所有寿司涨价
+    IcecreamInc,//所有冰淇淋涨价
+    CakeSpeedUp,//所有蛋糕加速
+    JuiceSpeedUp,//所有果汁加速
+    SushiSpeedUp,//所有寿司加速
+    IcecreamSpeedUp,//所有冰淇淋加速
+    SelfInc,//自身永久涨价
+    ExtraPay,//额外支付金币
+    AddCustomer,//额外招揽顾客
+    AddPower,//额外加能量
+}
 #endregion

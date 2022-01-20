@@ -24,11 +24,10 @@ public class UIPanelManager
     public Transform canvasTransform, uiBgCanvasTransform;
 
     /// <summary>
-    /// 构造函数，要求所有新增的panel需要到这里手动注册，注册内容包括panel类型和prefab路径
+    /// 构造函数，常驻panel需要到这里手动注册，注册内容包括panel类型和prefab路径
     /// panelPathDict:保存需要常驻的panel
-    /// tempPanelPathDict：保存不需要常驻的临时panel
     /// </summary>
-    public Dictionary<Type, string> panelPathDict, tempPanelPathDict;
+    public Dictionary<Type, string> panelPathDict;
 
     private List<BasePanel> panelList;
 
@@ -39,10 +38,6 @@ public class UIPanelManager
         {
             { typeof(MainPanel), "PrefabPanel/MainPanel" },
             
-        };
-        tempPanelPathDict = new Dictionary<Type, string>()
-        {
-           { typeof(LoadingPanel), "PrefabPanel/LoadingPanel" },
         };
         try
         {
@@ -65,12 +60,7 @@ public class UIPanelManager
         BasePanel panel = panelList.Find(delegate(BasePanel p) { return p.GetType() == panelType; });
         if (panel != null)
             return panel;
-
-        if (!tempPanelPathDict.TryGetValue(panelType, out string path))
-        {
-            Debug.Log("UIPanelManager.GetPanel error, the panel has not register, panel type=" + panelType.ToString());
-            return null;
-        }
+        string path = "PrefabPanel/" + panelType.Name.ToString();
 
         Transform panelTransform = GameObject.Instantiate(Resources.Load<GameObject>(path), canvasTransform).transform;
         if (panelTransform == null)

@@ -5,47 +5,6 @@ using System;
 
 public static class PlayerData
 {
-    public static int Money
-    {
-        set
-        {
-            SetItemData(GameData.MONEY, value);
-            MainPanel.Instance.SetValue(GameData.MONEY, GetItemData(GameData.MONEY));
-        }
-        get { return GetItemData(GameData.MONEY);}
-    }
-    public static int Diamond
-    {
-        set
-        {
-            SetItemData(GameData.DIAMOND, value);
-            MainPanel.Instance.SetValue(GameData.DIAMOND, GetItemData(GameData.DIAMOND));
-        }
-        get { return GetItemData(GameData.DIAMOND); }
-    }
-    public static int Exp
-    {
-        set { SetItemData(GameData.EXP, value); }
-        get { return GetItemData(GameData.EXP); }
-    }
-    public static int Power
-    {
-        set 
-        { 
-            SetItemData(GameData.POWER, value); 
-            MainPanel.Instance.SetValue(GameData.POWER, GetItemData(GameData.POWER)); 
-        }
-        get { return GetItemData(GameData.POWER); }
-    }
-    public static int Solict
-    {
-        set
-        {
-            SetItemData(GameData.SOLICT, value);
-            MainPanel.Instance.SetValue(GameData.SOLICT, GetItemData(GameData.SOLICT));
-        }
-        get { return GetItemData(GameData.SOLICT); }
-    }
 
     public static void AddItemData(int id, int value)
     {
@@ -85,6 +44,86 @@ public static class PlayerData
         }
     }
 
+
+    #region BaseParam 基础参数
+    public static int Money
+    {
+        set
+        {
+            SetItemData(GameData.MONEY, value);
+            MainPanel.Instance.SetValue(GameData.MONEY, GetItemData(GameData.MONEY));
+        }
+        get { return GetItemData(GameData.MONEY);}
+    }
+    public static int Diamond
+    {
+        set
+        {
+            SetItemData(GameData.DIAMOND, value);
+            MainPanel.Instance.SetValue(GameData.DIAMOND, GetItemData(GameData.DIAMOND));
+        }
+        get { return GetItemData(GameData.DIAMOND); }
+    }
+    public static int Exp
+    {
+        set 
+        {
+            SetItemData(GameData.EXP, value);
+            MainPanel.Instance.SetValue(GameData.EXP, GetItemData(GameData.EXP));
+        }
+        get { return GetItemData(GameData.EXP); }
+    }
+    public static int Power
+    {
+        set 
+        { 
+            SetItemData(GameData.POWER, value); 
+            MainPanel.Instance.SetValue(GameData.POWER, GetItemData(GameData.POWER)); 
+        }
+        get { return GetItemData(GameData.POWER); }
+    }
+    public static int Solict
+    {
+        set
+        {
+            SetItemData(GameData.SOLICT, value);
+            MainPanel.Instance.SetValue(GameData.SOLICT, GetItemData(GameData.SOLICT));
+        }
+        get { return GetItemData(GameData.SOLICT); }
+    }
+
+    public static int SolictExtra
+    {
+        set
+        {
+            SetItemData(GameData.SOLICTEXTRA, value);
+            MainPanel.Instance.SetValue(GameData.SOLICTEXTRA, GetItemData(GameData.SOLICTEXTRA));
+        }
+        get { return GetItemData(GameData.SOLICTEXTRA); }
+    }
+
+    public static int Vip
+    {
+        set
+        {
+            SetItemData(GameData.VIP, value);
+            MainPanel.Instance.SetValue(GameData.VIP, GetItemData(GameData.VIP));
+        }
+        get { return GetItemData(GameData.VIP); }
+    }
+
+    public static int Tips
+    {
+        set
+        {
+            SetItemData(GameData.TIPS, value);
+            MainPanel.Instance.SetValue(GameData.TIPS, GetItemData(GameData.TIPS));
+        }
+        get { return GetItemData(GameData.TIPS); }
+    }
+
+    #endregion
+
     #region Dish 各种菜品相关数据
 
     public static void AddDishCard(int index, int count)
@@ -118,9 +157,41 @@ public static class PlayerData
     {
         return Timer.ConvertLongToDateTime(PlayerPrefs.GetInt("DishTime" + index.ToString()));
     }
+
+    //获取和保存菜品在商店中的摆放位置
+    public static void SetDishLocation(BaseDish[,] dishArray)
+    {
+        string result = "";
+        foreach(BaseDish dish in dishArray)
+        {
+            result += dish.dishData.id + "_" + dish.x + "_" + dish.y + "!";
+        }
+        SetValue("DishArray", result);
+    }
+
+    public static int[,] GetDishLocation()
+    {
+        string reslut = PlayerPrefs.GetString("DishArray", "");
+        //默认值处理
+        if (reslut.Length == 0)
+        {
+            for (int i = 0; i < StoreManager.MaxX; i++)
+                for (int j = 0; j < StoreManager.MaxY; j++)
+                    reslut += "-1_" + i + "_" + j + "!";            
+        }
+        string[] dishes = reslut.Split('!');
+        int[,] dishArray = new int[StoreManager.MaxX, StoreManager.MaxY];
+        foreach(string dish in dishes)
+        {
+            string[] value = dish.Split('_');
+            if(value.Length == 3)
+                dishArray[int.Parse(value[1]), int.Parse(value[2])] = int.Parse(value[0]);
+        }
+        return dishArray;
+    }
     #endregion
 
-    #region Equip 各种设备相关数据
+    #region TaskArchievement 各种任务成就相关数据
     #endregion
 
     #region Customer 各种顾客相关数据，存放临时顾客信息
@@ -136,10 +207,10 @@ public static class PlayerData
     {
         string result = "";
         for (int i = 0; i < intKeys.Count; i++)
-            result += intKeys[i] + "_" + PlayerPrefs.GetInt(intKeys[i], 0) + "&";
+            result += intKeys[i] + "#" + PlayerPrefs.GetInt(intKeys[i], 0) + "&";
         result += "$";
         for (int i = 0; i < stringKeys.Count; i++)
-            result += stringKeys[i] + "_" + PlayerPrefs.GetString(stringKeys[i], "0") + "&";
+            result += stringKeys[i] + "#" + PlayerPrefs.GetString(stringKeys[i], " ") + "&";
         return result;
     }
 

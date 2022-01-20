@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
                 if (tickTime >= TICK_TIME)
                 {
                     tickTime -= TICK_TIME;
-                    //StoreManager.Instance.StoreUpdate();
+                    MainPanel.Instance.Tick();
                 }
             }
         }
@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour
         yield return 0;
 
         //初始化商店及场景
+        Instantiate(Resources.Load<GameObject>("Store"));
+        yield return 0;
         StoreManager.Instance.Init();
         LoadingPanel.Instance.SetProcess(75, I2.Loc.LocalizationManager.GetTranslation("C_Loading_01"));
         yield return 0;

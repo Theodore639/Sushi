@@ -773,168 +773,198 @@ MonoBehaviour:
     maxFood: 40
     maxWater: 40
   skills:
-  - id: 1
-    name: SkillName_001
-    des: SkillDes_001
-    baseParam: 0
-    levelParams: 0c0000000f0000001200000015000000180000001b0000001e000000210000002400000027000000
-  - id: 2
-    name: SkillName_002
-    des: SkillDes_002
-    baseParam: 0
-    levelParams: 1000000014000000180000001c0000002000000024000000280000002c00000030000000
-  - id: 3
-    name: SkillName_003
-    des: SkillDes_003
-    baseParam: 0
-    levelParams: 14000000190000001e00000023000000280000002d0000003200000037000000
-  - id: 4
-    name: SkillName_004
-    des: SkillDes_004
-    baseParam: 0
-    levelParams: 240000002a00000030000000360000003c0000004200000048000000
-  - id: 5
-    name: SkillName_005
-    des: SkillDes_005
-    baseParam: 2
-    levelParams: 1400000016000000180000001a0000001c0000001e00000020000000220000002400000026000000
-  - id: 6
-    name: SkillName_006
-    des: SkillDes_006
-    baseParam: 2
-    levelParams: 15000000180000001b0000001e0000002100000024000000270000002a0000002d000000
-  - id: 7
-    name: SkillName_007
-    des: SkillDes_007
-    baseParam: 2
-    levelParams: 180000001c0000002000000024000000280000002c0000003000000034000000
-  - id: 8
-    name: SkillName_008
-    des: SkillDes_008
-    baseParam: 3
-    levelParams: 190000001e00000023000000280000002d0000003200000037000000
-  - id: 9
-    name: SkillName_009
-    des: SkillDes_009
-    baseParam: 2
-    levelParams: 
-  - id: 10
-    name: SkillName_010
-    des: SkillDes_010
-    baseParam: 3
-    levelParams: 
-  - id: 11
-    name: SkillName_011
-    des: SkillDes_011
-    baseParam: 4
-    levelParams: 
-  - id: 12
-    name: SkillName_012
-    des: SkillDes_012
-    baseParam: 5
-    levelParams: 
-  - id: 17
-    name: SkillName_017
-    des: SkillDes_017
-    baseParam: 1
-    levelParams: 
-  - id: 18
-    name: SkillName_018
-    des: SkillDes_018
-    baseParam: 2
-    levelParams: 
-  - id: 19
-    name: SkillName_019
-    des: SkillDes_019
-    baseParam: 3
-    levelParams: 
-  - id: 20
-    name: SkillName_020
-    des: SkillDes_020
-    baseParam: 0
-    levelParams: 0a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c000000
-  - id: 21
-    name: SkillName_021
-    des: SkillDes_021
-    baseParam: 0
-    levelParams: 0c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
-  - id: 22
-    name: SkillName_022
-    des: SkillDes_022
-    baseParam: 0
-    levelParams: 1000000014000000180000001c0000002000000024000000280000002c000000
-  - id: 23
-    name: SkillName_023
-    des: SkillDes_023
-    baseParam: 0
-    levelParams: 14000000190000001e00000023000000280000002d00000032000000
-  - id: 24
-    name: SkillName_024
-    des: SkillDes_024
-    baseParam: 0
-    levelParams: 0c0000000f0000001200000015000000180000001b0000001e000000
-  - id: 26
-    name: SkillName_026
-    des: SkillDes_026
-    baseParam: 1
-    levelParams: 6400000096000000c8000000fa0000002c0100005e01000090010000f4010000
-  - id: 27
-    name: SkillName_027
-    des: SkillDes_027
-    baseParam: 2
-    levelParams: c80000002c01000090010000f40100005802000020030000e8030000
-  - id: 28
-    name: SkillName_028
-    des: SkillDes_028
-    baseParam: 1
-    levelParams: 
-  - id: 28
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 29
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 30
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 31
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 32
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 33
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 34
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 35
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 36
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
-  - id: 37
-    name: 
-    des: 
-    baseParam: 0
-    levelParams: 
+  - id: 101
+    name: SkillName_101
+    des: SkillDes_101
+    type: 0
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e000000210000002400000027000000
+  - id: 102
+    name: SkillName_102
+    des: SkillDes_102
+    type: 0
+    paramList: 1000000014000000180000001c0000002000000024000000280000002c00000030000000
+  - id: 103
+    name: SkillName_103
+    des: SkillDes_103
+    type: 0
+    paramList: 14000000190000001e00000023000000280000002d0000003200000037000000
+  - id: 104
+    name: SkillName_104
+    des: SkillDes_104
+    type: 0
+    paramList: 240000002a00000030000000360000003c0000004200000048000000
+  - id: 105
+    name: SkillName_105
+    des: SkillDes_105
+    type: 1
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e000000210000002400000027000000
+  - id: 106
+    name: SkillName_106
+    des: SkillDes_106
+    type: 1
+    paramList: 1000000014000000180000001c0000002000000024000000280000002c00000030000000
+  - id: 107
+    name: SkillName_107
+    des: SkillDes_107
+    type: 1
+    paramList: 14000000190000001e00000023000000280000002d0000003200000037000000
+  - id: 108
+    name: SkillName_108
+    des: SkillDes_108
+    type: 1
+    paramList: 240000002a00000030000000360000003c0000004200000048000000
+  - id: 109
+    name: SkillName_109
+    des: SkillDes_109
+    type: 2
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e000000210000002400000027000000
+  - id: 110
+    name: SkillName_110
+    des: SkillDes_110
+    type: 2
+    paramList: 1000000014000000180000001c0000002000000024000000280000002c00000030000000
+  - id: 111
+    name: SkillName_111
+    des: SkillDes_111
+    type: 2
+    paramList: 14000000190000001e00000023000000280000002d0000003200000037000000
+  - id: 112
+    name: SkillName_112
+    des: SkillDes_112
+    type: 2
+    paramList: 240000002a00000030000000360000003c0000004200000048000000
+  - id: 113
+    name: SkillName_113
+    des: SkillDes_113
+    type: 3
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e000000210000002400000027000000
+  - id: 114
+    name: SkillName_114
+    des: SkillDes_114
+    type: 3
+    paramList: 1000000014000000180000001c0000002000000024000000280000002c00000030000000
+  - id: 115
+    name: SkillName_115
+    des: SkillDes_115
+    type: 3
+    paramList: 14000000190000001e00000023000000280000002d0000003200000037000000
+  - id: 116
+    name: SkillName_116
+    des: SkillDes_116
+    type: 3
+    paramList: 240000002a00000030000000360000003c0000004200000048000000
+  - id: 201
+    name: SkillName_201
+    des: SkillDes_201
+    type: 18
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
+  - id: 202
+    name: SkillName_202
+    des: SkillDes_202
+    type: 18
+    paramList: 1000000014000000180000001c0000002000000024000000280000002c000000
+  - id: 203
+    name: SkillName_203
+    des: SkillDes_203
+    type: 18
+    paramList: 14000000190000001e00000023000000280000002d00000032000000
+  - id: 204
+    name: SkillName_204
+    des: SkillDes_204
+    type: 4
+    paramList: 050000000600000007000000080000000a0000000c0000000e000000100000001200000014000000
+  - id: 205
+    name: SkillName_205
+    des: SkillDes_205
+    type: 4
+    paramList: 080000000a0000000c0000000e0000001100000014000000170000001a0000001e000000
+  - id: 207
+    name: SkillName_207
+    des: SkillDes_207
+    type: 5
+    paramList: 050000000600000007000000080000000a0000000c0000000e000000100000001200000014000000
+  - id: 208
+    name: SkillName_208
+    des: SkillDes_208
+    type: 5
+    paramList: 080000000a0000000c0000000e0000001100000014000000170000001a0000001e000000
+  - id: 210
+    name: SkillName_210
+    des: SkillDes_210
+    type: 6
+    paramList: 0400000005000000060000000700000008000000090000000a0000000c0000000e00000010000000
+  - id: 211
+    name: SkillName_211
+    des: SkillDes_211
+    type: 6
+    paramList: 06000000080000000a0000000c0000000e00000010000000120000001500000018000000
+  - id: 301
+    name: SkillName_301
+    des: SkillDes_301
+    type: 9
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e00000023000000
+  - id: 302
+    name: SkillName_302
+    des: SkillDes_302
+    type: 10
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e00000023000000
+  - id: 303
+    name: SkillName_303
+    des: SkillDes_303
+    type: 11
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e00000023000000
+  - id: 304
+    name: SkillName_304
+    des: SkillDes_304
+    type: 12
+    paramList: 0c0000000f0000001200000015000000180000001b0000001e00000023000000
+  - id: 305
+    name: SkillName_305
+    des: SkillDes_305
+    type: 13
+    paramList: 0a0000000c0000000f0000001200000015000000180000001b0000001e000000
+  - id: 306
+    name: SkillName_306
+    des: SkillDes_306
+    type: 14
+    paramList: 0a0000000c0000000f0000001200000015000000180000001b0000001e000000
+  - id: 307
+    name: SkillName_307
+    des: SkillDes_307
+    type: 15
+    paramList: 0a0000000c0000000f0000001200000015000000180000001b0000001e000000
+  - id: 308
+    name: SkillName_308
+    des: SkillDes_308
+    type: 16
+    paramList: 0a0000000c0000000f0000001200000015000000180000001b0000001e000000
+  - id: 309
+    name: SkillName_309
+    des: SkillDes_309
+    type: 7
+    paramList: 080000000a0000000c0000000e000000100000001200000014000000
+  - id: 310
+    name: SkillName_310
+    des: SkillDes_310
+    type: 8
+    paramList: 080000000a0000000c0000000e000000100000001200000014000000
+  - id: 311
+    name: SkillName_311
+    des: SkillDes_311
+    type: 17
+    paramList: 64000000a0000000f00000004001000090010000f40100005802000020030000
+  - id: 312
+    name: SkillName_312
+    des: SkillDes_312
+    type: 17
+    paramList: c8000000900100005802000020030000e8030000e2040000dc050000
+  - id: 313
+    name: SkillName_313
+    des: SkillDes_313
+    type: 19
+    paramList: 1e00000028000000320000003c000000460000005500000064000000
+  - id: 314
+    name: SkillName_314
+    des: SkillDes_314
+    type: 20
+    paramList: 0300000004000000050000000600000007000000080000000a000000

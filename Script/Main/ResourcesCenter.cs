@@ -11,4 +11,9 @@ public static class ResourcesCenter
             name += "_" + level.ToString();
         return Resources.Load<Sprite>("Sprite/ItemSprite/" + name);
     }
+
+    public static Sprite GetDishSprite(int index)
+    {
+        return Resources.Load<Sprite>("Sprite/Dish/" + index.ToString());
+    }
 }
