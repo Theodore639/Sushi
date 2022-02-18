@@ -5,7 +5,6 @@ using System;
 
 public static class PlayerData
 {
-
     public static void AddItemData(int id, int value)
     {
         SetItemData(id, GetItemData(id) + value);
@@ -95,70 +94,72 @@ public static class PlayerData
 
     #endregion
 
-    #region Dish 各种菜品相关数据
+    #region Dish 菜品相关数据
 
-    public static void AddDishCard(int index, int count)
+    public static void SetDishData(int index, PlayerDishData dishData)
     {
-        SetValue("DishCount" + index.ToString(), count + GetDishCardCount(index));
+        string result = dishData.level + "_" + dishData.cardCount + "_" + Timer.ConvertDateTimeToLong(dishData.startCookingTime); 
+        SetValue("Dish" + index, result);
     }
 
-    public static void DishUpgrade(int index)
+    public static PlayerDishData GetDishData(int index)
     {
-        int oldLevel = GetDishCardLevel(index);
-        SetValue("DishLevel" + index.ToString(), oldLevel + 1);
-        SetValue("DishCount" + index.ToString(), GetDishCardCount(index) - GameData.global.dish.upgradeCount[oldLevel]);
-    }
-
-    public static int GetDishCardCount(int index)
-    {
-        return PlayerPrefs.GetInt("DishCount" + index.ToString(), 0);
-    }
-
-    public static int GetDishCardLevel(int index)
-    {
-        return PlayerPrefs.GetInt("DishLevel" + index.ToString(), 0);
-    }
-
-    public static void SetDishTime(int index, DateTime time)
-    {
-        SetValue("DishTime" + index.ToString(), Timer.ConvertDateTimeToLong(time));
-    }
-
-    public static DateTime GetDishTime(int index)
-    {
-        return Timer.ConvertLongToDateTime(PlayerPrefs.GetInt("DishTime" + index.ToString()));
-    }
-
-    //获取和保存菜品在商店中的摆放位置
-    public static void SetDishLocation(int[,] dishArray)
-    {
-        string result = "";
-        for (int i = 0; i < dishArray.GetLength(0); i++)
-            for (int j = 0; j < dishArray.GetLength(1); j++)
-                result += dishArray[i, j] + ",";
-        SetValue("DishArray", result);
-    }
-
-    public static int[,] GetDishLocation()
-    {
-        string reslut = PlayerPrefs.GetString("DishArray", "");
-        //默认值处理
-        if (reslut.Length == 0)
+        PlayerDishData dishData = new PlayerDishData();
+        try
         {
-            for (int i = 0; i < StoreManager.MaxX; i++)
-                for (int j = 0; j < StoreManager.MaxY; j++)
-                    reslut += "-1,";
+            string[] reslut = PlayerPrefs.GetString("Shelf" + index, "0_0_0_0_0").Split('_');
+            dishData.level = int.Parse(reslut[0]);
+            dishData.cardCount = int.Parse(reslut[1]);
+            dishData.startCookingTime = Timer.ConvertLongToDateTime(long.Parse(reslut[2]));
         }
-        string[] dishes = reslut.Split(',');
-        int[,] dishArray = new int[StoreManager.MaxX, StoreManager.MaxY];
-        for (int i = 0; i < dishArray.GetLength(0); i++)
-            for (int j = 0; j < dishArray.GetLength(1); j++)
-                dishArray[i, j] = int.Parse(dishes[i * StoreManager.MaxX + j]);
-        return dishArray;
+        catch (Exception e)
+        {
+            LogManager.ShowLog("GetDishData Error, index =" + index + " reason = " + e.ToString(), true);
+        }
+        return dishData;
+    }
+
+    #endregion
+
+    #region Shelf 货架相关数据
+    public static void SetShelfData(int index, PlayerShelfData shelfData)
+    {
+        string result = shelfData.level + "_" + shelfData.priceIncLevel + "_" + shelfData.speedIncLevel + 
+            "_" + shelfData.stackLevel + "_" + shelfData.dishIndex;
+        SetValue("Shelf" + index, result);
+    }
+
+    public static PlayerShelfData GetShelfData(int index)
+    {
+        PlayerShelfData shelfData = new PlayerShelfData();
+        try
+        {
+            string[] reslut = PlayerPrefs.GetString("Shelf" + index, "0_0_0_0_0").Split('_');
+            shelfData.level = int.Parse(reslut[0]);
+            shelfData.priceIncLevel = int.Parse(reslut[1]);
+            shelfData.speedIncLevel = int.Parse(reslut[2]);
+            shelfData.stackLevel = int.Parse(reslut[3]);
+            shelfData.dishIndex = int.Parse(reslut[4]);
+        }
+        catch(Exception e)
+        {
+            LogManager.ShowLog("GetShelfData Error, index =" + index + " reason = " + e.ToString(), true);
+        }
+        return shelfData;
     }
     #endregion
 
     #region TaskArchievement 各种任务成就相关数据
+    public static void SetAichievementData(int index, int value)
+    {
+        SetItemData(CONST.ARCHIEVEMENT + index, value);
+    }
+
+    public static int GetAichievementData(int index)
+    {
+        return GetItemData(CONST.ARCHIEVEMENT + index);
+    }
+
     #endregion
 
     #region Customer 各种顾客相关数据，存放临时顾客信息
@@ -257,3 +258,27 @@ public static class PlayerData
     }
     #endregion
 }
+
+#region Struct
+
+public struct PlayerDishData
+{
+    public int level;
+    public int cardCount;
+    public DateTime startCookingTime;
+}
+
+public struct PlayerShelfData
+{
+    public int level;
+    public int priceIncLevel;
+    public int speedIncLevel;
+    public int stackLevel;
+    public int dishIndex;
+}
+
+public struct PlayerCustomerData
+{
+
+}
+#endregion

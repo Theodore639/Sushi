@@ -20,14 +20,12 @@ public class Box : MonoBehaviour
     }
 
     public BoxType type;
-    public int seed;//箱子的随机种子
     public GameBoxData gameBoxData;
 
     //初始化箱子
     public void InitBox(BoxType _type, int _seed)
     {
         type = _type;
-        seed = _seed;
         gameBoxData = GameData.boxes.Find(delegate (GameBoxData data) { return data.id == (int)type; });
     }
 
@@ -49,7 +47,7 @@ public class Box : MonoBehaviour
 
     }
 
-    //根据箱子类型和随机种子生成奖励，并一一给出
+    //根据箱子类型生成奖励，并一一给出
     public void OpenBox()
     {
 

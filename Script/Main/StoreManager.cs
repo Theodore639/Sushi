@@ -18,9 +18,10 @@ public class StoreManager : MonoBehaviour, IBase
         }
     }
 
-    public Transform dishParent, customerParen, other;
-    [HideInInspector] public BaseDish[,] dishArray;
-    public const int MaxX = 5, MaxY = 5;
+    public Transform dishParent, customerParent, other;
+
+    [HideInInspector] public Shelf[,] shelves;
+    public const int MaxX = 4, MaxY = 4;
     public enum StoreSkill
     {
         AddCustomer = 0,    //招揽一定数量顾客
@@ -35,19 +36,20 @@ public class StoreManager : MonoBehaviour, IBase
         if(PlayerData.Level == 0)
         {
             PlayerData.Level++;
-            PlayerData.AddDishCard(101, 1);
-            PlayerData.AddDishCard(201, 1);
+            //PlayerData.AddDishCard(101, 1);
+            //PlayerData.AddDishCard(201, 1);
             StoreUpgrade();
         }
-        dishArray = new BaseDish[MaxX, MaxY];
-        int[,] dishLocation = PlayerData.GetDishLocation();
+        shelves = new Shelf[MaxX, MaxY];
         for(int i = 0; i < MaxX; i++)
             for(int j = 0; j < MaxX; j++)
             {
-                if(dishLocation[i, j] >= 0)
+                int index = i * MaxX + j;
+                PlayerShelfData shelfData = PlayerData.GetShelfData(index);
+                if (shelfData.level > 0)
                 {
-                    dishArray[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Dish")).GetComponent<BaseDish>();
-                    dishArray[i, j].Init(dishLocation[i, j]);
+                    shelves[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Shelf")).GetComponent<Shelf>();
+                    shelves[i, j].Init(index, shelfData);
                 }
             }
 
@@ -55,7 +57,7 @@ public class StoreManager : MonoBehaviour, IBase
 
     public void LogicUpdate()
     {
-        foreach(BaseDish dish in dishArray)
+        foreach(Shelf dish in shelves)
         {
             if(dish != null)
                 dish.LogicUpdate();
@@ -72,21 +74,22 @@ public class StoreManager : MonoBehaviour, IBase
     {
         //增加菜品货架
         GameStoreData data = GameData.store[PlayerData.Level];
-        int[,] dishLocation = PlayerData.GetDishLocation();
+
         if (data.shelf.Count > 0)
         {
             for(int i = 0; i < MaxX; i++)
                 for(int j = 0; j < MaxY; j++)
                 {
+                    int index = i * MaxX + j;
                     if (data.shelf.Contains(i * MaxX + j))
                     {
-                        dishLocation[i, j] = 0;
-                        dishArray[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Dish")).GetComponent<BaseDish>();
-                        dishArray[i, j].Init(dishLocation[i, j]);
+                        PlayerShelfData shelfData = PlayerData.GetShelfData(index);
+                        shelfData.level = 1;
+                        shelves[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Shelf")).GetComponent<Shelf>();
+                        shelves[i, j].Init(index, shelfData);
                     }
                 }
         }
-        PlayerData.SetDishLocation(dishLocation);
         //奖励
         PlayerData.Diamond += data.diamond;
         PlayerData.Solict += data.solict;
@@ -100,8 +103,8 @@ public class StoreManager : MonoBehaviour, IBase
 
     public void AddPower(int count = 1)
     {
-        if (PlayerData.Power + count > GameData.global.power.maxPower)
-            count = GameData.global.power.maxPower - PlayerData.Power;
+        if (PlayerData.Power + count > GameData.global.store.maxPower)
+            count = GameData.global.store.maxPower - PlayerData.Power;
         PlayerData.Power += count;
     }
 
@@ -119,7 +122,7 @@ public class StoreManager : MonoBehaviour, IBase
             case StoreSkill.SpeedUpCooking:
                 break;
         }
-        PlayerData.Power -= GameData.global.power.maxPower;
+        PlayerData.Power -= GameData.global.store.maxPower;
     }
 
     //一个顾客进店
@@ -128,12 +131,18 @@ public class StoreManager : MonoBehaviour, IBase
 
     }
 
-    //寻找顾客
-    public void FindCustomer(int count)
+    //手动招揽顾客
+    public void SolictCustomer()
     {
-        for(int i = 0; i < count; i++)
-        {
+        UIPanelManager.Instance.PushPanel(typeof(FindCustomerPanel));
+    }
 
-        }
+    /// <summary>
+    /// 自动招揽逻辑：
+    /// 只有店里的顾客少于一定比例才会自动招揽，详细待设计
+    /// </summary>
+    public void AutoSolict()
+    {
+
     }
 }

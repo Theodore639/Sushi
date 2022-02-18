@@ -78,7 +78,7 @@ public class MainPanel : BasePanel
                 StartCoroutine(ISetValue(diamondText, value, 5));
                 break;
             case CONST.POWER:
-                power.size = value * 1.0f / GameData.global.power.maxPower;
+                power.size = value * 1.0f / GameData.global.store.maxPower;
                 break;
             case CONST.SOLICT:
                 StartCoroutine(ISetValue(diamondText, value, 1));

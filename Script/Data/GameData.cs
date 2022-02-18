@@ -31,34 +31,32 @@ public static class GameData
 public struct GlobalData
 {
     public Dish dish;
-    public Power power;
-    public Common common;
+    public Store store;
 
     [Serializable]
     public struct Dish
     {
         public List<int> upgradeCount;//每升一级需要的卡牌数量
-        public List<int> maxLevel;//不同颜色菜品的最高等级
         public int upgradePrice; //升级消耗（金币)，每张卡牌
-        public int priceInc;//升级提升的售价比例
-        public List<int> stackCount;//每一级对应的堆叠数量
     }
     [Serializable]
-    public struct Power
+    public struct Store
     {
         public int solictCount;//招揽顾客技能招揽的个数
         public int addMood;//全场顾客增加心情
         public int doubleMoney;//双倍金币持续时间（分钟）
         public int maxPower;//触发技能需要的能量
+        public int maxSolict;//最大招揽能量个数
+        public int solictTime;//招揽能量基础回复时间（分钟）
+        public int incomeVIP;//每个会员每小时收益
+        public int incomeMaxTime;//会员收益最大时间（小时）
+        public int expPrice; //每多少金币换取1点商店经验
     }
 
     [Serializable]
     public struct Common
     {
-        public int maxSolict;//最大招揽能量个数
-        public int solictTime;//招揽能量基础回复时间（分钟）
-        public int incomeVIP;//每个会员每小时收益
-        public int incomeMaxTime;//会员收益最大时间（小时）
+        
     }
 }
 
@@ -104,17 +102,15 @@ public struct GameDishData
 public struct GameStoreData
 {
     public int id;
-    public int exp;
-    public int diamond;
-    public int solict;
-    public int dish;
-    public int maxCustomer, maxCustomerPrice;
-    public int maxVIP, maxVIPPrice;
-    public int customerMoney, customerMoneyPrice;
-    public List<int> shelf;
+    public int exp;//升级要求经验
+    public int diamond, solict, dish;//升级奖励：钻石、招揽能量、菜品卡牌
+    public List<int> shelf;//升级奖励：解锁的货架编号
+    public int maxCustomer, maxCustomerPrice;//最大容纳顾客数量，以及升级价格
+    public int maxVIP, maxVIPPrice;//最大容纳会员数量，以及升级价格
+    public int customerMoney, customerMoneyPrice;//顾客初始金币，以及升级价格
 }
 
-[Serializable]//商店等级数据
+[Serializable]//顾客数据
 public struct GameCustomerData
 {
     public int id;
@@ -125,12 +121,22 @@ public struct GameCustomerData
     public int bread, juice, sushi, icecream;//不同种类的菜品偏好度
 }
 
-[Serializable]//商店等级数据
+[Serializable]//成就数据
 public struct GameAchievementData
 {
     public int id;
     public string name, des;
     public List<int> requireParams, rewardParams;
+}
+
+[Serializable]//货架等级数据
+public struct GameShelfData
+{
+    public int level;
+    public int upgradePrice;
+    public int speedInc, speedIncPrice;
+    public int stack, stackPrice;
+    public int priceInc, priceIncPrice;
 }
 
 #endregion

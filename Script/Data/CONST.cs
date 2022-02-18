@@ -13,4 +13,6 @@ public static class CONST
     public const int SOLICTEXTRA = 6;
     public const int VIP = 7;
     public const int TIPS = 8;
+
+    public const int ARCHIEVEMENT = 500;//³É¾ÍÇ°×º
 }

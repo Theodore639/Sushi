@@ -16,12 +16,12 @@ public class DishPanel : SubPanel
         redPoint.Hide();
         foreach (GameDishData dishData in GameData.dishes)
         {
-            if (PlayerData.GetDishCardLevel(dishData.id) > 0)
-            {
-                GameObject dish = (GameObject)Instantiate(Resources.Load("PrefabUI/Dish"), dishes);
-                dishIndexList.Add(dishData.id);
-                dish.name = dishData.id.ToString();
-            }
+            //if (PlayerData.GetDishCardLevel(dishData.id) > 0)
+            //{
+            //    GameObject dish = (GameObject)Instantiate(Resources.Load("PrefabUI/Dish"), dishes);
+            //    dishIndexList.Add(dishData.id);
+            //    dish.name = dishData.id.ToString();
+            //}
         }
         Timer.Schedule(this, 0.1f, () => {
             foreach (int id in dishIndexList)
@@ -32,21 +32,22 @@ public class DishPanel : SubPanel
     public void UpdateDish(int index)
     {
         Transform dish = dishes.Find(index.ToString());
-        GameDishData dishData = GameData.dishes.Find(delegate (GameDishData data) { return data.id == index; });
+        GameDishData gameDishData = GameData.dishes.Find(delegate (GameDishData data) { return data.id == index; });
+        PlayerDishData playerDishData = PlayerData.GetDishData(index);
         if (dish == null)
         {
             Debug.Log("DishPanel UpdateDish error, cannot find index " + index.ToString());
             return;
         }
-        dish.Find("Name").GetComponent<Text>().text = LocalizationManager.GetTranslation(dishData.name);
+        dish.Find("Name").GetComponent<Text>().text = LocalizationManager.GetTranslation(gameDishData.name);
         dish.Find("Image").GetComponent<Image>().sprite = ResourcesCenter.GetDishSprite(index);
-        dish.Find("Level").GetComponent<Text>().text = "Lv " + PlayerData.GetDishCardLevel(index).ToString();
+        dish.Find("Level").GetComponent<Text>().text = "Lv " + playerDishData.level.ToString();
         
         dish.Find("Count").GetComponent<RedPoint>().SetParent(redPoint);
-        if (PlayerData.GetDishCardCount(index) > 0)
+        if (playerDishData.cardCount > 0)
         {
             dish.Find("Count").GetComponent<RedPoint>().Show();
-            dish.Find("Count/Text").GetComponent<Text>().text = PlayerData.GetDishCardCount(index).ToString();
+            dish.Find("Count/Text").GetComponent<Text>().text = playerDishData.cardCount.ToString();
         }
         else
         {

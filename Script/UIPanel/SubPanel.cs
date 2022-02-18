@@ -5,17 +5,19 @@ using UnityEngine;
 public class SubPanel : MonoBehaviour
 {
     public GameObject bg;
-    public bool isActive;
+    public bool isShow;
     public MainPanel.MainSubPanel subPanelType;
 
+    //激活Panel，在MainPanel中显示
     public virtual void Active() 
     {
-        isActive = true;
+        isShow = true;
     }
 
+    //去激活Panel，隐藏，但实体存在
     public virtual void Deactive() 
     {
-        isActive = false;
+        isShow = false;
     }
 
     public virtual void Tick() { }
