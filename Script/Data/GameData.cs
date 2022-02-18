@@ -5,14 +5,13 @@ using System;
 
 public static class GameData
 {
-    public const int Level = 0, EXP = 1, MONEY = 2, DIAMOND = 3, POWER = 4, SOLICT = 5, SOLICTEXTRA = 6, VIP = 7, TIPS = 8;
     static public GlobalData global;
     static public List<GameDishData> dishes;
     static public List<GameEquipData> equips;
     static public List<GameBoxData> boxes;
-    static public List<GameLevelData> levels;
+    static public List<GameStoreData> store;
     static public List<GameCustomerData> customers;
-    static public List<GameSkillData> skills;
+    static public List<GameAchievementData> achievements;
 
     public static void InitGameData()
     {
@@ -21,9 +20,9 @@ public static class GameData
         dishes = asset.dishes;
         equips = asset.equips;
         boxes = asset.boxes;
-        levels = asset.levels;
+        store = asset.store;
         customers = asset.customers;
-        skills = asset.skills;
+        achievements = asset.achievements;
     }
 }
 
@@ -33,6 +32,8 @@ public struct GlobalData
 {
     public Dish dish;
     public Power power;
+    public Common common;
+
     [Serializable]
     public struct Dish
     {
@@ -49,6 +50,15 @@ public struct GlobalData
         public int addMood;//全场顾客增加心情
         public int doubleMoney;//双倍金币持续时间（分钟）
         public int maxPower;//触发技能需要的能量
+    }
+
+    [Serializable]
+    public struct Common
+    {
+        public int maxSolict;//最大招揽能量个数
+        public int solictTime;//招揽能量基础回复时间（分钟）
+        public int incomeVIP;//每个会员每小时收益
+        public int incomeMaxTime;//会员收益最大时间（小时）
     }
 }
 
@@ -71,8 +81,7 @@ public struct GameBoxData
     public int time;//开箱时间  分钟
     public int rate;
     public int money;
-    public int white, green, blue, purple;
-    public int goldIndex, goldCount;//限定卡牌的id和数量
+    public int green, blue, purple, gold;//不同颜色卡牌数量
 }
 
 [Serializable]//菜品数据
@@ -83,24 +92,26 @@ public struct GameDishData
     public string des;
     public ItemColor color;
     public DishType type;
-    public int price;
+    public List<int> priceList;
+    public List<int> skillParams;
     public float time;
     public int requireLevel;
-    public int food, water, mood;
-    public List<int> skillList;
+    public float mood;
     public int rareValue;    
 }
 
 [Serializable]//商店等级数据
-public struct GameLevelData
+public struct GameStoreData
 {
     public int id;
     public int exp;
     public int diamond;
     public int solict;
     public int dish;
-    public int maxCustomer;
-    public int maxVIP;
+    public int maxCustomer, maxCustomerPrice;
+    public int maxVIP, maxVIPPrice;
+    public int customerMoney, customerMoneyPrice;
+    public List<int> shelf;
 }
 
 [Serializable]//商店等级数据
@@ -110,17 +121,16 @@ public struct GameCustomerData
     public string name;
     public int requireLevel;
     public int rate;
-    public CustomerType type;
-    public int baseMood, maxFood, maxWater;
+    public int isRare;
+    public int bread, juice, sushi, icecream;//不同种类的菜品偏好度
 }
 
 [Serializable]//商店等级数据
-public struct GameSkillData
+public struct GameAchievementData
 {
     public int id;
     public string name, des;
-    public DishSkillType type;
-    public List<int> paramList;
+    public List<int> requireParams, rewardParams;
 }
 
 #endregion

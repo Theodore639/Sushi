@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
                 if (tickTime >= TICK_TIME)
                 {
                     tickTime -= TICK_TIME;
-                    MainPanel.Instance.Tick();
+                    UIPanelManager.Instance.Tick();
                 }
             }
         }

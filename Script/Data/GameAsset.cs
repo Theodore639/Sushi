@@ -9,7 +9,7 @@ public class GameAsset : ScriptableObject
     public List<GameDishData> dishes;
     public List<GameEquipData> equips;
     public List<GameBoxData> boxes;
-    public List<GameLevelData> levels;
+    public List<GameStoreData> store;
     public List<GameCustomerData> customers;
-    public List<GameSkillData> skills;
+    public List<GameAchievementData> achievements;
 }

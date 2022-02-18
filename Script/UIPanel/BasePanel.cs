@@ -108,4 +108,9 @@ public class BasePanel : MonoBehaviour
     {
         UIPanelManager.Instance.HidePopPanel();
     }
+
+    public virtual void Tick()
+    {
+
+    }
 }

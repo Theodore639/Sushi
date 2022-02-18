@@ -20,7 +20,6 @@ public class StoreManager : MonoBehaviour, IBase
 
     public Transform dishParent, customerParen, other;
     [HideInInspector] public BaseDish[,] dishArray;
-    [HideInInspector] public int curentLevel;
     public const int MaxX = 5, MaxY = 5;
     public enum StoreSkill
     {
@@ -32,6 +31,14 @@ public class StoreManager : MonoBehaviour, IBase
 
     public void Init(params object[] list)
     {
+        //首次进入初始化操作
+        if(PlayerData.Level == 0)
+        {
+            PlayerData.Level++;
+            PlayerData.AddDishCard(101, 1);
+            PlayerData.AddDishCard(201, 1);
+            StoreUpgrade();
+        }
         dishArray = new BaseDish[MaxX, MaxY];
         int[,] dishLocation = PlayerData.GetDishLocation();
         for(int i = 0; i < MaxX; i++)
@@ -43,6 +50,7 @@ public class StoreManager : MonoBehaviour, IBase
                     dishArray[i, j].Init(dishLocation[i, j]);
                 }
             }
+
     }
 
     public void LogicUpdate()
@@ -57,6 +65,37 @@ public class StoreManager : MonoBehaviour, IBase
     public void AnimationUpdate()
     {
 
+    }
+
+    //店铺升级
+    public void StoreUpgrade()
+    {
+        //增加菜品货架
+        GameStoreData data = GameData.store[PlayerData.Level];
+        int[,] dishLocation = PlayerData.GetDishLocation();
+        if (data.shelf.Count > 0)
+        {
+            for(int i = 0; i < MaxX; i++)
+                for(int j = 0; j < MaxY; j++)
+                {
+                    if (data.shelf.Contains(i * MaxX + j))
+                    {
+                        dishLocation[i, j] = 0;
+                        dishArray[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Dish")).GetComponent<BaseDish>();
+                        dishArray[i, j].Init(dishLocation[i, j]);
+                    }
+                }
+        }
+        PlayerData.SetDishLocation(dishLocation);
+        //奖励
+        PlayerData.Diamond += data.diamond;
+        PlayerData.Solict += data.solict;
+
+        //弹升级界面
+        if(PlayerData.Level > 1)
+        {
+
+        }
     }
 
     public void AddPower(int count = 1)

@@ -7,12 +7,6 @@ using UnityEngine;
 /// </summary>
 public class ShopPanel : SubPanel
 {
-    public void CreateGoods()
-    {
-        int seed = RandomHelper.CreateSeed();
-        //int lucky = PlayerData.GetItemData(GameData.LUCKY);
-    }
-
     public void OnBuyDiamondClick(int index)
     {
         int count = 0;
@@ -37,7 +31,7 @@ public class ShopPanel : SubPanel
                 count = 6000;
                 break;
         }
-        PlayerData.AddItemData(GameData.DIAMOND, count);
+        PlayerData.AddItemData(CONST.DIAMOND, count);
     }
 
     public override void Deactive()

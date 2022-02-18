@@ -204,6 +204,14 @@ public class UIPanelManager
         }
     }
 
+    public void Tick()
+    {
+        foreach(BasePanel panel in panelStack)
+        {
+            panel.Tick();
+        }
+    }
+
     /// <summary>
     /// 获取panel堆栈顶部的panel
     /// </summary>

@@ -17,6 +17,7 @@ public static class PlayerData
             SetValue(id.ToString(), EncriptInt(value));
         else
             SetValue(id.ToString(), value);
+        MainPanel.Instance.SetValue(id, GetItemData(id) + value);
     }
 
     public static int GetItemData(int id)
@@ -48,78 +49,48 @@ public static class PlayerData
     #region BaseParam 基础参数
     public static int Money
     {
-        set
-        {
-            SetItemData(GameData.MONEY, value);
-            MainPanel.Instance.SetValue(GameData.MONEY, GetItemData(GameData.MONEY));
-        }
-        get { return GetItemData(GameData.MONEY);}
+        set { SetItemData(CONST.MONEY, value); }
+        get { return GetItemData(CONST.MONEY); }
     }
     public static int Diamond
     {
-        set
-        {
-            SetItemData(GameData.DIAMOND, value);
-            MainPanel.Instance.SetValue(GameData.DIAMOND, GetItemData(GameData.DIAMOND));
-        }
-        get { return GetItemData(GameData.DIAMOND); }
+        set { SetItemData(CONST.DIAMOND, value); }
+        get { return GetItemData(CONST.DIAMOND); }
+    }
+    public static int Level
+    {
+        set { SetItemData(CONST.LEVEL, value); }
+        get { return GetItemData(CONST.MONEY); }
     }
     public static int Exp
     {
         set 
         {
-            SetItemData(GameData.EXP, value);
-            MainPanel.Instance.SetValue(GameData.EXP, GetItemData(GameData.EXP));
+            int exp = value;
+            if(exp >= GameData.store[Level].exp)
+            {
+                exp -= GameData.store[Level].exp;
+                Level++;
+                StoreManager.Instance.StoreUpgrade();
+            }
+            SetItemData(CONST.EXP, exp);
         }
-        get { return GetItemData(GameData.EXP); }
+        get { return GetItemData(CONST.EXP); }
     }
     public static int Power
     {
-        set 
-        { 
-            SetItemData(GameData.POWER, value); 
-            MainPanel.Instance.SetValue(GameData.POWER, GetItemData(GameData.POWER)); 
-        }
-        get { return GetItemData(GameData.POWER); }
+        set { SetItemData(CONST.POWER, value); }
+        get { return GetItemData(CONST.POWER); }
     }
     public static int Solict
     {
-        set
-        {
-            SetItemData(GameData.SOLICT, value);
-            MainPanel.Instance.SetValue(GameData.SOLICT, GetItemData(GameData.SOLICT));
-        }
-        get { return GetItemData(GameData.SOLICT); }
+        set { SetItemData(CONST.SOLICT, value); }
+        get { return GetItemData(CONST.SOLICT); }
     }
-
     public static int SolictExtra
     {
-        set
-        {
-            SetItemData(GameData.SOLICTEXTRA, value);
-            MainPanel.Instance.SetValue(GameData.SOLICTEXTRA, GetItemData(GameData.SOLICTEXTRA));
-        }
-        get { return GetItemData(GameData.SOLICTEXTRA); }
-    }
-
-    public static int Vip
-    {
-        set
-        {
-            SetItemData(GameData.VIP, value);
-            MainPanel.Instance.SetValue(GameData.VIP, GetItemData(GameData.VIP));
-        }
-        get { return GetItemData(GameData.VIP); }
-    }
-
-    public static int Tips
-    {
-        set
-        {
-            SetItemData(GameData.TIPS, value);
-            MainPanel.Instance.SetValue(GameData.TIPS, GetItemData(GameData.TIPS));
-        }
-        get { return GetItemData(GameData.TIPS); }
+        set { SetItemData(CONST.SOLICTEXTRA, value); }
+        get { return GetItemData(CONST.SOLICTEXTRA); }
     }
 
     #endregion
@@ -159,13 +130,12 @@ public static class PlayerData
     }
 
     //获取和保存菜品在商店中的摆放位置
-    public static void SetDishLocation(BaseDish[,] dishArray)
+    public static void SetDishLocation(int[,] dishArray)
     {
         string result = "";
-        foreach(BaseDish dish in dishArray)
-        {
-            result += dish.dishData.id + "_" + dish.x + "_" + dish.y + "!";
-        }
+        for (int i = 0; i < dishArray.GetLength(0); i++)
+            for (int j = 0; j < dishArray.GetLength(1); j++)
+                result += dishArray[i, j] + ",";
         SetValue("DishArray", result);
     }
 
@@ -177,16 +147,13 @@ public static class PlayerData
         {
             for (int i = 0; i < StoreManager.MaxX; i++)
                 for (int j = 0; j < StoreManager.MaxY; j++)
-                    reslut += "-1_" + i + "_" + j + "!";            
+                    reslut += "-1,";
         }
-        string[] dishes = reslut.Split('!');
+        string[] dishes = reslut.Split(',');
         int[,] dishArray = new int[StoreManager.MaxX, StoreManager.MaxY];
-        foreach(string dish in dishes)
-        {
-            string[] value = dish.Split('_');
-            if(value.Length == 3)
-                dishArray[int.Parse(value[1]), int.Parse(value[2])] = int.Parse(value[0]);
-        }
+        for (int i = 0; i < dishArray.GetLength(0); i++)
+            for (int j = 0; j < dishArray.GetLength(1); j++)
+                dishArray[i, j] = int.Parse(dishes[i * StoreManager.MaxX + j]);
         return dishArray;
     }
     #endregion

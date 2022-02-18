@@ -53,7 +53,7 @@ public class MainPanel : BasePanel
         }
     }
 
-    public void Tick()
+    public override void Tick()
     {
         foreach (KeyValuePair<MainSubPanel, SubPanel> kv in subPanels)
         {
@@ -65,20 +65,25 @@ public class MainPanel : BasePanel
     {
         switch (index)
         {
-            case GameData.EXP:
+            case CONST.LEVEL:
+                levelText.text = value.ToString();
+                break;
+            case CONST.EXP:
                 StartCoroutine(ISetValue(expText, value, 6));
                 break;
-            case GameData.MONEY:
+            case CONST.MONEY:
                 StartCoroutine(ISetValue(moneyText, value, 10));
                 break;
-            case GameData.DIAMOND:
+            case CONST.DIAMOND:
                 StartCoroutine(ISetValue(diamondText, value, 5));
                 break;
-            case GameData.POWER:
+            case CONST.POWER:
                 power.size = value * 1.0f / GameData.global.power.maxPower;
                 break;
-            case GameData.SOLICT:
+            case CONST.SOLICT:
                 StartCoroutine(ISetValue(diamondText, value, 1));
+                break;
+            default:
                 break;
         }
     }

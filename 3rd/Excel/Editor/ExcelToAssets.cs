@@ -20,11 +20,10 @@ namespace Excel.Editor
             "Equip",
             "Dish",
             "Customer",
-            "Skill",
             "Task",
             "Achievement",
             "NewGuide",
-            "Level",
+            "Store",
             "Box",
         };
 
@@ -61,23 +60,23 @@ namespace Excel.Editor
                         yield return LoadGlobalData(result.Tables[i], gameAsset.global,
                             (data) => { gameAsset.global = (GlobalData)data; });
                         break;
-                    case "Equip":
-                        yield return LoadData(result.Tables[i], gameAsset.equips);
-                        break;
+                    //case "Equip":
+                    //    yield return LoadData(result.Tables[i], gameAsset.equips);
+                    //    break;
                     case "Dish":
                         yield return LoadData(result.Tables[i], gameAsset.dishes);
                         break;
                     case "Customer":
                         yield return LoadData(result.Tables[i], gameAsset.customers);
                         break;
-                    case "Level":
-                        yield return LoadData(result.Tables[i], gameAsset.levels);
+                    case "Store":
+                        yield return LoadData(result.Tables[i], gameAsset.store);
                         break;
                     case "Boxes":
                         yield return LoadData(result.Tables[i], gameAsset.boxes);
                         break;
-                    case "Skill":
-                        yield return LoadData(result.Tables[i], gameAsset.skills);
+                    case "Achievement":
+                        yield return LoadData(result.Tables[i], gameAsset.achievements);
                         break;
                     case "Box":
                         yield return LoadData(result.Tables[i], gameAsset.boxes);
