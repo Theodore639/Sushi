@@ -7,6 +7,18 @@ using UnityEngine;
 /// </summary>
 public static class Observer
 {
+    //顾客进店
+    public static void AddCustomer(BaseCustomer customer)
+    {
+
+    }
+
+    //顾客离开
+    public static void CustomerLeave(BaseCustomer customer)
+    {
+
+    }
+
     //卖出一个菜品
     public static void SellDish(BaseCustomer customer, BaseDish dish)
     {
@@ -19,8 +31,8 @@ public static class Observer
 
     }
 
-    //使用一个全局技能
-    public static void UsePowerSkill(int index)
+    //使用一个商店技能
+    public static void UseStoreSkill(int index)
     {
 
     }

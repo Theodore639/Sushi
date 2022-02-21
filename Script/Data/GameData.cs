@@ -32,12 +32,14 @@ public struct GlobalData
 {
     public Dish dish;
     public Store store;
+    public Challenge challenge;
+    public Customer customer;
 
     [Serializable]
     public struct Dish
     {
         public List<int> upgradeCount;//每升一级需要的卡牌数量
-        public int upgradePrice; //升级消耗（金币)，每张卡牌
+        public List<int> upgradePrice; //不同颜色升级消耗，每张卡牌
     }
     [Serializable]
     public struct Store
@@ -54,9 +56,28 @@ public struct GlobalData
     }
 
     [Serializable]
+    public struct Challenge
+    {
+        public int unlockLevel;//挑战解锁等级
+        public int basePoint;//每出售一个物品的基础分数
+        public List<int> cardCount;//挑战奖励卡牌数量       
+        public List<int> requirePoint; //完成挑战需要的分数
+    }
+
+
+    [Serializable]
+    public struct Customer
+    {
+        public int initRate;//顾客初始购买欲望
+        public int buyRate;//每买一个商品下降的购买欲望
+        public int moodRate;//每1点好感度增加的购买欲望
+        public int maxMood;//心情上限
+    }
+
+    [Serializable]
     public struct Common
     {
-        
+
     }
 }
 
@@ -154,49 +175,13 @@ public enum DishType
     All = 1000,
 }
 
-//动物类型  
-public enum CustomerType
-{
-    Rabbit = 0,
-    Cat = 1,
-    Dog = 2,
-    Bear = 3,
-    Speacial = 4,
-}
-
 //颜色等级
 public enum ItemColor
 {
-    White = 0,
-    Green = 1,
-    Blue = 2,
-    Purple = 3,
-    Gold = 4,
+    Green = 0,
+    Blue = 1,
+    Purple = 2,
+    Gold = 3,
 }
 
-//菜品技能作用范围
-public enum DishSkillType
-{
-    BuyCake,
-    BuyJuice,
-    BuySushi,
-    BuyIcecream,
-    RowInc,//整排涨价
-    ColoumInc,//整列涨价
-    GridInc,//3*3格子涨价
-    AllInc,//全部涨价
-    AllSpeedUp,//全部加速
-    CakeInc,//所有蛋糕涨价
-    JuiceInc,//所有果汁涨价
-    SushiInc,//所有寿司涨价
-    IcecreamInc,//所有冰淇淋涨价
-    CakeSpeedUp,//所有蛋糕加速
-    JuiceSpeedUp,//所有果汁加速
-    SushiSpeedUp,//所有寿司加速
-    IcecreamSpeedUp,//所有冰淇淋加速
-    SelfInc,//自身永久涨价
-    ExtraPay,//额外支付金币
-    AddCustomer,//额外招揽顾客
-    AddPower,//额外加能量
-}
 #endregion

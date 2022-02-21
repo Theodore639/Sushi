@@ -4,19 +4,9 @@ using UnityEngine;
 
 public class BaseCustomer : MonoBehaviour, IBase
 {
-    public int seed;//随机种子
-    public int index;//顾客编号
-    public int food;//食物
-    public int water;//水分
-    public int mood;//心情
-
-    private int maxFood;//食物上限
-    private int maxWater;//水分上限
-    private const int maxMood = 100;//心情上限
+    public PlayerCustomerData playerCustomerData;
+    public GameCustomerData gameCustomerData;
     public CustomerState state;
-    public List<DishType> favorateDishes;//偏好的菜品类型
-    public float buyRate;//购买菜品的概率
-    private float tempRate;//如果上一个菜品有购买技能，则计算tempRate
 
     public enum CustomerState
     {
@@ -29,14 +19,8 @@ public class BaseCustomer : MonoBehaviour, IBase
 
     public void Init(params object[] list)
     {
-        seed = (int)list[0];
-        buyRate = 1.0f;
-        tempRate = 0;
-        //通过seed从计算index，
-
-        //通过index计算GameData获取食物和水分上限，赋值
-
-        //通过现有成就数值初始化mood
+        playerCustomerData = (PlayerCustomerData)list[0];
+        gameCustomerData = GameData.customers.Find(delegate (GameCustomerData d) { return d.id == playerCustomerData.index; });
 
         //顾客进店
         state = CustomerState.LookFor;
@@ -62,7 +46,7 @@ public class BaseCustomer : MonoBehaviour, IBase
 
     public void BuyDish(BaseDish dish)
     {
-        buyRate -= 0.3f;
+        playerCustomerData.rate -= GameData.global.customer.buyRate;
         //if(dish.dishData.skillList.Contains())
         //{
             
@@ -71,24 +55,10 @@ public class BaseCustomer : MonoBehaviour, IBase
     }
 
     /// <summary>
-    /// 计算真实点菜概率
-    /// 初始概率100%，每随机到一个喜好加20%，点了该类型的喜好菜品后，20%加成消失。
-    /// 每点心情加1%，每1点缺少的饥饿度和饥渴度加1%
-    /// 每点1个菜，减30%
-    /// 每点1个菜，如果该菜品有增加概率的技能，直接加上概率，仅一次
-    /// </summary>
-    /// <returns></returns>
-    private float GetBuyRate()
-    {
-        float result = buyRate;
-        result += favorateDishes.Count * 0.2f;
-        result += (mood + (maxFood - food) + (maxWater - water)) * 0.01f;
-        return result;
-    }
-
-    /// <summary>
     /// 计算点具体哪一个菜品
-    /// 考虑喜好、种类加成、已完成制作数量等因素
+    /// 先根据偏好随机出种类
+    /// 再根据金币数量排除金币不够的菜品
+    /// 再根据已完成数量随机选择一个
     /// </summary>
     /// <returns></returns>
     private int GetOrderDishIndex()

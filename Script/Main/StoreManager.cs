@@ -21,6 +21,7 @@ public class StoreManager : MonoBehaviour, IBase
     public Transform dishParent, customerParent, other;
 
     [HideInInspector] public Shelf[,] shelves;
+    public GameStoreData stroeData;
     public const int MaxX = 4, MaxY = 4;
     public enum StoreSkill
     {
@@ -40,6 +41,7 @@ public class StoreManager : MonoBehaviour, IBase
             //PlayerData.AddDishCard(201, 1);
             StoreUpgrade();
         }
+        stroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.id == PlayerData.Level; });
         shelves = new Shelf[MaxX, MaxY];
         for(int i = 0; i < MaxX; i++)
             for(int j = 0; j < MaxX; j++)
@@ -69,12 +71,14 @@ public class StoreManager : MonoBehaviour, IBase
 
     }
 
+    #region 店铺自身功能，升级&技能等
     //店铺升级
     public void StoreUpgrade()
-    {
-        //增加菜品货架
-        GameStoreData data = GameData.store[PlayerData.Level];
+    {        
+        UpdateCustomerList();
 
+        //增加菜品货架
+        GameStoreData data = GameData.store.Find(delegate (GameStoreData sData) { return sData.id == PlayerData.Level; });
         if (data.shelf.Count > 0)
         {
             for(int i = 0; i < MaxX; i++)
@@ -90,14 +94,11 @@ public class StoreManager : MonoBehaviour, IBase
                     }
                 }
         }
-        //奖励
-        PlayerData.Diamond += data.diamond;
-        PlayerData.Solict += data.solict;
 
         //弹升级界面
         if(PlayerData.Level > 1)
         {
-
+            UIPanelManager.Instance.PushPanel(typeof(StoreUpgradePanel), data);
         }
     }
 
@@ -125,8 +126,70 @@ public class StoreManager : MonoBehaviour, IBase
         PlayerData.Power -= GameData.global.store.maxPower;
     }
 
+    #endregion
+
+    #region 顾客相关
+    
+    private List<int> normalCustomerList, normalRate;
+    private List<int> rareCustomerList, rateRate;
+
+    //随机获得一个顾客index
+    private int GetRandomCustomer(bool isRare)
+    {
+        if (isRare)
+            return rareCustomerList[RandomHelper.GetRandomId(rateRate)];
+        else
+            return normalCustomerList[RandomHelper.GetRandomId(normalRate)];
+    }
+
+    //更新普通顾客和稀有顾客列表
+    private void UpdateCustomerList()
+    {
+        normalCustomerList = new List<int>();
+        rareCustomerList = new List<int>();
+        foreach (GameCustomerData cData in GameData.customers)
+        {
+            if (cData.requireLevel <= PlayerData.Level)
+            {
+                if (cData.isRare == 0)
+                {
+                    normalCustomerList.Add(cData.id);
+                    normalRate.Add(cData.rate);
+                }
+                else
+                {
+                    rareCustomerList.Add(cData.id);
+                    rateRate.Add(cData.rate);
+                }
+            }
+        }
+    }
+
+    //生成一个顾客的数据
+    public PlayerCustomerData CreateCustomer()
+    {
+        PlayerCustomerData pData = new PlayerCustomerData();
+        //稀有顾客
+        bool isRare = PlayerData.GetArchievementRewardValue(2) > Random.Range(0, 100);
+
+        //生成顾客编号、心情、初始金币，计算购买欲望
+        pData.index = GetRandomCustomer(isRare);
+        pData.mood = Random.Range(0, 3) + PlayerData.GetArchievementRewardValue(13);
+        int customerMoney = stroeData.customerMoney;
+        pData.money = Random.Range(customerMoney, customerMoney * 3) * (PlayerData.GetArchievementRewardValue(6) + 100) / 100;
+        pData.rate = GameData.global.customer.initRate + pData.mood * GameData.global.customer.moodRate;
+
+        return pData;
+    }
+
     //一个顾客进店
-    public void AddCustomer(BaseCustomer customer)
+    public void AddCustomer(PlayerCustomerData pData)
+    {
+
+    }
+
+    //多个顾客进店
+    public void AddCustomer(List<PlayerCustomerData> pData)
     {
 
     }
@@ -145,4 +208,6 @@ public class StoreManager : MonoBehaviour, IBase
     {
 
     }
+
+    #endregion
 }

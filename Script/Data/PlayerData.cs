@@ -114,7 +114,7 @@ public static class PlayerData
         }
         catch (Exception e)
         {
-            LogManager.ShowLog("GetDishData Error, index =" + index + " reason = " + e.ToString(), true);
+            LogCenter.ShowLog("GetDishData Error, index =" + index + " reason = " + e.ToString(), true);
         }
         return dishData;
     }
@@ -143,21 +143,34 @@ public static class PlayerData
         }
         catch(Exception e)
         {
-            LogManager.ShowLog("GetShelfData Error, index =" + index + " reason = " + e.ToString(), true);
+            LogCenter.ShowLog("GetShelfData Error, index =" + index + " reason = " + e.ToString(), true);
         }
         return shelfData;
     }
     #endregion
 
     #region TaskArchievement 各种任务成就相关数据
-    public static void SetAichievementData(int index, int value)
+    //设置成就的值和等级
+    public static void SetArchievementData(int index, int value, int level)
     {
         SetItemData(CONST.ARCHIEVEMENT + index, value);
+        SetItemData(CONST.ARCHIEVEMENT_LEVEL + index, level);
     }
-
-    public static int GetAichievementData(int index)
+    //获得成就的值
+    public static int GetArchievementData(int index)
     {
         return GetItemData(CONST.ARCHIEVEMENT + index);
+    }
+    //获得成就的等级
+    public static int GetArchievementLevel(int index)
+    {
+        return GetItemData(CONST.ARCHIEVEMENT_LEVEL + index);
+    }
+    //获得成就当前等级增益的值
+    public static int GetArchievementRewardValue(int index)
+    {
+        return GameData.achievements.Find(delegate (GameAchievementData data) 
+        { return data.id == index; }).rewardParams[GetArchievementLevel(index)];
     }
 
     #endregion
@@ -187,8 +200,8 @@ public static class PlayerData
 
     }
 
-    static List<string> intKeys;//保存所有int型的key
-    static List<string> stringKeys;//保存所有string型的key
+    static List<string> intKeys = new List<string>();//保存所有int型的key
+    static List<string> stringKeys = new List<string>();//保存所有string型的key
 
     static int[] box = new int[] {17, -13, 401, -349, 49681, -38923, 7612589, -6198747};
     private static string EncriptInt(int value)
@@ -279,6 +292,12 @@ public struct PlayerShelfData
 
 public struct PlayerCustomerData
 {
-
+    public int index;
+    public int mood;
+    public int money;
+    public int rate;
+    //顾客buff离线时暂不考虑
 }
+
+
 #endregion

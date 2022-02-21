@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoreUpgradePanel : MonoBehaviour
+//商店升级界面，显示各种升级奖励
+public class StoreUpgradePanel : BasePanel
 {
-    // Start is called before the first frame update
-    void Start()
+    GameStoreData sData;
+    public override void OnEnter(params object[] list)
     {
-        
-    }
+        base.OnEnter(list);
+        sData = (GameStoreData)list[0];
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

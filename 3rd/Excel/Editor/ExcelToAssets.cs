@@ -293,11 +293,6 @@ namespace Excel.Editor
                         {
                             data = SetModelValue(field.Name, GetList(GetString(i, list[0])), data, type);
                         }
-                        else if (field.FieldType == typeof(CustomerType))
-                        {
-                            CustomerType ctype = (CustomerType)Enum.Parse(typeof(CustomerType), GetString(i, list[0]));
-                            data = SetModelValue(field.Name, ctype, data, type);
-                        }
                         else if (field.FieldType == typeof(DishType))
                         {
                             DishType cType = (DishType)Enum.Parse(typeof(DishType), GetString(i, list[0]));
@@ -306,11 +301,6 @@ namespace Excel.Editor
                         else if (field.FieldType == typeof(ItemColor))
                         {
                             ItemColor cType = (ItemColor)Enum.Parse(typeof(ItemColor), GetString(i, list[0]));
-                            data = SetModelValue(field.Name, cType, data, type);
-                        }
-                        else if (field.FieldType == typeof(DishSkillType))
-                        {
-                            DishSkillType cType = (DishSkillType)Enum.Parse(typeof(DishSkillType), GetString(i, list[0]));
                             data = SetModelValue(field.Name, cType, data, type);
                         }
                         else

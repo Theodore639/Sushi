@@ -14,26 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameAsset
   global:
     dish:
-      upgradeCount: 010000000200000004000000080000001000000020000000400000008000000000010000000200000004000000080000
-      maxLevel: 0c0000000a000000090000000800000007000000
-      upgradePrice: 100
-      priceInc: 15
-      stackCount: 0100000002000000020000000300000003000000030000000400000004000000040000000400000005000000
-    power:
-      solictCount: 20
-      addMood: 5
+      upgradeCount: 0100000002000000040000000800000010000000200000004000000080000000000100000002000000040000
+      upgradePrice: 320000005000000078000000c8000000
+    store:
+      solictCount: 10
+      addMood: 3
       doubleMoney: 10
       maxPower: 200
-    common:
       maxSolict: 10
       solictTime: 15
       incomeVIP: 10
       incomeMaxTime: 12
+      expPrice: 10
+    challenge:
+      unlockLevel: 5
+      basePoint: 4
+      cardCount: 030000000400000005000000060000000700000008000000090000000a000000
+      requirePoint: 88130000401f0000e02e0000
+    customer:
+      initRate: 100
+      buyRate: 25
+      moodRate: 15
+      maxMood: 10
   dishes:
   - id: 101
     name: DishName_101
     des: DishDes_101
-    color: 1
+    color: 0
     type: 0
     priceList: 
     skillParams: 
@@ -44,7 +51,7 @@ MonoBehaviour:
   - id: 102
     name: DishName_102
     des: DishDes_102
-    color: 1
+    color: 0
     type: 0
     priceList: 
     skillParams: 
@@ -55,7 +62,7 @@ MonoBehaviour:
   - id: 103
     name: DishName_103
     des: DishDes_103
-    color: 1
+    color: 0
     type: 0
     priceList: 
     skillParams: 
@@ -66,7 +73,7 @@ MonoBehaviour:
   - id: 104
     name: DishName_104
     des: DishDes_104
-    color: 1
+    color: 0
     type: 0
     priceList: 
     skillParams: 
@@ -77,18 +84,18 @@ MonoBehaviour:
   - id: 105
     name: DishName_105
     des: DishDes_105
-    color: 2
+    color: 1
     type: 0
     priceList: 
     skillParams: 
     time: 10
-    requireLevel: 5
+    requireLevel: 0
     mood: 0.5
     rareValue: 100
   - id: 106
     name: DishName_106
     des: DishDes_106
-    color: 2
+    color: 1
     type: 0
     priceList: 
     skillParams: 
@@ -99,7 +106,7 @@ MonoBehaviour:
   - id: 107
     name: DishName_107
     des: DishDes_107
-    color: 2
+    color: 1
     type: 0
     priceList: 
     skillParams: 
@@ -110,7 +117,7 @@ MonoBehaviour:
   - id: 108
     name: DishName_108
     des: DishDes_108
-    color: 3
+    color: 2
     type: 0
     priceList: 
     skillParams: 
@@ -121,7 +128,7 @@ MonoBehaviour:
   - id: 109
     name: DishName_109
     des: DishDes_109
-    color: 4
+    color: 3
     type: 0
     priceList: 
     skillParams: 
@@ -132,7 +139,7 @@ MonoBehaviour:
   - id: 201
     name: DishName_201
     des: DishDes_201
-    color: 1
+    color: 0
     type: 1
     priceList: 
     skillParams: 
@@ -143,7 +150,7 @@ MonoBehaviour:
   - id: 202
     name: DishName_202
     des: DishDes_202
-    color: 1
+    color: 0
     type: 1
     priceList: 
     skillParams: 
@@ -154,29 +161,29 @@ MonoBehaviour:
   - id: 203
     name: DishName_203
     des: DishDes_203
-    color: 1
+    color: 0
     type: 1
     priceList: 
     skillParams: 
     time: 40
-    requireLevel: 0
+    requireLevel: 5
     mood: 0
     rareValue: 100
   - id: 204
     name: DishName_204
     des: DishDes_204
-    color: 1
+    color: 0
     type: 1
     priceList: 
     skillParams: 
     time: 180
-    requireLevel: 0
+    requireLevel: 8
     mood: 0
     rareValue: 100
   - id: 205
     name: DishName_205
     des: DishDes_205
-    color: 2
+    color: 1
     type: 1
     priceList: 
     skillParams: 
@@ -187,29 +194,29 @@ MonoBehaviour:
   - id: 206
     name: DishName_206
     des: DishDes_206
-    color: 2
+    color: 1
     type: 1
     priceList: 
     skillParams: 
     time: 240
-    requireLevel: 0
+    requireLevel: 6
     mood: 0
     rareValue: 100
   - id: 207
     name: DishName_207
     des: DishDes_207
-    color: 2
+    color: 1
     type: 1
     priceList: 
     skillParams: 
     time: 600
-    requireLevel: 0
+    requireLevel: 8
     mood: 0
     rareValue: 100
   - id: 208
     name: DishName_208
     des: DishDes_208
-    color: 3
+    color: 2
     type: 1
     priceList: 
     skillParams: 
@@ -220,7 +227,7 @@ MonoBehaviour:
   - id: 209
     name: DishName_209
     des: DishDes_209
-    color: 4
+    color: 3
     type: 1
     priceList: 
     skillParams: 
@@ -231,7 +238,7 @@ MonoBehaviour:
   - id: 301
     name: DishName_301
     des: DishDes_301
-    color: 1
+    color: 0
     type: 2
     priceList: 
     skillParams: 
@@ -242,7 +249,7 @@ MonoBehaviour:
   - id: 302
     name: DishName_302
     des: DishDes_302
-    color: 1
+    color: 0
     type: 2
     priceList: 
     skillParams: 
@@ -253,29 +260,29 @@ MonoBehaviour:
   - id: 303
     name: DishName_303
     des: DishDes_303
-    color: 1
+    color: 0
     type: 2
     priceList: 
     skillParams: 
     time: 0
-    requireLevel: 0
+    requireLevel: 5
     mood: 0
     rareValue: 100
   - id: 304
     name: DishName_304
     des: DishDes_304
-    color: 1
+    color: 0
     type: 2
     priceList: 
     skillParams: 
     time: 0
-    requireLevel: 0
+    requireLevel: 8
     mood: 0
     rareValue: 100
   - id: 305
     name: DishName_305
     des: DishDes_305
-    color: 2
+    color: 1
     type: 2
     priceList: 
     skillParams: 
@@ -286,29 +293,29 @@ MonoBehaviour:
   - id: 306
     name: DishName_306
     des: DishDes_306
-    color: 2
+    color: 1
     type: 2
     priceList: 
     skillParams: 
     time: 0
-    requireLevel: 0
+    requireLevel: 6
     mood: 0
     rareValue: 100
   - id: 307
     name: DishName_307
     des: DishDes_307
-    color: 2
+    color: 1
     type: 2
     priceList: 1900000064000000c80000002c010000f4010000bc020000e8030000
     skillParams: 
     time: 60
-    requireLevel: 0
+    requireLevel: 8
     mood: 0
     rareValue: 100
   - id: 308
     name: DishName_308
     des: DishDes_308
-    color: 3
+    color: 2
     type: 2
     priceList: 
     skillParams: 
@@ -319,7 +326,7 @@ MonoBehaviour:
   - id: 309
     name: DishName_309
     des: DishDes_309
-    color: 4
+    color: 3
     type: 2
     priceList: 
     skillParams: 
@@ -330,7 +337,7 @@ MonoBehaviour:
   - id: 401
     name: DishName_401
     des: DishDes_401
-    color: 1
+    color: 0
     type: 3
     priceList: 
     skillParams: 
@@ -341,7 +348,7 @@ MonoBehaviour:
   - id: 402
     name: DishName_402
     des: DishDes_402
-    color: 1
+    color: 0
     type: 3
     priceList: 
     skillParams: 
@@ -352,29 +359,29 @@ MonoBehaviour:
   - id: 403
     name: DishName_403
     des: DishDes_403
-    color: 1
+    color: 0
     type: 3
     priceList: 
     skillParams: 
     time: 0
-    requireLevel: 0
+    requireLevel: 5
     mood: 0
     rareValue: 100
   - id: 404
     name: DishName_404
     des: DishDes_404
-    color: 1
+    color: 0
     type: 3
     priceList: 
     skillParams: 
     time: 0
-    requireLevel: 0
+    requireLevel: 8
     mood: 0
     rareValue: 100
   - id: 405
     name: DishName_405
     des: DishDes_405
-    color: 2
+    color: 1
     type: 3
     priceList: 
     skillParams: 
@@ -385,29 +392,29 @@ MonoBehaviour:
   - id: 406
     name: DishName_406
     des: DishDes_406
-    color: 2
+    color: 1
     type: 3
     priceList: 
     skillParams: 
     time: 0
-    requireLevel: 0
+    requireLevel: 6
     mood: 0
     rareValue: 100
   - id: 407
     name: DishName_407
     des: DishDes_407
-    color: 2
+    color: 1
     type: 3
     priceList: 
     skillParams: 
     time: 5
-    requireLevel: 0
+    requireLevel: 8
     mood: 0
     rareValue: 100
   - id: 408
     name: DishName_408
     des: DishDes_408
-    color: 3
+    color: 2
     type: 3
     priceList: 
     skillParams: 
@@ -418,7 +425,7 @@ MonoBehaviour:
   - id: 409
     name: DishName_409
     des: DishDes_409
-    color: 4
+    color: 3
     type: 3
     priceList: 
     skillParams: 
@@ -497,486 +504,486 @@ MonoBehaviour:
     diamond: 0
     solict: 0
     dish: 0
+    shelf: 0500000006000000
     maxCustomer: 10
     maxCustomerPrice: 0
     maxVIP: 0
     maxVIPPrice: 0
     customerMoney: 0
     customerMoneyPrice: 0
-    shelf: 0500000006000000
   - id: 2
     exp: 200
     diamond: 20
-    solict: 10
+    solict: 5
     dish: 0
+    shelf: 090000000a000000
     maxCustomer: 10
     maxCustomerPrice: 0
     maxVIP: 0
     maxVIPPrice: 0
     customerMoney: 0
     customerMoneyPrice: 0
-    shelf: 090000000a000000
   - id: 3
     exp: 400
     diamond: 20
-    solict: 10
+    solict: 5
     dish: 0
+    shelf: 
     maxCustomer: 11
     maxCustomerPrice: 2000
     maxVIP: 0
     maxVIPPrice: 0
     customerMoney: 50
     customerMoneyPrice: 0
-    shelf: 
   - id: 4
     exp: 800
     diamond: 20
-    solict: 10
+    solict: 5
     dish: 0
+    shelf: 0400000007000000080000000b000000
     maxCustomer: 11
     maxCustomerPrice: 0
     maxVIP: 10
     maxVIPPrice: 0
     customerMoney: 60
     customerMoneyPrice: 0
-    shelf: 0400000007000000080000000b000000
   - id: 5
     exp: 1600
     diamond: 20
-    solict: 10
+    solict: 5
     dish: 0
+    shelf: 
     maxCustomer: 12
     maxCustomerPrice: 4000
     maxVIP: 10
     maxVIPPrice: 0
     customerMoney: 70
     customerMoneyPrice: 0
-    shelf: 
   - id: 6
-    exp: 3000
+    exp: 4800
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 00000000010000000200000003000000
     maxCustomer: 12
     maxCustomerPrice: 0
     maxVIP: 10
     maxVIPPrice: 0
     customerMoney: 80
     customerMoneyPrice: 0
-    shelf: 00000000010000000200000003000000
   - id: 7
-    exp: 5500
+    exp: 6700
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 13
     maxCustomerPrice: 8000
     maxVIP: 20
     maxVIPPrice: 0
     customerMoney: 90
     customerMoneyPrice: 0
-    shelf: 
   - id: 8
-    exp: 10000
+    exp: 9000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 0c0000000d0000000e0000000f000000
     maxCustomer: 13
     maxCustomerPrice: 0
     maxVIP: 20
     maxVIPPrice: 0
     customerMoney: 100
     customerMoneyPrice: 0
-    shelf: 0c0000000d0000000e0000000f000000
   - id: 9
-    exp: 16000
+    exp: 13000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 14
     maxCustomerPrice: 16000
     maxVIP: 20
     maxVIPPrice: 0
     customerMoney: 120
     customerMoneyPrice: 0
-    shelf: 
   - id: 10
-    exp: 26000
+    exp: 18000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 14
     maxCustomerPrice: 0
     maxVIP: 40
     maxVIPPrice: 0
     customerMoney: 140
     customerMoneyPrice: 0
-    shelf: 
   - id: 11
-    exp: 41000
+    exp: 92000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 15
     maxCustomerPrice: 32000
     maxVIP: 40
     maxVIPPrice: 0
     customerMoney: 160
     customerMoneyPrice: 0
-    shelf: 
   - id: 12
-    exp: 61000
+    exp: 111000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 15
     maxCustomerPrice: 0
     maxVIP: 40
     maxVIPPrice: 0
     customerMoney: 180
     customerMoneyPrice: 0
-    shelf: 
   - id: 13
-    exp: 87000
+    exp: 133000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 16
     maxCustomerPrice: 64000
     maxVIP: 60
     maxVIPPrice: 0
     customerMoney: 200
     customerMoneyPrice: 0
-    shelf: 
   - id: 14
-    exp: 119000
+    exp: 159000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 16
     maxCustomerPrice: 0
     maxVIP: 60
     maxVIPPrice: 0
     customerMoney: 220
     customerMoneyPrice: 0
-    shelf: 
   - id: 15
-    exp: 156000
+    exp: 191000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 17
     maxCustomerPrice: 128000
     maxVIP: 60
     maxVIPPrice: 0
     customerMoney: 240
     customerMoneyPrice: 0
-    shelf: 
   - id: 16
-    exp: 197000
+    exp: 229000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 17
     maxCustomerPrice: 0
     maxVIP: 90
     maxVIPPrice: 0
     customerMoney: 260
     customerMoneyPrice: 0
-    shelf: 
   - id: 17
-    exp: 239000
+    exp: 275000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 18
     maxCustomerPrice: 256000
     maxVIP: 90
     maxVIPPrice: 0
     customerMoney: 280
     customerMoneyPrice: 0
-    shelf: 
   - id: 18
-    exp: 287000
+    exp: 330000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 18
     maxCustomerPrice: 0
     maxVIP: 90
     maxVIPPrice: 0
     customerMoney: 300
     customerMoneyPrice: 0
-    shelf: 
   - id: 19
-    exp: 340000
+    exp: 400000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 19
     maxCustomerPrice: 512000
     maxVIP: 120
     maxVIPPrice: 0
     customerMoney: 320
     customerMoneyPrice: 0
-    shelf: 
   - id: 20
-    exp: 3450000
+    exp: 3960000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 19
     maxCustomerPrice: 0
     maxVIP: 120
     maxVIPPrice: 0
     customerMoney: 340
     customerMoneyPrice: 0
-    shelf: 
   - id: 21
-    exp: 3960000
+    exp: 4560000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 20
     maxCustomerPrice: 1024000
     maxVIP: 120
     maxVIPPrice: 0
     customerMoney: 380
     customerMoneyPrice: 0
-    shelf: 
   - id: 22
-    exp: 4560000
+    exp: 5240000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 20
     maxCustomerPrice: 0
     maxVIP: 150
     maxVIPPrice: 0
     customerMoney: 420
     customerMoneyPrice: 0
-    shelf: 
   - id: 23
-    exp: 5240000
+    exp: 6030000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 21
     maxCustomerPrice: 2048000
     maxVIP: 150
     maxVIPPrice: 0
     customerMoney: 460
     customerMoneyPrice: 0
-    shelf: 
   - id: 24
-    exp: 6030000
+    exp: 6930000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 21
     maxCustomerPrice: 0
     maxVIP: 150
     maxVIPPrice: 0
     customerMoney: 500
     customerMoneyPrice: 0
-    shelf: 
   - id: 25
-    exp: 6930000
+    exp: 7970000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 22
     maxCustomerPrice: 4096000
     maxVIP: 200
     maxVIPPrice: 0
     customerMoney: 540
     customerMoneyPrice: 0
-    shelf: 
   - id: 26
-    exp: 7970000
+    exp: 9170000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 22
     maxCustomerPrice: 0
     maxVIP: 200
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 27
-    exp: 9170000
+    exp: 10550000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 23
     maxCustomerPrice: 8192000
     maxVIP: 200
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 28
-    exp: 10540000
+    exp: 12130000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 23
     maxCustomerPrice: 0
     maxVIP: 300
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 29
-    exp: 12130000
+    exp: 13950000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 24
     maxCustomerPrice: 16384000
     maxVIP: 300
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 30
-    exp: 13940000
+    exp: 16040000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 24
     maxCustomerPrice: 0
     maxVIP: 300
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 31
-    exp: 16040000
+    exp: 18440000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 25
     maxCustomerPrice: 32768000
     maxVIP: 400
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 32
-    exp: 18440000
+    exp: 21210000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 25
     maxCustomerPrice: 0
     maxVIP: 400
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 33
-    exp: 21210000
+    exp: 24390000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 26
     maxCustomerPrice: 65536000
     maxVIP: 400
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 34
-    exp: 24390000
+    exp: 28050000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 26
     maxCustomerPrice: 0
     maxVIP: 500
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 35
-    exp: 28050000
+    exp: 32260000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 27
     maxCustomerPrice: 131072000
     maxVIP: 500
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 36
-    exp: 32250000
+    exp: 37100000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 27
     maxCustomerPrice: 0
     maxVIP: 500
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 37
-    exp: 37090000
+    exp: 42660000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 28
     maxCustomerPrice: 262144000
     maxVIP: 700
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 38
-    exp: 42660000
+    exp: 49060000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 28
     maxCustomerPrice: 0
     maxVIP: 700
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 39
-    exp: 49060000
+    exp: 56420000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 29
     maxCustomerPrice: 524288000
     maxVIP: 700
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   - id: 40
-    exp: 56410000
+    exp: 64880000
     diamond: 20
     solict: 10
     dish: 0
+    shelf: 
     maxCustomer: 29
     maxCustomerPrice: 0
     maxVIP: 1000
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-    shelf: 
   customers:
   - id: 1
     name: CustomerName_001
     requireLevel: 0
-    rate: 120
+    rate: 100
     isRare: 0
     bread: 20
     juice: 50
@@ -985,7 +992,7 @@ MonoBehaviour:
   - id: 2
     name: CustomerName_002
     requireLevel: 0
-    rate: 120
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1012,7 +1019,7 @@ MonoBehaviour:
   - id: 5
     name: CustomerName_005
     requireLevel: 0
-    rate: 5
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1021,7 +1028,7 @@ MonoBehaviour:
   - id: 6
     name: CustomerName_006
     requireLevel: 0
-    rate: 5
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1030,7 +1037,7 @@ MonoBehaviour:
   - id: 7
     name: CustomerName_007
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1039,7 +1046,7 @@ MonoBehaviour:
   - id: 8
     name: CustomerName_008
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1048,7 +1055,7 @@ MonoBehaviour:
   - id: 9
     name: CustomerName_009
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1057,7 +1064,7 @@ MonoBehaviour:
   - id: 10
     name: CustomerName_010
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1066,7 +1073,7 @@ MonoBehaviour:
   - id: 11
     name: CustomerName_011
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1075,7 +1082,7 @@ MonoBehaviour:
   - id: 12
     name: CustomerName_012
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1084,7 +1091,7 @@ MonoBehaviour:
   - id: 13
     name: CustomerName_013
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1093,7 +1100,7 @@ MonoBehaviour:
   - id: 14
     name: CustomerName_014
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1102,7 +1109,7 @@ MonoBehaviour:
   - id: 15
     name: CustomerName_015
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1111,7 +1118,7 @@ MonoBehaviour:
   - id: 16
     name: CustomerName_016
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1120,7 +1127,7 @@ MonoBehaviour:
   - id: 17
     name: CustomerName_017
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1129,7 +1136,7 @@ MonoBehaviour:
   - id: 18
     name: CustomerName_018
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1138,7 +1145,7 @@ MonoBehaviour:
   - id: 19
     name: CustomerName_019
     requireLevel: 0
-    rate: 0
+    rate: 100
     isRare: 0
     bread: 0
     juice: 0
@@ -1147,8 +1154,8 @@ MonoBehaviour:
   - id: 20
     name: CustomerName_020
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 100
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1156,8 +1163,8 @@ MonoBehaviour:
   - id: 21
     name: CustomerName_021
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 100
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1165,8 +1172,8 @@ MonoBehaviour:
   - id: 22
     name: CustomerName_022
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 100
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1174,8 +1181,8 @@ MonoBehaviour:
   - id: 23
     name: CustomerName_023
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 100
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1183,8 +1190,8 @@ MonoBehaviour:
   - id: 24
     name: CustomerName_024
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 100
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1192,8 +1199,8 @@ MonoBehaviour:
   - id: 25
     name: CustomerName_025
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 100
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1201,8 +1208,8 @@ MonoBehaviour:
   - id: 26
     name: CustomerName_026
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 10
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1210,8 +1217,8 @@ MonoBehaviour:
   - id: 27
     name: CustomerName_027
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 10
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1219,8 +1226,8 @@ MonoBehaviour:
   - id: 28
     name: CustomerName_028
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 10
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1228,8 +1235,8 @@ MonoBehaviour:
   - id: 29
     name: CustomerName_029
     requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 2
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1237,35 +1244,8 @@ MonoBehaviour:
   - id: 30
     name: CustomerName_030
     requireLevel: 0
-    rate: 0
-    isRare: 0
-    bread: 0
-    juice: 0
-    sushi: 0
-    icecream: 0
-  - id: 31
-    name: CustomerName_031
-    requireLevel: 0
-    rate: 0
-    isRare: 0
-    bread: 0
-    juice: 0
-    sushi: 0
-    icecream: 0
-  - id: 32
-    name: CustomerName_032
-    requireLevel: 0
-    rate: 0
-    isRare: 0
-    bread: 0
-    juice: 0
-    sushi: 0
-    icecream: 0
-  - id: 33
-    name: CustomerName_033
-    requireLevel: 0
-    rate: 0
-    isRare: 0
+    rate: 2
+    isRare: 1
     bread: 0
     juice: 0
     sushi: 0
@@ -1275,7 +1255,7 @@ MonoBehaviour:
     name: Ach_Name001
     des: Ach_Des001
     requireParams: 0a0000003200000064000000
-    rewardParams: 64000000f4010000e8030000
+    rewardParams: c8000000e8030000d0070000
   - id: 2
     name: Ach_Name002
     des: Ach_Des002
@@ -1284,23 +1264,23 @@ MonoBehaviour:
   - id: 3
     name: Ach_Name003
     des: Ach_Des003
-    requireParams: 64000000f4010000d00700008813000010270000
-    rewardParams: 04000000080000000c0000001000000014000000
+    requireParams: f4010000d00700008813000010270000
+    rewardParams: 050000000a0000000f00000014000000
   - id: 4
     name: Ach_Name004
     des: Ach_Des004
-    requireParams: 64000000f4010000d00700008813000010270000
-    rewardParams: 020000000400000006000000080000000a000000
+    requireParams: f4010000d00700008813000010270000
+    rewardParams: 0400000006000000080000000a000000
   - id: 5
     name: Ach_Name005
     des: Ach_Des005
-    requireParams: 64000000f4010000d00700008813000010270000
-    rewardParams: 020000000400000006000000080000000a000000
+    requireParams: f4010000d00700008813000010270000
+    rewardParams: 0400000006000000080000000a000000
   - id: 6
     name: Ach_Name006
     des: Ach_Des006
-    requireParams: 64000000f4010000d00700008813000010270000
-    rewardParams: 050000000a0000000f0000001400000019000000
+    requireParams: f4010000d00700008813000010270000
+    rewardParams: 050000000a0000000f00000014000000
   - id: 7
     name: Ach_Name007
     des: Ach_Des007
@@ -1329,8 +1309,8 @@ MonoBehaviour:
   - id: 12
     name: Ach_Name012
     des: Ach_Des012
-    requireParams: 0100000004000000080000000c00000010000000
-    rewardParams: 0100000002000000030000000400000005000000
+    requireParams: 010000000800000010000000
+    rewardParams: 010000000200000003000000
   - id: 13
     name: Ach_Name013
     des: Ach_Des013
@@ -1349,13 +1329,13 @@ MonoBehaviour:
   - id: 16
     name: Ach_Name016
     des: Ach_Des016
-    requireParams: 
-    rewardParams: 
+    requireParams: 0500000019000000
+    rewardParams: 0400000008000000
   - id: 17
     name: Ach_Name017
     des: Ach_Des017
-    requireParams: 
-    rewardParams: 
+    requireParams: 0a0000003200000064000000f4010000
+    rewardParams: 0a0000000f0000001400000019000000
   - id: 18
     name: Ach_Name018
     des: Ach_Des018
