@@ -7,9 +7,10 @@ public class GameAsset : ScriptableObject
 {
     public GlobalData global;
     public List<GameDishData> dishes;
-    public List<GameEquipData> equips;
+    public List<GameShelfData> shelf;
     public List<GameBoxData> boxes;
     public List<GameStoreData> store;
     public List<GameCustomerData> customers;
     public List<GameAchievementData> achievements;
+    public List<GameTaskData> tasks;
 }

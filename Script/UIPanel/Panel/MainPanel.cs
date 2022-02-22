@@ -104,6 +104,9 @@ public class MainPanel : BasePanel
     {
         switch (name)
         {
+            case "Test":
+                UIPanelManager.Instance.PushPanel(typeof(TestPanel));
+                break;
             case "Shop":
             case "Dish":
             case "Store":

@@ -36,6 +36,13 @@ MonoBehaviour:
       buyRate: 25
       moodRate: 15
       maxMood: 10
+    task:
+      intiDiff: 15
+      perLevelDiff: 3
+      diffRange: 12
+      maxDiff: 87
+      limitMaxDiff: 60
+      limitTime: 5
   dishes:
   - id: 101
     name: DishName_101
@@ -433,7 +440,151 @@ MonoBehaviour:
     requireLevel: 23
     mood: 1
     rareValue: 100
-  equips: []
+  shelf:
+  - level: 1
+    requireLevel: 0
+    upgradePrice: 0
+    speedInc: 0
+    speedIncPrice: 0
+    stack: 3
+    stackPrice: 0
+    priceInc: 0
+    priceIncPrice: 0
+  - level: 2
+    requireLevel: 0
+    upgradePrice: 1000
+    speedInc: 3
+    speedIncPrice: 1000
+    stack: 3
+    stackPrice: 0
+    priceInc: 0
+    priceIncPrice: 0
+  - level: 3
+    requireLevel: 0
+    upgradePrice: 2000
+    speedInc: 3
+    speedIncPrice: 0
+    stack: 3
+    stackPrice: 0
+    priceInc: 3
+    priceIncPrice: 1000
+  - level: 4
+    requireLevel: 4
+    upgradePrice: 3000
+    speedInc: 3
+    speedIncPrice: 1000
+    stack: 3
+    stackPrice: 0
+    priceInc: 3
+    priceIncPrice: 0
+  - level: 5
+    requireLevel: 6
+    upgradePrice: 4000
+    speedInc: 6
+    speedIncPrice: 0
+    stack: 3
+    stackPrice: 0
+    priceInc: 3
+    priceIncPrice: 1000
+  - level: 6
+    requireLevel: 8
+    upgradePrice: 5000
+    speedInc: 6
+    speedIncPrice: 0
+    stack: 4
+    stackPrice: 2000
+    priceInc: 6
+    priceIncPrice: 0
+  - level: 7
+    requireLevel: 10
+    upgradePrice: 6000
+    speedInc: 6
+    speedIncPrice: 1000
+    stack: 4
+    stackPrice: 0
+    priceInc: 6
+    priceIncPrice: 0
+  - level: 8
+    requireLevel: 12
+    upgradePrice: 7000
+    speedInc: 9
+    speedIncPrice: 0
+    stack: 4
+    stackPrice: 0
+    priceInc: 6
+    priceIncPrice: 1000
+  - level: 9
+    requireLevel: 14
+    upgradePrice: 8000
+    speedInc: 9
+    speedIncPrice: 1000
+    stack: 4
+    stackPrice: 0
+    priceInc: 9
+    priceIncPrice: 0
+  - level: 10
+    requireLevel: 16
+    upgradePrice: 9000
+    speedInc: 9
+    speedIncPrice: 0
+    stack: 4
+    stackPrice: 0
+    priceInc: 9
+    priceIncPrice: 1000
+  - level: 11
+    requireLevel: 18
+    upgradePrice: 10000
+    speedInc: 12
+    speedIncPrice: 0
+    stack: 5
+    stackPrice: 2000
+    priceInc: 9
+    priceIncPrice: 0
+  - level: 12
+    requireLevel: 20
+    upgradePrice: 11000
+    speedInc: 12
+    speedIncPrice: 1000
+    stack: 5
+    stackPrice: 0
+    priceInc: 12
+    priceIncPrice: 0
+  - level: 13
+    requireLevel: 22
+    upgradePrice: 12000
+    speedInc: 12
+    speedIncPrice: 0
+    stack: 5
+    stackPrice: 0
+    priceInc: 12
+    priceIncPrice: 1000
+  - level: 14
+    requireLevel: 24
+    upgradePrice: 13000
+    speedInc: 15
+    speedIncPrice: 1000
+    stack: 5
+    stackPrice: 0
+    priceInc: 12
+    priceIncPrice: 0
+  - level: 15
+    requireLevel: 26
+    upgradePrice: 14000
+    speedInc: 15
+    speedIncPrice: 0
+    stack: 5
+    stackPrice: 0
+    priceInc: 15
+    priceIncPrice: 1000
+  - level: 16
+    requireLevel: 28
+    upgradePrice: 15000
+    speedInc: 15
+    speedIncPrice: 0
+    stack: 6
+    stackPrice: 2000
+    priceInc: 15
+    priceIncPrice: 0
   boxes:
   - id: 1
     name: BoxName_001
@@ -499,7 +650,7 @@ MonoBehaviour:
     purple: 0
     gold: 5
   store:
-  - id: 1
+  - level: 1
     exp: 100
     diamond: 0
     solict: 0
@@ -511,7 +662,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 0
     customerMoneyPrice: 0
-  - id: 2
+  - level: 2
     exp: 200
     diamond: 20
     solict: 5
@@ -523,7 +674,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 0
     customerMoneyPrice: 0
-  - id: 3
+  - level: 3
     exp: 400
     diamond: 20
     solict: 5
@@ -535,7 +686,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 50
     customerMoneyPrice: 0
-  - id: 4
+  - level: 4
     exp: 800
     diamond: 20
     solict: 5
@@ -547,7 +698,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 60
     customerMoneyPrice: 0
-  - id: 5
+  - level: 5
     exp: 1600
     diamond: 20
     solict: 5
@@ -559,7 +710,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 70
     customerMoneyPrice: 0
-  - id: 6
+  - level: 6
     exp: 4800
     diamond: 20
     solict: 10
@@ -571,7 +722,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 80
     customerMoneyPrice: 0
-  - id: 7
+  - level: 7
     exp: 6700
     diamond: 20
     solict: 10
@@ -583,7 +734,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 90
     customerMoneyPrice: 0
-  - id: 8
+  - level: 8
     exp: 9000
     diamond: 20
     solict: 10
@@ -595,7 +746,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 100
     customerMoneyPrice: 0
-  - id: 9
+  - level: 9
     exp: 13000
     diamond: 20
     solict: 10
@@ -607,7 +758,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 120
     customerMoneyPrice: 0
-  - id: 10
+  - level: 10
     exp: 18000
     diamond: 20
     solict: 10
@@ -619,7 +770,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 140
     customerMoneyPrice: 0
-  - id: 11
+  - level: 11
     exp: 92000
     diamond: 20
     solict: 10
@@ -631,7 +782,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 160
     customerMoneyPrice: 0
-  - id: 12
+  - level: 12
     exp: 111000
     diamond: 20
     solict: 10
@@ -643,7 +794,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 180
     customerMoneyPrice: 0
-  - id: 13
+  - level: 13
     exp: 133000
     diamond: 20
     solict: 10
@@ -655,7 +806,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 200
     customerMoneyPrice: 0
-  - id: 14
+  - level: 14
     exp: 159000
     diamond: 20
     solict: 10
@@ -667,7 +818,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 220
     customerMoneyPrice: 0
-  - id: 15
+  - level: 15
     exp: 191000
     diamond: 20
     solict: 10
@@ -679,7 +830,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 240
     customerMoneyPrice: 0
-  - id: 16
+  - level: 16
     exp: 229000
     diamond: 20
     solict: 10
@@ -691,7 +842,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 260
     customerMoneyPrice: 0
-  - id: 17
+  - level: 17
     exp: 275000
     diamond: 20
     solict: 10
@@ -703,7 +854,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 280
     customerMoneyPrice: 0
-  - id: 18
+  - level: 18
     exp: 330000
     diamond: 20
     solict: 10
@@ -715,7 +866,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 300
     customerMoneyPrice: 0
-  - id: 19
+  - level: 19
     exp: 400000
     diamond: 20
     solict: 10
@@ -727,7 +878,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 320
     customerMoneyPrice: 0
-  - id: 20
+  - level: 20
     exp: 3960000
     diamond: 20
     solict: 10
@@ -739,7 +890,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 340
     customerMoneyPrice: 0
-  - id: 21
+  - level: 21
     exp: 4560000
     diamond: 20
     solict: 10
@@ -751,7 +902,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 380
     customerMoneyPrice: 0
-  - id: 22
+  - level: 22
     exp: 5240000
     diamond: 20
     solict: 10
@@ -763,7 +914,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 420
     customerMoneyPrice: 0
-  - id: 23
+  - level: 23
     exp: 6030000
     diamond: 20
     solict: 10
@@ -775,7 +926,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 460
     customerMoneyPrice: 0
-  - id: 24
+  - level: 24
     exp: 6930000
     diamond: 20
     solict: 10
@@ -787,7 +938,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 500
     customerMoneyPrice: 0
-  - id: 25
+  - level: 25
     exp: 7970000
     diamond: 20
     solict: 10
@@ -799,7 +950,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 540
     customerMoneyPrice: 0
-  - id: 26
+  - level: 26
     exp: 9170000
     diamond: 20
     solict: 10
@@ -811,7 +962,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 27
+  - level: 27
     exp: 10550000
     diamond: 20
     solict: 10
@@ -823,7 +974,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 28
+  - level: 28
     exp: 12130000
     diamond: 20
     solict: 10
@@ -835,7 +986,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 29
+  - level: 29
     exp: 13950000
     diamond: 20
     solict: 10
@@ -847,7 +998,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 30
+  - level: 30
     exp: 16040000
     diamond: 20
     solict: 10
@@ -859,7 +1010,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 31
+  - level: 31
     exp: 18440000
     diamond: 20
     solict: 10
@@ -871,7 +1022,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 32
+  - level: 32
     exp: 21210000
     diamond: 20
     solict: 10
@@ -883,7 +1034,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 33
+  - level: 33
     exp: 24390000
     diamond: 20
     solict: 10
@@ -895,7 +1046,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 34
+  - level: 34
     exp: 28050000
     diamond: 20
     solict: 10
@@ -907,7 +1058,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 35
+  - level: 35
     exp: 32260000
     diamond: 20
     solict: 10
@@ -919,7 +1070,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 36
+  - level: 36
     exp: 37100000
     diamond: 20
     solict: 10
@@ -931,7 +1082,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 37
+  - level: 37
     exp: 42660000
     diamond: 20
     solict: 10
@@ -943,7 +1094,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 38
+  - level: 38
     exp: 49060000
     diamond: 20
     solict: 10
@@ -955,7 +1106,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 39
+  - level: 39
     exp: 56420000
     diamond: 20
     solict: 10
@@ -967,7 +1118,7 @@ MonoBehaviour:
     maxVIPPrice: 0
     customerMoney: 580
     customerMoneyPrice: 0
-  - id: 40
+  - level: 40
     exp: 64880000
     diamond: 20
     solict: 10
@@ -1341,3 +1492,58 @@ MonoBehaviour:
     des: Ach_Des018
     requireParams: 
     rewardParams: 
+  tasks:
+  - id: 1
+    des: Task_Des001
+    rate: 100
+    requireLevel: 0
+    minParam: 100
+    maxParam: 10000
+  - id: 2
+    des: Task_Des002
+    rate: 80
+    requireLevel: 0
+    minParam: 12
+    maxParam: 60
+  - id: 3
+    des: Task_Des003
+    rate: 10
+    requireLevel: 4
+    minParam: 10
+    maxParam: 40
+  - id: 4
+    des: Task_Des004
+    rate: 10
+    requireLevel: 8
+    minParam: 8
+    maxParam: 30
+  - id: 5
+    des: Task_Des005
+    rate: 10
+    requireLevel: 12
+    minParam: 5
+    maxParam: 20
+  - id: 6
+    des: Task_Des006
+    rate: 15
+    requireLevel: 6
+    minParam: 10
+    maxParam: 40
+  - id: 7
+    des: Task_Des007
+    rate: 15
+    requireLevel: 10
+    minParam: 6
+    maxParam: 20
+  - id: 8
+    des: Task_Des008
+    rate: 10
+    requireLevel: 8
+    minParam: 10
+    maxParam: 25
+  - id: 9
+    des: Task_Des009
+    rate: 20
+    requireLevel: 5
+    minParam: 10
+    maxParam: 60

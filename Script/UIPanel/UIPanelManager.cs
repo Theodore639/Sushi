@@ -34,6 +34,7 @@ public class UIPanelManager
     private UIPanelManager()
     {
         panelList = new List<BasePanel>();
+        //需要永久保存的Panel才在这里注册
         panelPathDict = new Dictionary<Type, string>()
         {
             { typeof(MainPanel), "PrefabPanel/MainPanel" },
@@ -76,7 +77,7 @@ public class UIPanelManager
     private Stack<BasePanel> panelStack;
 
     /// <summary>
-    /// 初始化实例化所有Panel
+    /// 实例化永久性Panel
     /// </summary>
     public void InitAllPanel()
     {

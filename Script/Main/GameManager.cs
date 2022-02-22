@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
                     //StoreManager.Instance.StoreUpdate();
                 }
                 //心跳帧
-                if (tickTime >= TICK_TIME)
+                if (tickTime >= TICK_TIME)                        
                 {
                     tickTime -= TICK_TIME;
                     UIPanelManager.Instance.Tick();
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     {
         //初始化PanelManager,加载LoadingPanel        
         UIPanelManager.Instance.InitAllPanel();
-        UIPanelManager.Instance.PushPanel(typeof(LoadingPanel));
+        UIPanelManager.Instance.PushPanel(typeof(LoadingPanel)); 
         LoadingPanel.Instance.SetProcess(20, I2.Loc.LocalizationManager.GetTranslation("C_Loading_01"));
         yield return 0;
 

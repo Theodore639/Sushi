@@ -5,6 +5,13 @@ using System;
 
 public static class PlayerData
 {
+    public static void DeleteAll()
+    {
+        PlayerPrefs.DeleteAll();
+        intKeys = new List<string>();
+        stringKeys = new List<string>();
+    }
+
     public static void AddItemData(int id, int value)
     {
         SetItemData(id, GetItemData(id) + value);
@@ -59,7 +66,7 @@ public static class PlayerData
     public static int Level
     {
         set { SetItemData(CONST.LEVEL, value); }
-        get { return GetItemData(CONST.MONEY); }
+        get { return GetItemData(CONST.LEVEL); }
     }
     public static int Exp
     {
@@ -250,7 +257,6 @@ public static class PlayerData
                 return 0;
             }
             result += int.Parse(value.Substring(box.Length + 3));
-            Debug.Log(result);
             return result > 0 ? result : 0;
         }
         catch

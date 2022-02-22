@@ -10,7 +10,7 @@ public class Shelf : MonoBehaviour, IBase
 {
     public int index;
     [HideInInspector] public PlayerShelfData playerShelfData;
-    [HideInInspector] public BaseDish dish;//上架的菜品
+    public BaseDish dish;//上架的菜品
 
     //初始化
     public void Init(params object[] list)

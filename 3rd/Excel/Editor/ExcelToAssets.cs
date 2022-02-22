@@ -17,7 +17,7 @@ namespace Excel.Editor
         public static readonly List<string> tables = new List<string>
         {
             "Global",
-            "Equip",
+            "Shelf",
             "Dish",
             "Customer",
             "Task",
@@ -60,9 +60,9 @@ namespace Excel.Editor
                         yield return LoadGlobalData(result.Tables[i], gameAsset.global,
                             (data) => { gameAsset.global = (GlobalData)data; });
                         break;
-                    //case "Equip":
-                    //    yield return LoadData(result.Tables[i], gameAsset.equips);
-                    //    break;
+                    case "Shelf":
+                        yield return LoadData(result.Tables[i], gameAsset.shelf);
+                        break;
                     case "Dish":
                         yield return LoadData(result.Tables[i], gameAsset.dishes);
                         break;
@@ -72,8 +72,8 @@ namespace Excel.Editor
                     case "Store":
                         yield return LoadData(result.Tables[i], gameAsset.store);
                         break;
-                    case "Boxes":
-                        yield return LoadData(result.Tables[i], gameAsset.boxes);
+                    case "Task":
+                        yield return LoadData(result.Tables[i], gameAsset.tasks);
                         break;
                     case "Achievement":
                         yield return LoadData(result.Tables[i], gameAsset.achievements);
@@ -205,7 +205,8 @@ namespace Excel.Editor
             var dataStartRow = 3; //除过标题，所在的行号
             for (var i = 0; i < table.Rows.Count; i++)
             {
-                if (table.Rows[i].ItemArray[0].ToString().Equals("id"))
+                string name = table.Rows[i].ItemArray[0].ToString();
+                if (name.Equals("id") || name.Equals("level"))
                 {
                     dataStartRow = i;
                     break;

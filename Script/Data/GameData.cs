@@ -7,22 +7,24 @@ public static class GameData
 {
     static public GlobalData global;
     static public List<GameDishData> dishes;
-    static public List<GameEquipData> equips;
+    static public List<GameShelfData> shelf;
     static public List<GameBoxData> boxes;
     static public List<GameStoreData> store;
     static public List<GameCustomerData> customers;
     static public List<GameAchievementData> achievements;
+    static public List<GameTaskData> tasks;
 
     public static void InitGameData()
     {
         GameAsset asset = Resources.Load<GameAsset>("GameData");
         global = asset.global;
         dishes = asset.dishes;
-        equips = asset.equips;
+        shelf = asset.shelf;
         boxes = asset.boxes;
         store = asset.store;
         customers = asset.customers;
         achievements = asset.achievements;
+        tasks = asset.tasks;
     }
 }
 
@@ -34,6 +36,7 @@ public struct GlobalData
     public Store store;
     public Challenge challenge;
     public Customer customer;
+    public Task task;
 
     [Serializable]
     public struct Dish
@@ -52,7 +55,7 @@ public struct GlobalData
         public int solictTime;//招揽能量基础回复时间（分钟）
         public int incomeVIP;//每个会员每小时收益
         public int incomeMaxTime;//会员收益最大时间（小时）
-        public int expPrice; //每多少金币换取1点商店经验
+        public int expPrice; //每多少金币换取1点商店经验       
     }
 
     [Serializable]
@@ -75,21 +78,15 @@ public struct GlobalData
     }
 
     [Serializable]
-    public struct Common
+    public struct Task
     {
-
+        public int intiDiff;//初始难度
+        public int perLevelDiff;//每升一级难度提升
+        public int diffRange;//难度波动范围
+        public int maxDiff;//非限时任务难度上限
+        public int limitMaxDiff;//限时任务难度上限
+        public int limitTime;// 限时任务时间（分钟）
     }
-}
-
-[Serializable]//设备数据
-public struct GameEquipData
-{
-    public int id;
-    public string name;
-    public string des;
-    public int requireLevel;//需求等级
-    public List<int> exp;//购买获得的经验
-    public List<int> priceIndex, priceCount;//购买的货币种类和数量
 }
 
 [Serializable]//宝箱数据
@@ -122,7 +119,7 @@ public struct GameDishData
 [Serializable]//商店等级数据
 public struct GameStoreData
 {
-    public int id;
+    public int level;
     public int exp;//升级要求经验
     public int diamond, solict, dish;//升级奖励：钻石、招揽能量、菜品卡牌
     public List<int> shelf;//升级奖励：解锁的货架编号
@@ -154,12 +151,22 @@ public struct GameAchievementData
 public struct GameShelfData
 {
     public int level;
+    public int requireLevel;
     public int upgradePrice;
     public int speedInc, speedIncPrice;
     public int stack, stackPrice;
     public int priceInc, priceIncPrice;
 }
 
+[Serializable]//货架等级数据
+public struct GameTaskData
+{
+    public int id;
+    public string des;
+    public int rate;
+    public int requireLevel;
+    public int minParam, maxParam;
+}
 #endregion
 
 #region Enum

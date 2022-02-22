@@ -18,8 +18,7 @@ public class StoreManager : MonoBehaviour, IBase
         }
     }
 
-    public Transform dishParent, customerParent, other;
-
+    public Transform dishParent, customerParent, shelfParent, other;
     [HideInInspector] public Shelf[,] shelves;
     public GameStoreData stroeData;
     public const int MaxX = 4, MaxY = 4;
@@ -34,15 +33,14 @@ public class StoreManager : MonoBehaviour, IBase
     public void Init(params object[] list)
     {
         //首次进入初始化操作
-        if(PlayerData.Level == 0)
+        shelves = new Shelf[MaxX, MaxY];
+        if (PlayerData.Level == 0)
         {
             PlayerData.Level++;
-            //PlayerData.AddDishCard(101, 1);
-            //PlayerData.AddDishCard(201, 1);
             StoreUpgrade();
         }
-        stroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.id == PlayerData.Level; });
-        shelves = new Shelf[MaxX, MaxY];
+        stroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.level == PlayerData.Level; });
+        
         for(int i = 0; i < MaxX; i++)
             for(int j = 0; j < MaxX; j++)
             {
@@ -50,8 +48,9 @@ public class StoreManager : MonoBehaviour, IBase
                 PlayerShelfData shelfData = PlayerData.GetShelfData(index);
                 if (shelfData.level > 0)
                 {
-                    shelves[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Shelf")).GetComponent<Shelf>();
+                    shelves[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Shelf"), shelfParent).GetComponent<Shelf>();
                     shelves[i, j].Init(index, shelfData);
+                    shelves[i, j].transform.localPosition = new Vector3(j * 2 - 3, i * 2.5f - 3, 0);//更新位置信息
                 }
             }
 
@@ -78,19 +77,18 @@ public class StoreManager : MonoBehaviour, IBase
         UpdateCustomerList();
 
         //增加菜品货架
-        GameStoreData data = GameData.store.Find(delegate (GameStoreData sData) { return sData.id == PlayerData.Level; });
-        if (data.shelf.Count > 0)
+        stroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.level == PlayerData.Level; });
+        if (stroeData.shelf.Count > 0)
         {
             for(int i = 0; i < MaxX; i++)
                 for(int j = 0; j < MaxY; j++)
                 {
                     int index = i * MaxX + j;
-                    if (data.shelf.Contains(i * MaxX + j))
+                    if (stroeData.shelf.Contains(i * MaxX + j))
                     {
                         PlayerShelfData shelfData = PlayerData.GetShelfData(index);
-                        shelfData.level = 1;
-                        shelves[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Shelf")).GetComponent<Shelf>();
-                        shelves[i, j].Init(index, shelfData);
+                        shelfData.level = 1;                        
+                        PlayerData.SetShelfData(index, shelfData);
                     }
                 }
         }
@@ -98,7 +96,7 @@ public class StoreManager : MonoBehaviour, IBase
         //弹升级界面
         if(PlayerData.Level > 1)
         {
-            UIPanelManager.Instance.PushPanel(typeof(StoreUpgradePanel), data);
+            UIPanelManager.Instance.PushPanel(typeof(StoreUpgradePanel), stroeData);
         }
     }
 
@@ -131,13 +129,13 @@ public class StoreManager : MonoBehaviour, IBase
     #region 顾客相关
     
     private List<int> normalCustomerList, normalRate;
-    private List<int> rareCustomerList, rateRate;
+    private List<int> rareCustomerList, rareRate;
 
     //随机获得一个顾客index
     private int GetRandomCustomer(bool isRare)
     {
         if (isRare)
-            return rareCustomerList[RandomHelper.GetRandomId(rateRate)];
+            return rareCustomerList[RandomHelper.GetRandomId(rareRate)];
         else
             return normalCustomerList[RandomHelper.GetRandomId(normalRate)];
     }
@@ -147,6 +145,8 @@ public class StoreManager : MonoBehaviour, IBase
     {
         normalCustomerList = new List<int>();
         rareCustomerList = new List<int>();
+        normalRate = new List<int>();
+        rareRate = new List<int>();
         foreach (GameCustomerData cData in GameData.customers)
         {
             if (cData.requireLevel <= PlayerData.Level)
@@ -159,7 +159,7 @@ public class StoreManager : MonoBehaviour, IBase
                 else
                 {
                     rareCustomerList.Add(cData.id);
-                    rateRate.Add(cData.rate);
+                    rareRate.Add(cData.rate);
                 }
             }
         }
