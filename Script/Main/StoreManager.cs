@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class StoreManager : MonoBehaviour, IBase
 {
@@ -19,8 +20,8 @@ public class StoreManager : MonoBehaviour, IBase
     }
 
     public Transform dishParent, customerParent, shelfParent, other;
-    [HideInInspector] public Shelf[,] shelves;
-    public GameStoreData stroeData;
+    [HideInInspector] public Shelf[,] shelves = new Shelf[MaxX, MaxY];
+    public GameStoreData gameStroeData;
     public const int MaxX = 4, MaxY = 4;
     public enum StoreSkill
     {
@@ -33,13 +34,11 @@ public class StoreManager : MonoBehaviour, IBase
     public void Init(params object[] list)
     {
         //首次进入初始化操作
-        shelves = new Shelf[MaxX, MaxY];
         if (PlayerData.Level == 0)
         {
-            PlayerData.Level++;
             StoreUpgrade();
         }
-        stroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.level == PlayerData.Level; });
+        gameStroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.level == PlayerData.Level; });
         
         for(int i = 0; i < MaxX; i++)
             for(int j = 0; j < MaxX; j++)
@@ -53,7 +52,6 @@ public class StoreManager : MonoBehaviour, IBase
                     shelves[i, j].transform.localPosition = new Vector3(j * 2 - 3, i * 2.5f - 3, 0);//更新位置信息
                 }
             }
-
     }
 
     public void LogicUpdate()
@@ -73,18 +71,20 @@ public class StoreManager : MonoBehaviour, IBase
     #region 店铺自身功能，升级&技能等
     //店铺升级
     public void StoreUpgrade()
-    {        
+    {
+        PlayerData.Level++;
+        Observer.StoreUpgrade(PlayerData.Level);
+        //更新顾客列表
         UpdateCustomerList();
-
         //增加菜品货架
-        stroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.level == PlayerData.Level; });
-        if (stroeData.shelf.Count > 0)
+        gameStroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.level == PlayerData.Level; });
+        if (gameStroeData.shelf.Count > 0)
         {
             for(int i = 0; i < MaxX; i++)
                 for(int j = 0; j < MaxY; j++)
                 {
                     int index = i * MaxX + j;
-                    if (stroeData.shelf.Contains(i * MaxX + j))
+                    if (gameStroeData.shelf.Contains(i * MaxX + j))
                     {
                         PlayerShelfData shelfData = PlayerData.GetShelfData(index);
                         shelfData.level = 1;                        
@@ -96,7 +96,7 @@ public class StoreManager : MonoBehaviour, IBase
         //弹升级界面
         if(PlayerData.Level > 1)
         {
-            UIPanelManager.Instance.PushPanel(typeof(StoreUpgradePanel), stroeData);
+            UIPanelManager.Instance.PushPanel(typeof(StoreUpgradePanel), gameStroeData);
         }
     }
 
@@ -113,10 +113,22 @@ public class StoreManager : MonoBehaviour, IBase
         switch(type)
         {
             case StoreSkill.AddCustomer:
+                List<PlayerCustomerData> customerList = new List<PlayerCustomerData>();
+                for(int i = 0; i < GameData.global.store.solictCount; i++)
+                {
+                    customerList.Add(CreateCustomer());
+                }
+                StartCoroutine(AddCustomers(customerList));
                 break;
             case StoreSkill.DoubleMoney:
+                TimeSpan time = new TimeSpan(0, GameData.global.store.doubleMoney, 0);
+                AddDoubleMoneyBuff(time);
                 break;
             case StoreSkill.AddMood:
+                foreach(Transform child in customerParent)
+                {
+                    child.GetComponent<BaseCustomer>().AddMood(GameData.global.store.addMood);
+                }
                 break;
             case StoreSkill.SpeedUpCooking:
                 break;
@@ -124,6 +136,10 @@ public class StoreManager : MonoBehaviour, IBase
         PlayerData.Power -= GameData.global.store.maxPower;
     }
 
+    public void AddDoubleMoneyBuff(TimeSpan time)
+    {
+
+    }
     #endregion
 
     #region 顾客相关
@@ -170,13 +186,13 @@ public class StoreManager : MonoBehaviour, IBase
     {
         PlayerCustomerData pData = new PlayerCustomerData();
         //稀有顾客
-        bool isRare = PlayerData.GetArchievementRewardValue(2) > Random.Range(0, 100);
+        bool isRare = PlayerData.GetArchievementRewardValue(2) > UnityEngine.Random.Range(0, 100);
 
         //生成顾客编号、心情、初始金币，计算购买欲望
         pData.index = GetRandomCustomer(isRare);
-        pData.mood = Random.Range(0, 3) + PlayerData.GetArchievementRewardValue(13);
-        int customerMoney = stroeData.customerMoney;
-        pData.money = Random.Range(customerMoney, customerMoney * 3) * (PlayerData.GetArchievementRewardValue(6) + 100) / 100;
+        pData.mood = UnityEngine.Random.Range(0, 3) + PlayerData.GetArchievementRewardValue(13);
+        int customerMoney = gameStroeData.customerMoney;
+        pData.money = UnityEngine.Random.Range(customerMoney, customerMoney * 3) * (PlayerData.GetArchievementRewardValue(6) + 100) / 100;
         pData.rate = GameData.global.customer.initRate + pData.mood * GameData.global.customer.moodRate;
 
         return pData;
@@ -189,15 +205,13 @@ public class StoreManager : MonoBehaviour, IBase
     }
 
     //多个顾客进店
-    public void AddCustomer(List<PlayerCustomerData> pData)
+    public IEnumerator AddCustomers(List<PlayerCustomerData> dataList)
     {
-
-    }
-
-    //手动招揽顾客
-    public void SolictCustomer()
-    {
-        UIPanelManager.Instance.PushPanel(typeof(FindCustomerPanel));
+        foreach(PlayerCustomerData data in dataList)
+        {
+            AddCustomer(data);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     /// <summary>

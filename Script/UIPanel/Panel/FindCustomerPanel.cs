@@ -19,7 +19,7 @@ public class FindCustomerPanel : BasePanel
         {
             pDataDic.Add(i, StoreManager.Instance.CreateCustomer());
         }
-        //TODO 根据pDataList的信息显示顾客信息，并显示还可以选择的顾客数量
+        //TODO 根据pDataDic的信息显示顾客信息，并显示还可以选择的顾客数量：selectCount
         //TODO 进入动画，顾客以卡牌的形式展示，带有翻转，由小变大，从中间产生，从左到右依次展示动画并排列
 
     }
@@ -31,7 +31,7 @@ public class FindCustomerPanel : BasePanel
         selectList.Add(pDataDic[index]);
         if (selectCount <= 0)
         {           
-            StoreManager.Instance.AddCustomer(selectList);
+            StartCoroutine(StoreManager.Instance.AddCustomers(selectList));
             OnCloseClick();            
         }
     }

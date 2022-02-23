@@ -166,6 +166,7 @@ public struct GameTaskData
     public int rate;
     public int requireLevel;
     public int minParam, maxParam;
+    public List<int> initBox;
 }
 #endregion
 

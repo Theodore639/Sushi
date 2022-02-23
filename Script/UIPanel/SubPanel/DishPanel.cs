@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using I2.Loc;
 
+//显示所有Dish的界面
 public class DishPanel : SubPanel
 {
     [HideInInspector] public List<int> dishIndexList;
     public Transform dishes;
     public RedPoint redPoint;
+
+    public override void Active()
+    {
+        base.Active();
+        bg.transform.localPosition = Vector3.zero;
+        UpdateAll();
+    }
 
     public void UpdateAll()
     {
@@ -16,12 +24,13 @@ public class DishPanel : SubPanel
         redPoint.Hide();
         foreach (GameDishData dishData in GameData.dishes)
         {
-            //if (PlayerData.GetDishCardLevel(dishData.id) > 0)
-            //{
-            //    GameObject dish = (GameObject)Instantiate(Resources.Load("PrefabUI/Dish"), dishes);
-            //    dishIndexList.Add(dishData.id);
-            //    dish.name = dishData.id.ToString();
-            //}
+            PlayerDishData pDishData = PlayerData.GetDishData(dishData.id);
+            if (pDishData.level > 0)
+            {
+                GameObject dishObj = (GameObject)Instantiate(Resources.Load("PrefabUI/Dish"), dishes);
+                dishIndexList.Add(dishData.id);
+                dishObj.name = dishData.id.ToString();
+            }
         }
         Timer.Schedule(this, 0.1f, () => {
             foreach (int id in dishIndexList)
@@ -54,8 +63,6 @@ public class DishPanel : SubPanel
             dish.Find("Count").GetComponent<RedPoint>().Hide();
             dish.Find("Count/Text").GetComponent<Text>().text = "";
         }
-
-        
     }
 
     public void OnClickDish(int index)
@@ -68,11 +75,5 @@ public class DishPanel : SubPanel
     {
         base.Deactive();
         bg.transform.localPosition = new Vector3(-1800, 0, 0);
-    }
-
-    public override void Active()
-    {
-        base.Active();
-        bg.transform.localPosition = Vector3.zero;
     }
 }

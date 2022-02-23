@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     IEnumerator Prepare()
     {
         //初始化PanelManager,加载LoadingPanel        
+        PlayerData.DeleteAll();
         UIPanelManager.Instance.InitAllPanel();
         UIPanelManager.Instance.PushPanel(typeof(LoadingPanel)); 
         LoadingPanel.Instance.SetProcess(20, I2.Loc.LocalizationManager.GetTranslation("C_Loading_01"));
@@ -105,7 +106,6 @@ public class GameManager : MonoBehaviour
         UIPanelManager.Instance.PushPanel(typeof(MainPanel));
         yield return 0;
         isPrepareDone = true;
-
     }
 
 

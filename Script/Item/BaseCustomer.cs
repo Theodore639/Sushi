@@ -7,6 +7,7 @@ public class BaseCustomer : MonoBehaviour, IBase
     public PlayerCustomerData playerCustomerData;
     public GameCustomerData gameCustomerData;
     public CustomerState state;
+    public int buyCount;//累计购买菜品
 
     public enum CustomerState
     {
@@ -21,7 +22,7 @@ public class BaseCustomer : MonoBehaviour, IBase
     {
         playerCustomerData = (PlayerCustomerData)list[0];
         gameCustomerData = GameData.customers.Find(delegate (GameCustomerData d) { return d.id == playerCustomerData.index; });
-
+        buyCount = 0;
         //顾客进店
         state = CustomerState.LookFor;
     }
@@ -47,9 +48,10 @@ public class BaseCustomer : MonoBehaviour, IBase
     public void BuyDish(BaseDish dish)
     {
         playerCustomerData.rate -= GameData.global.customer.buyRate;
+        buyCount++;
         //if(dish.dishData.skillList.Contains())
         //{
-            
+
         //    tempRate = dish.dishData.skillList[0]
         //}
     }
@@ -64,5 +66,11 @@ public class BaseCustomer : MonoBehaviour, IBase
     private int GetOrderDishIndex()
     {
         return 0;
+    }
+
+    //增加心情
+    public void AddMood(int value)
+    {
+        playerCustomerData.mood += value;
     }
 }

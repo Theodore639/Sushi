@@ -8,7 +8,8 @@ public class BaseDish : MonoBehaviour, IBase
 {
     public Text price, count;
     public SpriteRenderer dishSpriteRenderer;
-    [HideInInspector] public GameDishData dishData;
+    [HideInInspector] public GameDishData gameDishData;
+    [HideInInspector] public PlayerDishData playerDishData;
     [HideInInspector] public int currentlevel;//当前等级
     [HideInInspector] public int priceInc, timeDec;//涨价百分比和减时间百分比
     [HideInInspector] public int x, y;//坐标

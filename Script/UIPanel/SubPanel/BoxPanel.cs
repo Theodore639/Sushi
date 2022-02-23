@@ -20,7 +20,7 @@ public class BoxPanel : SubPanel
 
     }
 
-    public void CreatTask()
+    public void CreateTask()
     {
 
     }
