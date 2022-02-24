@@ -19,8 +19,8 @@ MonoBehaviour:
     store:
       solictCount: 10
       addMood: 3
-      doubleMoney: 10
-      maxPower: 200
+      doubleMoney: 5
+      maxPower: 300
       maxSolict: 10
       solictTime: 15
       incomeVIP: 10
@@ -37,12 +37,13 @@ MonoBehaviour:
       moodRate: 15
       maxMood: 10
     task:
-      intiDiff: 15
+      intiDiff: 1
       perLevelDiff: 3
-      diffRange: 12
-      maxDiff: 87
+      diffRange: 15
+      maxDiff: 85
       limitMaxDiff: 60
       limitTime: 5
+      initBox: 010000000100000002000000010000000300000001000000020000000400000002000000050000000300000006000000
   dishes:
   - id: 101
     name: DishName_101
@@ -50,10 +51,10 @@ MonoBehaviour:
     color: 0
     type: 0
     priceList: 
+    moodList: 080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c000000
     skillParams: 
     time: 5
     requireLevel: 0
-    mood: 0.2
     rareValue: 100
   - id: 102
     name: DishName_102
@@ -61,10 +62,10 @@ MonoBehaviour:
     color: 0
     type: 0
     priceList: 
+    moodList: 06000000090000000c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
     skillParams: 
     time: 20
     requireLevel: 0
-    mood: 0.2
     rareValue: 100
   - id: 103
     name: DishName_103
@@ -72,10 +73,10 @@ MonoBehaviour:
     color: 0
     type: 0
     priceList: 
+    moodList: 080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c000000
     skillParams: 
     time: 90
     requireLevel: 5
-    mood: 0.2
     rareValue: 100
   - id: 104
     name: DishName_104
@@ -83,10 +84,10 @@ MonoBehaviour:
     color: 0
     type: 0
     priceList: 
+    moodList: 06000000090000000c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
     skillParams: 
     time: 300
     requireLevel: 8
-    mood: 0.2
     rareValue: 100
   - id: 105
     name: DishName_105
@@ -94,10 +95,10 @@ MonoBehaviour:
     color: 1
     type: 0
     priceList: 
+    moodList: 0e00000010000000120000001400000016000000180000001a0000001c0000001e00000020000000
     skillParams: 
     time: 10
     requireLevel: 0
-    mood: 0.5
     rareValue: 100
   - id: 106
     name: DishName_106
@@ -105,10 +106,10 @@ MonoBehaviour:
     color: 1
     type: 0
     priceList: 
+    moodList: 090000000c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
     skillParams: 
     time: 120
     requireLevel: 6
-    mood: 0.5
     rareValue: 100
   - id: 107
     name: DishName_107
@@ -116,10 +117,10 @@ MonoBehaviour:
     color: 1
     type: 0
     priceList: 
+    moodList: 1e00000020000000220000002400000026000000280000002a0000002c0000002e00000030000000
     skillParams: 
     time: 300
     requireLevel: 8
-    mood: 1
     rareValue: 100
   - id: 108
     name: DishName_108
@@ -127,10 +128,10 @@ MonoBehaviour:
     color: 2
     type: 0
     priceList: 
+    moodList: 1e0000002100000024000000270000002a0000002d000000300000003300000036000000
     skillParams: 
     time: 180
     requireLevel: 0
-    mood: 0.7
     rareValue: 100
   - id: 109
     name: DishName_109
@@ -138,10 +139,10 @@ MonoBehaviour:
     color: 3
     type: 0
     priceList: 
+    moodList: 370000003c00000041000000460000004b00000050000000550000005a000000
     skillParams: 
     time: 1800
     requireLevel: 20
-    mood: 1
     rareValue: 100
   - id: 201
     name: DishName_201
@@ -149,10 +150,10 @@ MonoBehaviour:
     color: 0
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 8
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 202
     name: DishName_202
@@ -160,10 +161,10 @@ MonoBehaviour:
     color: 0
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 15
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 203
     name: DishName_203
@@ -171,10 +172,10 @@ MonoBehaviour:
     color: 0
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 40
     requireLevel: 5
-    mood: 0
     rareValue: 100
   - id: 204
     name: DishName_204
@@ -182,10 +183,10 @@ MonoBehaviour:
     color: 0
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 180
     requireLevel: 8
-    mood: 0
     rareValue: 100
   - id: 205
     name: DishName_205
@@ -193,10 +194,10 @@ MonoBehaviour:
     color: 1
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 60
     requireLevel: 0
-    mood: 1
     rareValue: 100
   - id: 206
     name: DishName_206
@@ -204,10 +205,10 @@ MonoBehaviour:
     color: 1
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 240
     requireLevel: 6
-    mood: 0
     rareValue: 100
   - id: 207
     name: DishName_207
@@ -215,10 +216,10 @@ MonoBehaviour:
     color: 1
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 600
     requireLevel: 8
-    mood: 0
     rareValue: 100
   - id: 208
     name: DishName_208
@@ -226,10 +227,10 @@ MonoBehaviour:
     color: 2
     type: 1
     priceList: 
+    moodList: 
     skillParams: 
     time: 120
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 209
     name: DishName_209
@@ -237,10 +238,10 @@ MonoBehaviour:
     color: 3
     type: 1
     priceList: 
+    moodList: 640000006e00000078000000820000008c00000096000000a0000000aa000000
     skillParams: 
     time: 60
     requireLevel: 21
-    mood: 2
     rareValue: 100
   - id: 301
     name: DishName_301
@@ -248,10 +249,10 @@ MonoBehaviour:
     color: 0
     type: 2
     priceList: 
+    moodList: 
     skillParams: 
     time: 10
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 302
     name: DishName_302
@@ -259,10 +260,10 @@ MonoBehaviour:
     color: 0
     type: 2
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 303
     name: DishName_303
@@ -270,10 +271,10 @@ MonoBehaviour:
     color: 0
     type: 2
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 5
-    mood: 0
     rareValue: 100
   - id: 304
     name: DishName_304
@@ -281,10 +282,10 @@ MonoBehaviour:
     color: 0
     type: 2
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 8
-    mood: 0
     rareValue: 100
   - id: 305
     name: DishName_305
@@ -292,10 +293,10 @@ MonoBehaviour:
     color: 1
     type: 2
     priceList: 
+    moodList: 01000000
     skillParams: 
     time: 0
     requireLevel: 0
-    mood: 1
     rareValue: 100
   - id: 306
     name: DishName_306
@@ -303,10 +304,10 @@ MonoBehaviour:
     color: 1
     type: 2
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 6
-    mood: 0
     rareValue: 100
   - id: 307
     name: DishName_307
@@ -314,10 +315,10 @@ MonoBehaviour:
     color: 1
     type: 2
     priceList: 1900000064000000c80000002c010000f4010000bc020000e8030000
+    moodList: 
     skillParams: 
     time: 60
     requireLevel: 8
-    mood: 0
     rareValue: 100
   - id: 308
     name: DishName_308
@@ -325,10 +326,10 @@ MonoBehaviour:
     color: 2
     type: 2
     priceList: 
+    moodList: 
     skillParams: 
     time: 900
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 309
     name: DishName_309
@@ -336,10 +337,10 @@ MonoBehaviour:
     color: 3
     type: 2
     priceList: 
+    moodList: 370000003c00000041000000460000004b00000050000000550000005a000000
     skillParams: 
     time: 300
     requireLevel: 22
-    mood: 0
     rareValue: 100
   - id: 401
     name: DishName_401
@@ -347,10 +348,10 @@ MonoBehaviour:
     color: 0
     type: 3
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 402
     name: DishName_402
@@ -358,10 +359,10 @@ MonoBehaviour:
     color: 0
     type: 3
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 403
     name: DishName_403
@@ -369,10 +370,10 @@ MonoBehaviour:
     color: 0
     type: 3
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 5
-    mood: 0
     rareValue: 100
   - id: 404
     name: DishName_404
@@ -380,10 +381,10 @@ MonoBehaviour:
     color: 0
     type: 3
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 8
-    mood: 0
     rareValue: 100
   - id: 405
     name: DishName_405
@@ -391,10 +392,10 @@ MonoBehaviour:
     color: 1
     type: 3
     priceList: 
+    moodList: 01000000
     skillParams: 
     time: 0
     requireLevel: 0
-    mood: 1
     rareValue: 100
   - id: 406
     name: DishName_406
@@ -402,10 +403,10 @@ MonoBehaviour:
     color: 1
     type: 3
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 6
-    mood: 0
     rareValue: 100
   - id: 407
     name: DishName_407
@@ -413,10 +414,10 @@ MonoBehaviour:
     color: 1
     type: 3
     priceList: 
+    moodList: 
     skillParams: 
     time: 5
     requireLevel: 8
-    mood: 0
     rareValue: 100
   - id: 408
     name: DishName_408
@@ -424,10 +425,10 @@ MonoBehaviour:
     color: 2
     type: 3
     priceList: 
+    moodList: 
     skillParams: 
     time: 0
     requireLevel: 0
-    mood: 0
     rareValue: 100
   - id: 409
     name: DishName_409
@@ -435,10 +436,10 @@ MonoBehaviour:
     color: 3
     type: 3
     priceList: 
+    moodList: 370000003c00000041000000460000004b00000050000000550000005a000000
     skillParams: 
     time: 45
     requireLevel: 23
-    mood: 1
     rareValue: 100
   shelf:
   - level: 1
@@ -1499,51 +1500,60 @@ MonoBehaviour:
     requireLevel: 0
     minParam: 100
     maxParam: 10000
+    initBox: 
   - id: 2
     des: Task_Des002
     rate: 80
     requireLevel: 0
     minParam: 12
     maxParam: 60
+    initBox: 
   - id: 3
     des: Task_Des003
     rate: 10
     requireLevel: 4
     minParam: 10
     maxParam: 40
+    initBox: 
   - id: 4
     des: Task_Des004
     rate: 10
     requireLevel: 8
     minParam: 8
     maxParam: 30
+    initBox: 
   - id: 5
     des: Task_Des005
     rate: 10
     requireLevel: 12
     minParam: 5
     maxParam: 20
+    initBox: 
   - id: 6
     des: Task_Des006
     rate: 15
     requireLevel: 6
     minParam: 10
     maxParam: 40
+    initBox: 
   - id: 7
     des: Task_Des007
     rate: 15
     requireLevel: 10
     minParam: 6
     maxParam: 20
+    initBox: 
   - id: 8
     des: Task_Des008
     rate: 10
     requireLevel: 8
     minParam: 10
     maxParam: 25
+    initBox: 
   - id: 9
     des: Task_Des009
     rate: 20
     requireLevel: 5
     minParam: 10
     maxParam: 60
+    initBox: 

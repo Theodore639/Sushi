@@ -5,8 +5,8 @@ using UnityEngine;
 public class FindCustomerPanel : BasePanel
 {
     int selectCount;//可供选择顾客数量
-    Dictionary<int, PlayerCustomerData> pDataDic;
-    List<PlayerCustomerData> selectList;
+    Dictionary<int, PlayerCustomerData> pDataDic;//待选择的顾客
+    List<PlayerCustomerData> selectList;//已选择的顾客
 
     public override void OnEnter(params object[] list)
     {
@@ -17,7 +17,7 @@ public class FindCustomerPanel : BasePanel
         //可供选择顾客数量，默认为5个，若完成成就15，则多1个顾客供选择
         for (int i = 0; i < 5 + PlayerData.GetArchievementRewardValue(15); i++)
         {
-            pDataDic.Add(i, StoreManager.Instance.CreateCustomer());
+            pDataDic.Add(i, StoreManager.Instance.CreateCustomerData());
         }
         //TODO 根据pDataDic的信息显示顾客信息，并显示还可以选择的顾客数量：selectCount
         //TODO 进入动画，顾客以卡牌的形式展示，带有翻转，由小变大，从中间产生，从左到右依次展示动画并排列

@@ -10,20 +10,20 @@ public class Box : MonoBehaviour
 {
     public enum BoxType
     {
-        Junior = 100,//初级，仅限新手期间
-        Wood = 101,
-        Copper = 102,
-        Silver = 103,
-        Gold = 104,
-        Crystal = 105,
-        Diamond = 106,
+        Junior = 1,//初级，仅限新手期间
+        Wood = 2,
+        Copper = 3,
+        Silver = 4,
+        Gold = 5,
+        Crystal = 6,
+        Diamond = 7,
     }
 
     public BoxType type;
     public GameBoxData gameBoxData;
 
     //初始化箱子
-    public void InitBox(BoxType _type, int _seed)
+    public void InitBox(BoxType _type)
     {
         type = _type;
         gameBoxData = GameData.boxes.Find(delegate (GameBoxData data) { return data.id == (int)type; });

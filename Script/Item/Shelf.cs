@@ -48,7 +48,7 @@ public class Shelf : MonoBehaviour, IBase
 
     }
 
-    //更新所有商品的售价
+    //更新商品的售价
     public void UpdatePrice()
     {
 

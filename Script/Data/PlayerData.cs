@@ -109,7 +109,7 @@ public static class PlayerData
     }
     #endregion
 
-    #region 各种任务成就相关数据
+    #region 任务成就设置等数据
     //增加成就的值（默认+1）和等级（只能+1）
     public static void AddArchievementData(int index, int value = 1)
     {
@@ -149,9 +149,38 @@ public static class PlayerData
             return new PlayerTaskData();
         return (PlayerTaskData)result;
     }
+
+    //设置挑战数据
+    public static void SetChallengeData(PlayerChallengeData data)
+    {
+        SetValue("Challenge", SerializeObjToStr(data));
+    }
+    //获取挑战数据
+    public static PlayerChallengeData GetChallengeData()
+    {
+        object result = DeserializeStrToObj(PlayerPrefs.GetString("Challenge"));
+        if (result == null)
+            return new PlayerChallengeData();
+        return (PlayerChallengeData)result;
+    }
+
+    //设置玩家设置数据
+    public static void SetSettingData(PlayerSettingData data)
+    {
+        SetValue("Setting", SerializeObjToStr(data));
+        GameManager.Instance.settingData = data;
+    }
+    //获取玩家设置数据
+    public static PlayerSettingData GetSettingData()
+    {
+        object result = DeserializeStrToObj(PlayerPrefs.GetString("Setting"));
+        if (result == null)
+            return new PlayerSettingData();
+        return (PlayerSettingData)result;
+    }
     #endregion
 
-    #region 辅助功能：设置数据，打包/加密，序列化反序列化等
+    #region 辅助功能：设置数据，打包，加密，序列化反序列化等
     public static void DeleteAll()
     {
         PlayerPrefs.DeleteAll();
@@ -366,5 +395,25 @@ public struct PlayerTaskData
     public int taskState;//任务状态，0未启动，1进行中，2已完成，3失败
     public DateTime startTime;//限时任务开始时间
     public List<DishType> dishTypes;//任务涉及的菜品种类
+}
+[Serializable]
+public struct PlayerChallengeData
+{
+    public int level;//任务级别
+    public DishType dishType;//任务涉及的菜品类型
+    public int completeValue;//已完成任务数值
+    public int requireValue;//任务要求的数值
+    public int count;//今日剩余尝试次数
+    public int challengeState;//任务状态，0未启动，1进行中，2已完成待领取奖励
+    public DateTime startTime;//限时任务开始时间
+}
+[Serializable]
+public struct PlayerSettingData
+{
+    public bool soundSwitch, musicSwitch;//音效和音乐开关
+    public int language;//语言
+    public string userName;//用户名
+    public int loginInfo;//登陆信息
+    public bool notifySwitch;//通知开关
 }
 #endregion

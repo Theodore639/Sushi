@@ -81,7 +81,7 @@ public static class LayerTool
     }
 
     /// <summary>
-    /// 设置Layer层级,0默认，1甜品阴影，2表情（其他后续讨论增加）
+    /// 设置Layer层级,0默认，1阴影，2表情（其他后续讨论增加）
     /// </summary>
     /// <param name="go"></param>
     /// <param name="layerId"></param>

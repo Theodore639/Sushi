@@ -67,7 +67,6 @@ public struct GlobalData
         public List<int> requirePoint; //完成挑战需要的分数
     }
 
-
     [Serializable]
     public struct Customer
     {
@@ -85,7 +84,8 @@ public struct GlobalData
         public int diffRange;//难度波动范围
         public int maxDiff;//非限时任务难度上限
         public int limitMaxDiff;//限时任务难度上限
-        public int limitTime;// 限时任务时间（分钟）
+        public int limitTime;//限时任务时间（分钟）
+        public List<int> initBox;//初始宝箱顺序
     }
 }
 
@@ -109,10 +109,10 @@ public struct GameDishData
     public ItemColor color;
     public DishType type;
     public List<int> priceList;
+    public List<int> moodList;
     public List<int> skillParams;
     public float time;
     public int requireLevel;
-    public float mood;
     public int rareValue;    
 }
 

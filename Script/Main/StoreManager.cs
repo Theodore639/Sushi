@@ -19,10 +19,10 @@ public class StoreManager : MonoBehaviour, IBase
         }
     }
 
-    public Transform dishParent, customerParent, shelfParent, other;
-    [HideInInspector] public Shelf[,] shelves = new Shelf[MaxX, MaxY];
+    public Transform stroeCanvas, dishParent, customerParent, shelfParent, other;
     public GameStoreData gameStroeData;
-    public const int MaxX = 4, MaxY = 4;
+    const int MaxX = 4, MaxY = 4;
+    Vector3 customerInitPosition = new Vector3(-5, -5, 0);
     public enum StoreSkill
     {
         AddCustomer = 0,    //招揽一定数量顾客
@@ -33,11 +33,6 @@ public class StoreManager : MonoBehaviour, IBase
 
     public void Init(params object[] list)
     {
-        //首次进入初始化操作
-        if (PlayerData.Level == 0)
-        {
-            StoreUpgrade();
-        }
         gameStroeData = GameData.store.Find(delegate (GameStoreData sData) { return sData.level == PlayerData.Level; });
         
         for(int i = 0; i < MaxX; i++)
@@ -47,25 +42,49 @@ public class StoreManager : MonoBehaviour, IBase
                 PlayerShelfData shelfData = PlayerData.GetShelfData(index);
                 if (shelfData.level > 0)
                 {
-                    shelves[i, j] = Instantiate(Resources.Load<GameObject>("PrefabObj/Shelf"), shelfParent).GetComponent<Shelf>();
-                    shelves[i, j].Init(index, shelfData);
-                    shelves[i, j].transform.localPosition = new Vector3(j * 2 - 3, i * 2.5f - 3, 0);//更新位置信息
+                    GameObject shelf = Instantiate(Resources.Load<GameObject>("PrefabObj/Shelf"), shelfParent);
+                    shelf.GetComponent<Shelf>().Init(index, shelfData);
+                    shelf.transform.localPosition = new Vector3(j * 2 - 3, i * 2.5f - 3, 0);//更新位置信息
                 }
             }
     }
 
     public void LogicUpdate()
     {
-        foreach(Shelf dish in shelves)
+        foreach(Transform child in shelfParent)
         {
-            if(dish != null)
-                dish.LogicUpdate();
+            if(child.GetComponent<Shelf>() != null)
+                child.GetComponent<Shelf>().LogicUpdate();
+        }
+        foreach (Transform child in dishParent)
+        {
+            if (child.GetComponent<BaseDish>() != null)
+                child.GetComponent<BaseDish>().LogicUpdate();
+        }
+        foreach (Transform child in customerParent)
+        {
+            if (child.GetComponent<BaseCustomer>() != null)
+                child.GetComponent<BaseCustomer>().LogicUpdate();
         }
     }
 
     public void AnimationUpdate()
     {
-
+        foreach (Transform child in shelfParent)
+        {
+            if (child.GetComponent<Shelf>() != null)
+                child.GetComponent<Shelf>().AnimationUpdate();
+        }
+        foreach (Transform child in dishParent)
+        {
+            if (child.GetComponent<BaseDish>() != null)
+                child.GetComponent<BaseDish>().AnimationUpdate();
+        }
+        foreach (Transform child in customerParent)
+        {
+            if (child.GetComponent<BaseCustomer>() != null)
+                child.GetComponent<BaseCustomer>().AnimationUpdate();
+        }
     }
 
     #region 店铺自身功能，升级&技能等
@@ -116,7 +135,7 @@ public class StoreManager : MonoBehaviour, IBase
                 List<PlayerCustomerData> customerList = new List<PlayerCustomerData>();
                 for(int i = 0; i < GameData.global.store.solictCount; i++)
                 {
-                    customerList.Add(CreateCustomer());
+                    customerList.Add(CreateCustomerData());
                 }
                 StartCoroutine(AddCustomers(customerList));
                 break;
@@ -182,26 +201,37 @@ public class StoreManager : MonoBehaviour, IBase
     }
 
     //生成一个顾客的数据
-    public PlayerCustomerData CreateCustomer()
+    public PlayerCustomerData CreateCustomerData()
     {
         PlayerCustomerData pData = new PlayerCustomerData();
         //稀有顾客
         bool isRare = PlayerData.GetArchievementRewardValue(2) > UnityEngine.Random.Range(0, 100);
-
-        //生成顾客编号、心情、初始金币，计算购买欲望
+        //生成顾客编号
         pData.index = GetRandomCustomer(isRare);
-        pData.mood = UnityEngine.Random.Range(0, 3) + PlayerData.GetArchievementRewardValue(13);
+        //计算顾客心情，稀有顾客初始拥有更高的心情
+        float[] moodRate;
+        if(isRare) 
+            moodRate = new float[] { 20, 100, 60, 30, 10, 6, 3, 1 };
+        else
+            moodRate = new float[] { 0, 0, 0, 100, 60, 25, 8, 4 };
+        pData.mood = RandomHelper.GetRandomId(moodRate) + PlayerData.GetArchievementRewardValue(13);
+        //计算顾客初始金币，稀有顾客金币翻倍
         int customerMoney = gameStroeData.customerMoney;
         pData.money = UnityEngine.Random.Range(customerMoney, customerMoney * 3) * (PlayerData.GetArchievementRewardValue(6) + 100) / 100;
+        if (isRare)
+            pData.money *= 2;
+        //根据顾客心情计算顾客初始购买欲望
         pData.rate = GameData.global.customer.initRate + pData.mood * GameData.global.customer.moodRate;
 
         return pData;
     }
 
-    //一个顾客进店
-    public void AddCustomer(PlayerCustomerData pData)
+    //根据顾客数据创建一个顾客实体，并开始进店
+    public void CreateCustomer(PlayerCustomerData pData)
     {
-
+        GameObject customer = Instantiate(Resources.Load("PrefabObj/Customer/" + pData.index.ToString()) as GameObject, customerParent);
+        customer.transform.localPosition = customerInitPosition;
+        customer.GetComponent<BaseCustomer>().Init(pData);
     }
 
     //多个顾客进店
@@ -209,7 +239,7 @@ public class StoreManager : MonoBehaviour, IBase
     {
         foreach(PlayerCustomerData data in dataList)
         {
-            AddCustomer(data);
+            CreateCustomer(data);
             yield return new WaitForSeconds(0.5f);
         }
     }
