@@ -27,10 +27,9 @@ MonoBehaviour:
       incomeMaxTime: 12
       expPrice: 10
     challenge:
-      unlockLevel: 5
-      basePoint: 4
-      cardCount: 030000000400000005000000060000000700000008000000090000000a000000
-      requirePoint: 88130000401f0000e02e0000
+      unlockLevel: 6
+      basePoint: 03000000040000000500000007000000
+      diamond: 64000000c80000002c010000
     customer:
       initRate: 100
       buyRate: 25
@@ -39,11 +38,21 @@ MonoBehaviour:
     task:
       intiDiff: 1
       perLevelDiff: 3
-      diffRange: 15
-      maxDiff: 85
-      limitMaxDiff: 60
+      maxDiff: 99
+      limitDiffList:
+      - 0.4
+      - 0.6
+      - 0.8
+      limitMedal: 000000000100000002000000
       limitTime: 5
       initBox: 010000000100000002000000010000000300000001000000020000000400000002000000050000000300000006000000
+      freeUpdate: 2
+      updateDiamond: 20
+    common:
+      baseDiamond: 50
+      baseAdsDiamond: 10
+      diamondTime: 10
+      achieveMedal: 10
   dishes:
   - id: 101
     name: DishName_101
@@ -53,7 +62,7 @@ MonoBehaviour:
     priceList: 
     moodList: 080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c000000
     skillParams: 
-    time: 5
+    time: 6
     requireLevel: 0
     rareValue: 100
   - id: 102
@@ -75,7 +84,7 @@ MonoBehaviour:
     priceList: 
     moodList: 080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c000000
     skillParams: 
-    time: 90
+    time: 45
     requireLevel: 5
     rareValue: 100
   - id: 104
@@ -86,7 +95,7 @@ MonoBehaviour:
     priceList: 
     moodList: 06000000090000000c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
     skillParams: 
-    time: 300
+    time: 180
     requireLevel: 8
     rareValue: 100
   - id: 105
@@ -108,7 +117,7 @@ MonoBehaviour:
     priceList: 
     moodList: 090000000c0000000f0000001200000015000000180000001b0000001e0000002100000024000000
     skillParams: 
-    time: 120
+    time: 60
     requireLevel: 6
     rareValue: 100
   - id: 107
@@ -119,7 +128,7 @@ MonoBehaviour:
     priceList: 
     moodList: 1e00000020000000220000002400000026000000280000002a0000002c0000002e00000030000000
     skillParams: 
-    time: 300
+    time: 150
     requireLevel: 8
     rareValue: 100
   - id: 108
@@ -130,7 +139,7 @@ MonoBehaviour:
     priceList: 
     moodList: 1e0000002100000024000000270000002a0000002d000000300000003300000036000000
     skillParams: 
-    time: 180
+    time: 60
     requireLevel: 0
     rareValue: 100
   - id: 109
@@ -140,8 +149,8 @@ MonoBehaviour:
     type: 0
     priceList: 
     moodList: 370000003c00000041000000460000004b00000050000000550000005a000000
-    skillParams: 
-    time: 1800
+    skillParams: 370000003c00000041000000460000004b00000050000000550000005a000000
+    time: 150
     requireLevel: 20
     rareValue: 100
   - id: 201
@@ -152,7 +161,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 8
+    time: 7
     requireLevel: 0
     rareValue: 100
   - id: 202
@@ -174,7 +183,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 40
+    time: 30
     requireLevel: 5
     rareValue: 100
   - id: 204
@@ -185,7 +194,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 180
+    time: 150
     requireLevel: 8
     rareValue: 100
   - id: 205
@@ -196,7 +205,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 60
+    time: 35
     requireLevel: 0
     rareValue: 100
   - id: 206
@@ -207,7 +216,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 240
+    time: 60
     requireLevel: 6
     rareValue: 100
   - id: 207
@@ -218,7 +227,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 600
+    time: 90
     requireLevel: 8
     rareValue: 100
   - id: 208
@@ -229,18 +238,29 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 120
+    time: 180
     requireLevel: 0
     rareValue: 100
   - id: 209
     name: DishName_209
     des: DishDes_209
+    color: 2
+    type: 1
+    priceList: 
+    moodList: 
+    skillParams: 
+    time: 30
+    requireLevel: 0
+    rareValue: 100
+  - id: 210
+    name: DishName_210
+    des: DishDes_210
     color: 3
     type: 1
     priceList: 
-    moodList: 640000006e00000078000000820000008c00000096000000a0000000aa000000
-    skillParams: 
-    time: 60
+    moodList: 6400000064000000640000006400000064000000640000006400000064000000
+    skillParams: 370000003c00000041000000460000004b00000050000000550000005a000000
+    time: 45
     requireLevel: 21
     rareValue: 100
   - id: 301
@@ -262,7 +282,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 40
     requireLevel: 0
     rareValue: 100
   - id: 303
@@ -273,7 +293,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 120
     requireLevel: 5
     rareValue: 100
   - id: 304
@@ -284,7 +304,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 60
     requireLevel: 8
     rareValue: 100
   - id: 305
@@ -295,7 +315,7 @@ MonoBehaviour:
     priceList: 
     moodList: 01000000
     skillParams: 
-    time: 0
+    time: 25
     requireLevel: 0
     rareValue: 100
   - id: 306
@@ -306,7 +326,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 60
     requireLevel: 6
     rareValue: 100
   - id: 307
@@ -317,7 +337,7 @@ MonoBehaviour:
     priceList: 1900000064000000c80000002c010000f4010000bc020000e8030000
     moodList: 
     skillParams: 
-    time: 60
+    time: 180
     requireLevel: 8
     rareValue: 100
   - id: 308
@@ -328,7 +348,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 900
+    time: 50
     requireLevel: 0
     rareValue: 100
   - id: 309
@@ -339,7 +359,7 @@ MonoBehaviour:
     priceList: 
     moodList: 370000003c00000041000000460000004b00000050000000550000005a000000
     skillParams: 
-    time: 300
+    time: 120
     requireLevel: 22
     rareValue: 100
   - id: 401
@@ -350,7 +370,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 12
     requireLevel: 0
     rareValue: 100
   - id: 402
@@ -361,7 +381,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 120
     requireLevel: 0
     rareValue: 100
   - id: 403
@@ -372,7 +392,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 75
     requireLevel: 5
     rareValue: 100
   - id: 404
@@ -383,7 +403,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 45
     requireLevel: 8
     rareValue: 100
   - id: 405
@@ -394,7 +414,7 @@ MonoBehaviour:
     priceList: 
     moodList: 01000000
     skillParams: 
-    time: 0
+    time: 20
     requireLevel: 0
     rareValue: 100
   - id: 406
@@ -405,7 +425,7 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 150
     requireLevel: 6
     rareValue: 100
   - id: 407
@@ -427,18 +447,29 @@ MonoBehaviour:
     priceList: 
     moodList: 
     skillParams: 
-    time: 0
+    time: 300
     requireLevel: 0
     rareValue: 100
   - id: 409
     name: DishName_409
     des: DishDes_409
+    color: 2
+    type: 3
+    priceList: 
+    moodList: 
+    skillParams: 
+    time: 60
+    requireLevel: 0
+    rareValue: 100
+  - id: 410
+    name: DishName_410
+    des: DishDes_410
     color: 3
     type: 3
     priceList: 
     moodList: 370000003c00000041000000460000004b00000050000000550000005a000000
-    skillParams: 
-    time: 45
+    skillParams: 190000001e00000023000000280000002d00000032000000370000003c000000
+    time: 180
     requireLevel: 23
     rareValue: 100
   shelf:
@@ -641,19 +672,11 @@ MonoBehaviour:
     blue: 25
     purple: 5
     gold: 0
-  - id: 7
-    name: BoxName_007
-    time: 0
-    rate: 0
-    money: 10000
-    green: 0
-    blue: 0
-    purple: 0
-    gold: 5
   store:
   - level: 1
     exp: 100
     diamond: 0
+    extraDiamond: 0
     solict: 0
     dish: 0
     shelf: 0500000006000000
@@ -666,6 +689,7 @@ MonoBehaviour:
   - level: 2
     exp: 200
     diamond: 20
+    extraDiamond: 0
     solict: 5
     dish: 0
     shelf: 090000000a000000
@@ -678,6 +702,7 @@ MonoBehaviour:
   - level: 3
     exp: 400
     diamond: 20
+    extraDiamond: 0
     solict: 5
     dish: 0
     shelf: 
@@ -690,6 +715,7 @@ MonoBehaviour:
   - level: 4
     exp: 800
     diamond: 20
+    extraDiamond: 0
     solict: 5
     dish: 0
     shelf: 0400000007000000080000000b000000
@@ -702,6 +728,7 @@ MonoBehaviour:
   - level: 5
     exp: 1600
     diamond: 20
+    extraDiamond: 0
     solict: 5
     dish: 0
     shelf: 
@@ -714,6 +741,7 @@ MonoBehaviour:
   - level: 6
     exp: 4800
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 00000000010000000200000003000000
@@ -726,6 +754,7 @@ MonoBehaviour:
   - level: 7
     exp: 6700
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -738,6 +767,7 @@ MonoBehaviour:
   - level: 8
     exp: 9000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 0c0000000d0000000e0000000f000000
@@ -750,6 +780,7 @@ MonoBehaviour:
   - level: 9
     exp: 13000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -762,6 +793,7 @@ MonoBehaviour:
   - level: 10
     exp: 18000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -774,6 +806,7 @@ MonoBehaviour:
   - level: 11
     exp: 92000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -786,6 +819,7 @@ MonoBehaviour:
   - level: 12
     exp: 111000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -798,6 +832,7 @@ MonoBehaviour:
   - level: 13
     exp: 133000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -810,6 +845,7 @@ MonoBehaviour:
   - level: 14
     exp: 159000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -822,6 +858,7 @@ MonoBehaviour:
   - level: 15
     exp: 191000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -834,6 +871,7 @@ MonoBehaviour:
   - level: 16
     exp: 229000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -846,6 +884,7 @@ MonoBehaviour:
   - level: 17
     exp: 275000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -858,6 +897,7 @@ MonoBehaviour:
   - level: 18
     exp: 330000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -870,6 +910,7 @@ MonoBehaviour:
   - level: 19
     exp: 400000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -882,6 +923,7 @@ MonoBehaviour:
   - level: 20
     exp: 3960000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -894,6 +936,7 @@ MonoBehaviour:
   - level: 21
     exp: 4560000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -906,6 +949,7 @@ MonoBehaviour:
   - level: 22
     exp: 5240000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -918,6 +962,7 @@ MonoBehaviour:
   - level: 23
     exp: 6030000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -930,6 +975,7 @@ MonoBehaviour:
   - level: 24
     exp: 6930000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -942,6 +988,7 @@ MonoBehaviour:
   - level: 25
     exp: 7970000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -954,6 +1001,7 @@ MonoBehaviour:
   - level: 26
     exp: 9170000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -966,6 +1014,7 @@ MonoBehaviour:
   - level: 27
     exp: 10550000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -978,6 +1027,7 @@ MonoBehaviour:
   - level: 28
     exp: 12130000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -990,6 +1040,7 @@ MonoBehaviour:
   - level: 29
     exp: 13950000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1002,6 +1053,7 @@ MonoBehaviour:
   - level: 30
     exp: 16040000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1014,6 +1066,7 @@ MonoBehaviour:
   - level: 31
     exp: 18440000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1026,6 +1079,7 @@ MonoBehaviour:
   - level: 32
     exp: 21210000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1038,6 +1092,7 @@ MonoBehaviour:
   - level: 33
     exp: 24390000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1050,6 +1105,7 @@ MonoBehaviour:
   - level: 34
     exp: 28050000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1062,6 +1118,7 @@ MonoBehaviour:
   - level: 35
     exp: 32260000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1074,6 +1131,7 @@ MonoBehaviour:
   - level: 36
     exp: 37100000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1086,6 +1144,7 @@ MonoBehaviour:
   - level: 37
     exp: 42660000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1098,6 +1157,7 @@ MonoBehaviour:
   - level: 38
     exp: 49060000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1110,6 +1170,7 @@ MonoBehaviour:
   - level: 39
     exp: 56420000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1122,6 +1183,7 @@ MonoBehaviour:
   - level: 40
     exp: 64880000
     diamond: 20
+    extraDiamond: 0
     solict: 10
     dish: 0
     shelf: 
@@ -1406,7 +1468,7 @@ MonoBehaviour:
   - id: 1
     name: Ach_Name001
     des: Ach_Des001
-    requireParams: 0a0000003200000064000000
+    requireParams: 0a0000001e0000003c000000
     rewardParams: c8000000e8030000d0070000
   - id: 2
     name: Ach_Name002
@@ -1417,17 +1479,17 @@ MonoBehaviour:
     name: Ach_Name003
     des: Ach_Des003
     requireParams: f4010000d00700008813000010270000
-    rewardParams: 050000000a0000000f00000014000000
-  - id: 4
+    rewardParams: 0400000006000000080000000a000000
+  - id: 5
     name: Ach_Name004
     des: Ach_Des004
     requireParams: f4010000d00700008813000010270000
     rewardParams: 0400000006000000080000000a000000
-  - id: 5
+  - id: 4
     name: Ach_Name005
     des: Ach_Des005
     requireParams: f4010000d00700008813000010270000
-    rewardParams: 0400000006000000080000000a000000
+    rewardParams: 04000000080000000c00000010000000
   - id: 6
     name: Ach_Name006
     des: Ach_Des006
@@ -1451,12 +1513,12 @@ MonoBehaviour:
   - id: 10
     name: Ach_Name010
     des: Ach_Des010
-    requireParams: f4010000d00700008813000010270000
+    requireParams: d00700008813000010270000204e0000
     rewardParams: 04000000080000000c00000010000000
   - id: 11
     name: Ach_Name011
     des: Ach_Des011
-    requireParams: 1400000064000000f4010000
+    requireParams: 1e00000064000000f4010000
     rewardParams: 050000000a0000000f000000
   - id: 12
     name: Ach_Name012
@@ -1471,8 +1533,8 @@ MonoBehaviour:
   - id: 14
     name: Ach_Name014
     des: Ach_Des014
-    requireParams: 0a0000003200000064000000
-    rewardParams: 0a000000140000001e000000
+    requireParams: 140000003200000064000000
+    rewardParams: 050000000a0000000f000000
   - id: 15
     name: Ach_Name015
     des: Ach_Des015
@@ -1486,13 +1548,13 @@ MonoBehaviour:
   - id: 17
     name: Ach_Name017
     des: Ach_Des017
-    requireParams: 0a0000003200000064000000f4010000
+    requireParams: 140000003200000064000000c8000000
     rewardParams: 0a0000000f0000001400000019000000
   - id: 18
     name: Ach_Name018
     des: Ach_Des018
-    requireParams: 
-    rewardParams: 
+    requireParams: 64000000fa000000f4010000
+    rewardParams: 0a000000140000001e000000
   tasks:
   - id: 1
     des: Task_Des001
@@ -1500,60 +1562,157 @@ MonoBehaviour:
     requireLevel: 0
     minParam: 100
     maxParam: 10000
-    initBox: 
   - id: 2
     des: Task_Des002
     rate: 80
     requireLevel: 0
     minParam: 12
     maxParam: 60
-    initBox: 
   - id: 3
     des: Task_Des003
     rate: 10
     requireLevel: 4
     minParam: 10
     maxParam: 40
-    initBox: 
   - id: 4
     des: Task_Des004
     rate: 10
     requireLevel: 8
     minParam: 8
     maxParam: 30
-    initBox: 
   - id: 5
     des: Task_Des005
     rate: 10
     requireLevel: 12
     minParam: 5
     maxParam: 20
-    initBox: 
   - id: 6
     des: Task_Des006
     rate: 15
     requireLevel: 6
     minParam: 10
     maxParam: 40
-    initBox: 
   - id: 7
     des: Task_Des007
     rate: 15
     requireLevel: 10
     minParam: 6
     maxParam: 20
-    initBox: 
   - id: 8
     des: Task_Des008
     rate: 10
     requireLevel: 8
     minParam: 10
     maxParam: 25
-    initBox: 
   - id: 9
     des: Task_Des009
     rate: 20
     requireLevel: 5
     minParam: 10
     maxParam: 60
-    initBox: 
+  challenge:
+  - level: 0
+    point: 0
+    money: 200
+    box: 2
+    medal: 0
+  - level: 1
+    point: 200
+    money: 500
+    box: 2
+    medal: 5
+  - level: 2
+    point: 300
+    money: 600
+    box: 2
+    medal: 6
+  - level: 3
+    point: 400
+    money: 700
+    box: 2
+    medal: 7
+  - level: 4
+    point: 500
+    money: 800
+    box: 2
+    medal: 8
+  - level: 5
+    point: 600
+    money: 900
+    box: 2
+    medal: 9
+  - level: 6
+    point: 700
+    money: 1000
+    box: 2
+    medal: 10
+  - level: 7
+    point: 800
+    money: 1100
+    box: 3
+    medal: 12
+  - level: 8
+    point: 900
+    money: 1200
+    box: 3
+    medal: 14
+  - level: 9
+    point: 1000
+    money: 1300
+    box: 3
+    medal: 16
+  - level: 10
+    point: 1100
+    money: 1400
+    box: 3
+    medal: 18
+  - level: 11
+    point: 1200
+    money: 1500
+    box: 3
+    medal: 20
+  - level: 12
+    point: 1300
+    money: 1600
+    box: 3
+    medal: 22
+  - level: 13
+    point: 1400
+    money: 1700
+    box: 4
+    medal: 24
+  - level: 14
+    point: 1500
+    money: 1800
+    box: 4
+    medal: 26
+  - level: 15
+    point: 1600
+    money: 1900
+    box: 4
+    medal: 28
+  - level: 16
+    point: 1700
+    money: 2000
+    box: 4
+    medal: 30
+  - level: 17
+    point: 1800
+    money: 2100
+    box: 4
+    medal: 35
+  - level: 18
+    point: 1900
+    money: 2200
+    box: 5
+    medal: 40
+  - level: 19
+    point: 2000
+    money: 2300
+    box: 5
+    medal: 45
+  - level: 20
+    point: 2100
+    money: 2400
+    box: 5
+    medal: 50

@@ -13,6 +13,7 @@ public static class GameData
     static public List<GameCustomerData> customers;
     static public List<GameAchievementData> achievements;
     static public List<GameTaskData> tasks;
+    static public List<GameChallengeData> challenge;
 
     public static void InitGameData()
     {
@@ -25,6 +26,7 @@ public static class GameData
         customers = asset.customers;
         achievements = asset.achievements;
         tasks = asset.tasks;
+        challenge = asset.challenge;
     }
 }
 
@@ -37,6 +39,7 @@ public struct GlobalData
     public Challenge challenge;
     public Customer customer;
     public Task task;
+    public Common common;
 
     [Serializable]
     public struct Dish
@@ -62,9 +65,8 @@ public struct GlobalData
     public struct Challenge
     {
         public int unlockLevel;//挑战解锁等级
-        public int basePoint;//每出售一个物品的基础分数
-        public List<int> cardCount;//挑战奖励卡牌数量       
-        public List<int> requirePoint; //完成挑战需要的分数
+        public List<int> basePoint;//每种颜色物品的基础分数
+        public List<int> diamond;//每天购买额外挑战需要支付的钻石
     }
 
     [Serializable]
@@ -81,11 +83,21 @@ public struct GlobalData
     {
         public int intiDiff;//初始难度
         public int perLevelDiff;//每升一级难度提升
-        public int diffRange;//难度波动范围
         public int maxDiff;//非限时任务难度上限
-        public int limitMaxDiff;//限时任务难度上限
+        public List<float> limitDiffList;//限时任务难度标准
+        public List<int> limitMedal;//限时任务奖励勋章
         public int limitTime;//限时任务时间（分钟）
         public List<int> initBox;//初始宝箱顺序
+        public int freeUpdate, updateDiamond;//每天免费刷新任务次数，刷新消耗钻石个数
+    }
+
+    [Serializable]
+    public struct Common
+    {
+        public int baseDiamond;//1美金对应钻石数量（无折扣）
+        public int baseAdsDiamond;//1次广告对应钻石数量（无折扣）
+        public int diamondTime;//1钻石降低时间（分钟）
+        public int achieveMedal;//每个成就奖励勋章
     }
 }
 
@@ -121,7 +133,7 @@ public struct GameStoreData
 {
     public int level;
     public int exp;//升级要求经验
-    public int diamond, solict, dish;//升级奖励：钻石、招揽能量、菜品卡牌
+    public int diamond, extraDiamond, solict, dish;//升级奖励：钻石、成长基金钻石、招揽能量、菜品卡牌
     public List<int> shelf;//升级奖励：解锁的货架编号
     public int maxCustomer, maxCustomerPrice;//最大容纳顾客数量，以及升级价格
     public int maxVIP, maxVIPPrice;//最大容纳会员数量，以及升级价格
@@ -158,7 +170,7 @@ public struct GameShelfData
     public int priceInc, priceIncPrice;
 }
 
-[Serializable]//货架等级数据
+[Serializable]//任务数据
 public struct GameTaskData
 {
     public int id;
@@ -166,7 +178,16 @@ public struct GameTaskData
     public int rate;
     public int requireLevel;
     public int minParam, maxParam;
-    public List<int> initBox;
+}
+
+[Serializable]//挑战数据
+public struct GameChallengeData
+{
+    public int level;//等级
+    public int point;//需要分数
+    public int money;//奖励金币
+    public int box;//奖励宝箱
+    public int medal;//奖励勋章
 }
 #endregion
 
@@ -192,4 +213,12 @@ public enum ItemColor
     Gold = 3,
 }
 
+public enum TaskState
+{
+    Ready = 0,
+    Ongoing = 1,
+    Finish = 2,
+    Failure = 3,
+    Wait = 4,
+}
 #endregion

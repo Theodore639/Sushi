@@ -13,4 +13,5 @@ public class GameAsset : ScriptableObject
     public List<GameCustomerData> customers;
     public List<GameAchievementData> achievements;
     public List<GameTaskData> tasks;
+    public List<GameChallengeData> challenge;
 }

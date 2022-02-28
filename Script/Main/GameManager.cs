@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
                 if (animationTime >= ANIMATION_FRAME_TIME)
                 {
                     animationTime -= ANIMATION_FRAME_TIME;
-                    //StoreManager.Instance.StoreUpdate();
+                    StoreManager.Instance.AnimationUpdate();
                 }
                 //心跳帧，主要用于红点判断，UI更新
                 if (tickTime >= TICK_TIME)                        

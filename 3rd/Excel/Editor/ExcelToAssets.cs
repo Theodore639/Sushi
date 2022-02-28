@@ -24,6 +24,7 @@ namespace Excel.Editor
             "Achievement",
             "NewGuide",
             "Store",
+            "Challenge",
             "Box",
         };
 
@@ -77,6 +78,9 @@ namespace Excel.Editor
                         break;
                     case "Achievement":
                         yield return LoadData(result.Tables[i], gameAsset.achievements);
+                        break;
+                    case "Challenge":
+                        yield return LoadData(result.Tables[i], gameAsset.challenge);
                         break;
                     case "Box":
                         yield return LoadData(result.Tables[i], gameAsset.boxes);

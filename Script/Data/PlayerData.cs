@@ -270,33 +270,38 @@ public static class PlayerData
         return deserializedObj;
     }
 
-    //压缩所有Player数据
+    //压缩所有PlayerData
     public static string PackPlayerData()
     {
-        string result = "";
+        List<int> intValues = new List<int>();
         for (int i = 0; i < intKeys.Count; i++)
-            result += intKeys[i] + "#" + PlayerPrefs.GetInt(intKeys[i], 0) + "&";
-        result += "$";
+            intValues.Add(PlayerPrefs.GetInt(intKeys[i], 0));
+        List<string> strValues = new List<string>();
         for (int i = 0; i < stringKeys.Count; i++)
-            result += stringKeys[i] + "#" + PlayerPrefs.GetString(stringKeys[i], " ") + "&";
-        return SerializeObjToStr(result);
+            strValues.Add(PlayerPrefs.GetString(stringKeys[i], ""));
+        Dictionary<string, object> dataDic = new Dictionary<string, object>();
+        dataDic.Add("intKeys", intKeys);
+        dataDic.Add("intValues", intValues);
+        dataDic.Add("stringKeys", stringKeys);
+        dataDic.Add("strValues", strValues);
+        return SerializeObjToStr(dataDic);
     }
-    //清空当前Player数据，解压传入的压缩Player数据，并应用
+    //清空当前PlayerData，解压传入的压缩Player数据，并应用
     public static void UnPackPlayerData(string str)
     {
         DeleteAll();
-        string[] result = ((string)DeserializeStrToObj(str)).Split('$');
-        string[] intList = result[0].Split('&');
-        foreach(string s in intList)
+        Dictionary<string, object> dataDic = (Dictionary<string, object>)DeserializeStrToObj(str);
+        intKeys = (List<string>)dataDic["intKeys"];
+        List<int> intValues = (List<int>)dataDic["intValues"];
+        stringKeys = (List<string>)dataDic["stringKeys"];
+        List<string> strValues = (List<string>)dataDic["strValues"];
+        for (int i = 0; i < intKeys.Count; i++)
         {
-            string[] value = s.Split('#');
-            SetValue(value[0], int.Parse(value[1]));
+            SetValue(intKeys[i], intValues[i]);
         }
-        string[] strList = result[1].Split('&');
-        foreach (string s in strList)
+        for (int i = 0; i < stringKeys.Count; i++)
         {
-            string[] value = s.Split('#');
-            SetValue(value[0], value[1]);
+            SetValue(stringKeys[i], strValues[i]);
         }
     }
 
@@ -390,22 +395,21 @@ public struct PlayerTaskData
     public int diffcult;//任务难度
     public int boxIndex;//箱子
     public bool isLimit;//是否限时任务
+    public int medal;//任务奖励勋章数量
     public List<int> completeValue;//已完成任务数值
     public List<int> requireValue;//任务要求的数值
-    public int taskState;//任务状态，0未启动，1进行中，2已完成，3失败
+    public TaskState taskState;//任务状态，0未启动，1进行中，2已完成，3失败
     public DateTime startTime;//限时任务开始时间
     public List<DishType> dishTypes;//任务涉及的菜品种类
 }
 [Serializable]
 public struct PlayerChallengeData
 {
-    public int level;//任务级别
-    public DishType dishType;//任务涉及的菜品类型
-    public int completeValue;//已完成任务数值
-    public int requireValue;//任务要求的数值
-    public int count;//今日剩余尝试次数
-    public int challengeState;//任务状态，0未启动，1进行中，2已完成待领取奖励
-    public DateTime startTime;//限时任务开始时间
+    public DishType dishType;//挑战涉及的菜品类型
+    public int completePoint;//已完成挑战分数
+    public int count;//今日尝试次数
+    public TaskState challengeState;//任务状态，0未启动，1进行中，2已完成待领取奖励
+    public DateTime startTime;//挑战开始时间
 }
 [Serializable]
 public struct PlayerSettingData
@@ -415,5 +419,11 @@ public struct PlayerSettingData
     public string userName;//用户名
     public int loginInfo;//登陆信息
     public bool notifySwitch;//通知开关
+}
+
+[Serializable]
+public struct PlayerCommonData
+{
+
 }
 #endregion

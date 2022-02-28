@@ -13,6 +13,7 @@ public static class CONST
     public const int SOLICTEXTRA = 6;
     public const int VIP = 7;
     public const int TIPS = 8;
+    public const int CROWN = 9;
 
     public const int ARCHIEVEMENT = 500;//成就前缀
     public const int ARCHIEVEMENT_LEVEL = 600;//成就等级前缀

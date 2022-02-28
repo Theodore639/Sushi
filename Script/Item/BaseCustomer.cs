@@ -61,6 +61,7 @@ public class BaseCustomer : MonoBehaviour, IBase
     /// 先根据偏好随机出种类
     /// 再根据金币数量排除金币不够的菜品
     /// 再根据已完成数量随机选择一个
+    /// 限制：顾客不会购买同一个菜品两次
     /// </summary>
     /// <returns></returns>
     private int GetOrderDishIndex()

@@ -12,6 +12,7 @@ public class BaseDish : MonoBehaviour, IBase
     [HideInInspector] public PlayerDishData playerDishData;
     [HideInInspector] public int currentlevel;//当前等级
     [HideInInspector] public int priceInc, timeDec;//涨价百分比和减时间百分比
+    [HideInInspector] public int finallyPrice;//最终售价
     [HideInInspector] public int x, y;//坐标
     [HideInInspector] public DateTime finishTime;//预期制作完成的时间
 
